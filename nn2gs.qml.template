@@ -1,0 +1,505 @@
+
+/*
+
+    Nn2GS - Übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika.
+    Copyright (C) 2021  Jakob Schöttl <jschoett@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
+
+import QtQuick 2.9
+import MuseScore 3.0
+import QtQuick.Dialogs 1.2
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
+
+// Discussion about QtQuick versions:
+// https://musescore.org/en/node/281629
+// https://doc.qt.io/qt-5/qtquickcontrols-index.html#versions
+
+// Funktionen, die ich vllt noch brauche:
+// newElement(type: int)
+// removeElement(elem)
+// openLog()
+// closeLog()
+// log(), logn(), log2()
+
+MuseScore {
+    id: plugin
+    menuPath:   "Plugins.Griffschrift (Nn2GS)"
+    version:    "1.0"  // DO NOT CHANGE THIS LINE - version will be set from Makefile
+    description: "Dieses Plugin übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika."
+    requiresScore: true
+
+    pluginType: "dock"
+    dockArea:   "left"
+
+    implicitWidth:  200
+    implicitHeight: 700
+
+    // Polyfills used by compiled functions:
+    property var $jscomp: {}
+
+    onRun: {
+        console.log("Starting...")
+        btnReverseDirection.text = btnReverseDirection.texts[btnReverseDirection.state]
+        btnReverseDirection.background.color = colorButtonNormal
+
+        $jscomp = {} // Polyfill object
+        // POLYFILL IMPLEMENTATION HERE:
+
+        // Additional ES5 polyfills:
+        // https://tc39.github.io/ecma262/#sec-array.prototype.includes
+        if (!Array.prototype.includes) {
+            Object.defineProperty(Array.prototype, 'includes', {
+                value: function(searchElement, fromIndex) {
+
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                // 1. Let O be ? ToObject(this value).
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, "length")).
+                var len = o.length >>> 0;
+
+                // 3. If len is 0, return false.
+                if (len === 0) {
+                    return false;
+                }
+
+                // 4. Let n be ? ToInteger(fromIndex).
+                //    (If fromIndex is undefined, this step produces the value 0.)
+                var n = fromIndex | 0;
+
+                // 5. If n ≥ 0, then
+                //  a. Let k be n.
+                // 6. Else n < 0,
+                //  a. Let k be len + n.
+                //  b. If k < 0, let k be 0.
+                var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+                function sameValueZero(x, y) {
+                    return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+                }
+
+                // 7. Repeat, while k < len
+                while (k < len) {
+                    // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+                    // b. If SameValueZero(searchElement, elementK) is true, return true.
+                    if (sameValueZero(o[k], searchElement)) {
+                    return true;
+                    }
+                    // c. Increase k by 1.
+                    k++;
+                }
+
+                // 8. Return false
+                return false;
+                }
+            });
+        }
+
+    }
+    onScoreStateChanged: {
+        if (state.selectionChanged) {
+            // Invalidate current translation info and selection
+            //console.log("Selection changed")
+            invalidateCurrentResults()
+            // Selection changes after converting GS → Nn; therefore
+            // the disableZDButtonsForTimeout wouldn't have an effect.
+            //enableZDButtons(true)
+        }
+    }
+
+    //readonly property string apiUrl: "https://ziach.intensovet.de/nn2gs"
+    readonly property string apiUrl: "http://localhost:3000/nn2gs"
+
+    readonly property var colorRed: "#ff0000"
+    readonly property var colorBlue: "#0000ff"
+    readonly property var colorBlack: "#000000"
+    readonly property var colorButtonNormal: "#bbb"
+    readonly property var colorDirectionReverse: "#666"
+
+    // Generated using Nn2GS.hs:
+    // result = map (\(x,y) -> (x, map toLower.noteNameToGerman.show $ y, computeAccidentals $ Dur y)) quintenZirkel
+    // encode result
+    // putStrLn ...
+    readonly property var tonarten: [[-8,"fes",["Bes","Ees","Aes","Des","Ges","Ces","Fes"]],[-7,"ces",["Bes","Ees","Aes","Des","Ges","Ces","Fes"]],[-6,"ges",["Bes","Ees","Aes","Des","Ges","Ces"]],[-5,"des",["Bes","Ees","Aes","Des","Ges"]],[-4,"as",["Bes","Ees","Aes","Des"]],[-3,"es",["Bes","Ees","Aes"]],[-2,"b",["Bes","Ees"]],[-1,"f",["Bes"]],[0,"c",[]],[1,"g",["Fis"]],[2,"d",["Fis","Cis"]],[3,"a",["Fis","Cis","Gis"]],[4,"e",["Fis","Cis","Gis","Dis"]],[5,"h",["Fis","Cis","Gis","Dis","Ais"]],[6,"fis",["Fis","Cis","Gis","Dis","Ais","Eis"]],[7,"cis",["Fis","Cis","Gis","Dis","Ais","Eis","Bis"]],[8,"gis",["Fis","Cis","Gis","Dis","Ais","Eis","Bis"]],[9,"dis",["Fis","Cis","Gis","Dis","Ais","Eis","Bis"]],[10,"ais",["Fis","Cis","Gis","Dis","Ais","Eis","Bis"]],[11,"eis",["Fis","Cis","Gis","Dis","Ais","Eis","Bis"]],[12,"his",["Fis","Cis","Gis","Dis","Ais","Eis","Bis"]]]
+
+    // Generated using Nn2GS.hs:
+    // Exclude some notes; see documentation in getNoteName().
+    // encode . filter (not . flip elem [Eis, Bis, Ces, Fes] . withoutOctave . fst) . M.toList $ midiPitchMap
+    // putStrLn "..."
+    readonly property var midiPitchMap: [["C_",36],["Cis_",37],["Des_",37],["D_",38],["Dis_",39],["Ees_",39],["E_",40],["F_",41],["Fis_",42],["Ges_",42],["G_",43],["Gis_",44],["Aes_",44],["A_",45],["Ais_",46],["Bes_",46],["B_",47],["C",48],["Cis",49],["Des",49],["D",50],["Dis",51],["Ees",51],["E",52],["F",53],["Fis",54],["Ges",54],["G",55],["Gis",56],["Aes",56],["A",57],["Ais",58],["Bes",58],["B",59],["C'",60],["Cis'",61],["Des'",61],["D'",62],["Dis'",63],["Ees'",63],["E'",64],["F'",65],["Fis'",66],["Ges'",66],["G'",67],["Gis'",68],["Aes'",68],["A'",69],["Ais'",70],["Bes'",70],["B'",71],["C''",72],["Cis''",73],["Des''",73],["D''",74],["Dis''",75],["Ees''",75],["E''",76],["F''",77],["Fis''",78],["Ges''",78],["G''",79],["Gis''",80],["Aes''",80],["A''",81],["Ais''",82],["Bes''",82],["B''",83],["C'''",84],["Cis'''",85],["Des'''",85],["D'''",86],["Dis'''",87],["Ees'''",87],["E'''",88],["F'''",89],["Fis'''",90],["Ges'''",90],["G'''",91],["Gis'''",92],["Aes'''",92],["A'''",93],["Ais'''",94],["Bes'''",94],["B'''",95],["C''''",96],["Cis''''",97],["Des''''",97],["D''''",98],["Dis''''",99],["Ees''''",99],["E''''",100],["F''''",101],["Fis''''",102],["Ges''''",102],["G''''",103],["Gis''''",104],["Aes''''",104],["A''''",105],["Ais''''",106],["Bes''''",106],["B''''",107]]
+
+    // Generated using Nn2GS.hs:
+    // map (\x -> [show x, map toLower . noteNameToGerman . show $ x]) $ enumFrom C_
+    readonly property var germanNoteNames: [["C_","c_"],["Cis_","cis_"],["Des_","des_"],["D_","d_"],["Dis_","dis_"],["Ees_","es_"],["E_","e_"],["Fes_","fes_"],["Eis_","eis_"],["F_","f_"],["Fis_","fis_"],["Ges_","ges_"],["G_","g_"],["Gis_","gis_"],["Aes_","as_"],["A_","a_"],["Ais_","ais_"],["Bes_","b_"],["B_","h_"],["Ces","ces"],["Bis_","his_"],["C","c"],["Cis","cis"],["Des","des"],["D","d"],["Dis","dis"],["Ees","es"],["E","e"],["Fes","fes"],["Eis","eis"],["F","f"],["Fis","fis"],["Ges","ges"],["G","g"],["Gis","gis"],["Aes","as"],["A","a"],["Ais","ais"],["Bes","b"],["B","h"],["Ces'","ces'"],["Bis","his"],["C'","c'"],["Cis'","cis'"],["Des'","des'"],["D'","d'"],["Dis'","dis'"],["Ees'","es'"],["E'","e'"],["Fes'","fes'"],["Eis'","eis'"],["F'","f'"],["Fis'","fis'"],["Ges'","ges'"],["G'","g'"],["Gis'","gis'"],["Aes'","as'"],["A'","a'"],["Ais'","ais'"],["Bes'","b'"],["B'","h'"],["Ces''","ces''"],["Bis'","his'"],["C''","c''"],["Cis''","cis''"],["Des''","des''"],["D''","d''"],["Dis''","dis''"],["Ees''","es''"],["E''","e''"],["Fes''","fes''"],["Eis''","eis''"],["F''","f''"],["Fis''","fis''"],["Ges''","ges''"],["G''","g''"],["Gis''","gis''"],["Aes''","as''"],["A''","a''"],["Ais''","ais''"],["Bes''","b''"],["B''","h''"],["Ces'''","ces'''"],["Bis''","his''"],["C'''","c'''"],["Cis'''","cis'''"],["Des'''","des'''"],["D'''","d'''"],["Dis'''","dis'''"],["Ees'''","es'''"],["E'''","e'''"],["Fes'''","fes'''"],["Eis'''","eis'''"],["F'''","f'''"],["Fis'''","fis'''"],["Ges'''","ges'''"],["G'''","g'''"],["Gis'''","gis'''"],["Aes'''","as'''"],["A'''","a'''"],["Ais'''","ais'''"],["Bes'''","b'''"],["B'''","h'''"],["Ces''''","ces''''"],["Bis'''","his'''"],["C''''","c''''"],["Cis''''","cis''''"],["Des''''","des''''"],["D''''","d''''"],["Dis''''","dis''''"],["Ees''''","es''''"],["E''''","e''''"],["Fes''''","fes''''"],["Eis''''","eis''''"],["F''''","f''''"],["Fis''''","fis''''"],["Ges''''","ges''''"],["G''''","g''''"],["Gis''''","gis''''"],["Aes''''","as''''"],["A''''","a''''"],["Ais''''","ais''''"],["Bes''''","b''''"],["B''''","h''''"],["Ces'''''","ces'''''"],["Bis''''","his''''"]]
+
+    // Generated using Nn2GS.hs:
+    // tonalPitches = zip [-1::Int ..4] $ repeat $ flip zip [6::Int ..] $ map snd quintenZirkel
+    // encode $ concatMap (\(i, xs) -> map (\(x, p) -> (show $ mkTon' x i, p)) xs) $ map (\(i, xs) -> (i, filter (\(x,_) -> not (i == -1 && x == Ces)) xs)) $ tonalPitches
+    // putStrLn ...
+    readonly property var tonalPitchClassMap: [["Fes_",6],["Ges_",8],["Des_",9],["Aes_",10],["Ees_",11],["Bes_",12],["F_",13],["C_",14],["G_",15],["D_",16],["A_",17],["E_",18],["B_",19],["Fis_",20],["Cis_",21],["Gis_",22],["Dis_",23],["Ais_",24],["Eis_",25],["Bis_",26],["Fes",6],["Ces",7],["Ges",8],["Des",9],["Aes",10],["Ees",11],["Bes",12],["F",13],["C",14],["G",15],["D",16],["A",17],["E",18],["B",19],["Fis",20],["Cis",21],["Gis",22],["Dis",23],["Ais",24],["Eis",25],["Bis",26],["Fes'",6],["Ces'",7],["Ges'",8],["Des'",9],["Aes'",10],["Ees'",11],["Bes'",12],["F'",13],["C'",14],["G'",15],["D'",16],["A'",17],["E'",18],["B'",19],["Fis'",20],["Cis'",21],["Gis'",22],["Dis'",23],["Ais'",24],["Eis'",25],["Bis'",26],["Fes''",6],["Ces''",7],["Ges''",8],["Des''",9],["Aes''",10],["Ees''",11],["Bes''",12],["F''",13],["C''",14],["G''",15],["D''",16],["A''",17],["E''",18],["B''",19],["Fis''",20],["Cis''",21],["Gis''",22],["Dis''",23],["Ais''",24],["Eis''",25],["Bis''",26],["Fes'''",6],["Ces'''",7],["Ges'''",8],["Des'''",9],["Aes'''",10],["Ees'''",11],["Bes'''",12],["F'''",13],["C'''",14],["G'''",15],["D'''",16],["A'''",17],["E'''",18],["B'''",19],["Fis'''",20],["Cis'''",21],["Gis'''",22],["Dis'''",23],["Ais'''",24],["Eis'''",25],["Bis'''",26],["Fes''''",6],["Ces''''",7],["Ges''''",8],["Des''''",9],["Aes''''",10],["Ees''''",11],["Bes''''",12],["F''''",13],["C''''",14],["G''''",15],["D''''",16],["A''''",17],["E''''",18],["B''''",19],["Fis''''",20],["Cis''''",21],["Gis''''",22],["Dis''''",23],["Ais''''",24],["Eis''''",25],["Bis''''",26]]
+
+    // For each row, the entry contains Bass, Wechselbass_Zug, Wechselbass_Druck.
+    // Bass-Mapping könnte später konfigurierbar werden.
+    // "W" ist laut dieses Österreichen Lehrerverbands empfohlen, also nicht X and A'?
+    readonly property var bassMapping: [["A", "A'", "X"], ["B", "A", "A"], ["C", "B", "B"], ["D", "C", "C"]]
+
+    // Prevent memory/performance problems and API abuse
+    readonly property int maxChordLimit: 50
+
+    property var lastResults: null
+    property string lastZD: ''
+    property int alternativeIndex: 0
+
+    // PURE FUNCTIONS HERE:
+
+    // IMPURE FUNCTIONS HERE:
+
+    Shortcut {
+        sequence: "Alt+R"
+        context: Qt.ApplicationShortcut
+        onActivated: clickReverseDirection()
+    }
+    // Alt+D für Druck ist schon vergeben von Menü, deswegen J/K für Z/D als Alternative
+    Shortcut {
+        sequence: "Alt+J"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (btnZug.enabled)
+                clickZug()
+        }
+    }
+    Shortcut {
+        sequence: "Alt+K"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (btnDruck.enabled)
+                clickDruck()
+        }
+    }
+
+    MessageDialog {
+        id: errorDialog
+        title: "Fehler"
+        icon: StandardIcon.Critical
+        function show(msg) {
+            text = msg
+            open()
+        }
+    }
+
+    MessageDialog {
+        id: warningDialog
+        title: "Warnung"
+        icon: StandardIcon.Warning
+        function show(msg) {
+            text = msg
+            open()
+        }
+    }
+
+    MessageDialog {
+        id: infoDialog
+        title: "Info"
+        icon: StandardIcon.Information
+        text: "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\n      https://ziach.intensovet.de/\n\nMomentan kostenlos, irgendwann wird man für die Nutzung eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
+    }
+
+    Timer {
+      id: invalidateResultsTimer
+      interval: 100000
+      running: false
+      repeat: false
+      //singleShot: true
+      onTriggered: invalidateCurrentResults()
+    }
+
+    Timer {
+      id: disableZDButtonsTimer
+      interval: 2000
+      running: false
+      repeat: false
+      //singleShot: true
+      onTriggered: enableZDButtons(true)
+    }
+
+    function enableZDButtons(yes) {
+        console.log("zd buttons enabled: " + yes)
+        btnZug.enabled = yes
+        btnDruck.enabled = yes
+    }
+
+    function invalidateCurrentResults() {
+        btnNextAlternative.enabled = false
+        lastResults = null
+    }
+
+    function isCurrentResultValid() {
+        return !!lastResults
+    }
+
+    function disableZDButtonsForTimeout() {
+        enableZDButtons(false)
+        disableZDButtonsTimer.restart()
+    }
+
+    function invalidateResultsAfterTimeout() {
+        invalidateResultsTimer.restart()
+    }
+
+    function clickZug() {
+        handleClickZugDruck('zug')
+    }
+    function clickDruck() {
+        handleClickZugDruck('druck')
+    }
+    function isReverseDirection() {
+        //return comboDirection.currentIndex !== 0
+        return btnReverseDirection.state === 2
+    }
+    function clickNextAlternative() {
+        // Only for Normalnotation → GS
+        if (!isCurrentResultValid() || isReverseDirection()) {
+            error.warn("btnNextAlternative should be disabled. Aborting.")
+            return
+        }
+        var chords = collectChords()
+        alternativeIndex += 1
+        changeNotes(lastZD, false)(chords, lastResults)
+    }
+
+    function clickReverseDirection() {
+        invalidateCurrentResults()
+        var state = btnReverseDirection.state
+        state = (state + 1) % 3
+        btnReverseDirection.state = state
+        btnReverseDirection.text = btnReverseDirection.texts[state]
+        btnReverseDirection.background.color = (state === 2) ? colorDirectionReverse : colorButtonNormal
+    }
+
+    GridLayout {
+        anchors.fill: parent
+        Layout.fillWidth: true
+        columns: 1
+        rowSpacing: 1
+
+        Text {
+            text: "Instrument (anzeigen)"
+            horizontalAlignment: Text.AlignHCenter
+            Layout.fillWidth: true
+            MouseArea {
+                anchors.fill: parent
+                onClicked: lblShowInstrumentClick()
+            }
+        }
+        ComboBox {
+            id: comboModel
+            Layout.fillWidth: true
+            textRole: "value"
+            model: ListModel {
+                // Generated using Nn2GS.hs:
+                // :{
+                // f (Steirische {steirModelId=x, steirTonarten=ts}) = (x, Just ts)
+                // f instrument = (modelId instrument, Nothing)
+                // :}
+                // putStrLn $ unlines $ map (\(x, ts) -> "ListElement { key: \"" ++ map toLower x ++ "\"; value: \"" ++ x ++ "\"; tonarten: " ++ maybe "\"null\"" (show . show . map show) ts ++ "; }") $ map f listOfInstruments
+                // Cannot define array as property value; use JSON.parse() to decode property 'tonarten'.
+                ListElement { key: "adgc50"; value: "ADGC50"; tonarten: "[\"A\",\"D\",\"G\",\"C\"]"; }
+                ListElement { key: "besasdes50"; value: "BEsAsDes50"; tonarten: "[\"Bes\",\"Ees\",\"Aes\",\"Des\"]"; }
+                ListElement { key: "besasdes46"; value: "BEsAsDes46"; tonarten: "[\"Bes\",\"Ees\",\"Aes\",\"Des\"]"; }
+                ListElement { key: "gcfb50"; value: "GCFB50"; tonarten: "[\"G\",\"C\",\"F\",\"B\"]"; }
+                ListElement { key: "schwyzer-orgel_b"; value: "Schwyzer-Orgel_B"; tonarten: "[\"B\",\"Ees\"]"; }
+                ListElement { key: "club_cf"; value: "Club_CF"; tonarten: "[\"C\",\"F\"]"; }
+                ListElement { key: "knopfakkordeon_b"; value: "Knopfakkordeon_B"; tonarten: "null"; }
+            }
+            function currentKey() {
+                return model.get(currentIndex).key
+            }
+            onCurrentIndexChanged: {
+                invalidateCurrentResults()
+            }
+        }
+        Text {
+            text: "Aktuelle Dur-Tonart"
+            horizontalAlignment: Text.AlignHCenter
+            Layout.fillWidth: true
+            MouseArea {
+                anchors.fill: parent
+                onClicked: lblCurrentKeyClick()
+            }
+        }
+
+        SpinBox {
+            width: parent.width
+            Layout.fillWidth: true
+            id: spinnerTonart
+            value: 8
+            from: 0
+            to: 20
+            editable: true
+            //validator: QRegExpValidator(/.*/) // tonarten.join('|') + ^$ anchors?
+            validator: null
+            textFromValue: function(value, locale) {
+                return tonarten[value][1]
+            }
+            valueFromText: function(text, locale) {
+                var i = tonarten.indexOf(text)
+                if (i >= 0) return i
+                return 0
+            }
+            onValueChanged: {
+                invalidateCurrentResults()
+            }
+        }
+
+        ComboBox {
+            id: comboDirection
+            Layout.fillWidth: true
+            visible: false // in favor of btnReverseDirection
+            textRole: "value"
+            model: ListModel {
+                  ListElement { value: "Normal → GS" }
+                  ListElement { value: "GS-Alternativen" }
+                  ListElement { value: "GS → Normal" }
+            }
+            onCurrentIndexChanged: {
+                invalidateCurrentResults()
+            }
+        }
+        Button {
+            id: btnReverseDirection
+            Layout.fillWidth: true
+            readonly property var texts: ["Normal → GS", "GS-Alternativen", "GS → Normal"]
+            //background.color: colorButtonNormal
+            text: "Reverse"
+            property int state: 0
+            checkable: false // checked state doesn't work reliably with double clicks
+            checked: false
+            // Handle both events because on double click, click AND
+            // double click are fired which causes a faster switching:
+            onClicked: clickReverseDirection()
+            //onDoubleClicked: clickReverseDirection() <- does not work on Windows
+        }
+
+        Button {
+            text: "Zug"
+            id: btnZug
+            Layout.fillWidth: true
+            //background.color: colorButtonNormal
+            onClicked: clickZug()
+        }
+        Button {
+            text: "Druck"
+            id: btnDruck
+            Layout.fillWidth: true
+            //background.color: colorButtonNormal
+            onClicked: clickDruck()
+        }
+        Button {
+            text: "Nächste Alternative"
+            Layout.fillWidth: true
+            //background.color: colorButtonNormal
+            visible: false
+            enabled: false
+            id: btnNextAlternative
+            onClicked: clickNextAlternative()
+        }
+
+        Text {
+            text: "Einstellungen"
+            horizontalAlignment: Text.AlignHCenter
+            Layout.fillWidth: true
+        }
+        ComboBox {
+            id: comboTabulatureDisplay
+            Layout.fillWidth: true
+            textRole: "text"
+            enabled: true
+            currentIndex: 0
+            model: ListModel {
+                  ListElement { text: "Modern"; key: "modern" }  // Modern
+                  ListElement { text: "Modern 2"; key: "johannesservi.de" }   // Johannes Servi
+                  ListElement { text: "Modern 3"; key: "johannesservi.de_2" }   // Johannes Servi
+                  ListElement { text: "Klassisch (Kreuz)"; key: "klassisch_kreuz" }          // Rosenzopf, klassisch, Kreuz vor Noten
+                  ListElement { text: "Klassisch (Kreuz, vor langen Noten)"; key: "klassisch_kreuz2" }          // wie klassisch_kreuz, aber Notenkopf in Kreuzform (außer bei Halben/Ganzen)
+                  ListElement { text: "Klassisch (Doppelkreuz)"; key: "klassisch_doppelkreuz" } // Klassisch, Doppelkreuz vor Noten
+                  ListElement { text: "Klassisch (Doppelkreuz, vor langen Noten)"; key: "klassisch_doppelkreuz2" } // wie klassisch_doppelkreuz, aber Notenkopf in Doppelkreuzform (außer bei Halben/Ganzen)
+                  ListElement { text: "Michlbauer"; key: "michlbauer.com" } // Kreuz vor Noten, 3. R. einfaches Kreuz, 4. R. kleine umringeltes Kreuz => Bravura
+                  ListElement { text: "Knöpferl"; key: "knoepferl.at" } // Kreuz vor Noten, 3. R. einfaches Kreuz, 4. R. Doppelkreuz - Quelle: https://knoepferl.at/produkt/orf-wetterpanorama/
+                  ListElement { text: "Dickes Kreuz für 4. Reihe"; key: "dickes_kreuz" } // wie klassisch_kreuz, aber das dicke Kreuz für 4. Reihe
+                  ListElement { text: "Kreuz/Doppelkreuz gemischt"; key: "matthiaspuerner.de" }  // Matthias Pürner, Doppelkreuz vor Halben/Ganzen, normales Kreuz als Notenkopf sonst - Quelle: https://matthiaspuerner.de/wp-content/uploads/2020/11/01_19er-Marscherl-Griffschrift-2S-Partitur.pdf
+            }
+            function currentKey() {
+                return model.get(currentIndex).key
+            }
+        }
+        TextField {
+            text: ""
+            id: txtLicenseKey
+            Layout.fillWidth: true
+            visible: false
+            placeholderText: "Lizenz-Schlüssel eingeben…"
+            Keys.onPressed: {
+                if (text.trim() === '' && event.key === Qt.Key_Return) {
+                    console.log("Opening URL in browser.")
+                    Qt.openUrlExternally(apiUrl + '#faq-kosten')
+                    text = ''
+                }
+            }
+            // Use local storage to save the key for the next session
+            // https://doc.qt.io/qt-5/qtquick-localstorage-qmlmodule.html
+        }
+
+        CheckBox {
+            id: checkBoxSortHeads
+            checked: true
+            text: "Um Notenhals sortieren"
+        }
+
+        CheckBox {
+            id: checkBoxColorZug
+            checked: true
+            text: "Zug-GS blau färben"
+            onClicked: checkBoxColorZugClick()
+        }
+
+        Button {
+            text: "GS abspielbar machen"
+            visible: false
+            Layout.fillWidth: true
+            //background.color: colorButtonNormal
+            onClicked: makePlayable()
+        }
+
+        TextField {
+            text: ""
+            id: txtVoices
+            Layout.fillWidth: true
+            placeholderText: "Stimmen übersetzen, z.B. 1, 2, 3"
+        }
+
+        Button {
+            text: "Info"
+            Layout.fillWidth: true
+            //background.color: colorButtonNormal
+            onClicked: infoDialog.open()
+        }
+     }
+  }

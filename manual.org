@@ -1,0 +1,367 @@
+#+TITLE:    Handbuch
+#+SUBTITLE: MuseScore Plugin Nn2GS
+#+AUTHOR:   Jakob Schöttl
+#+EMAIL:    jschoett@gmail.com
+
+#+LANGUAGE: de-de
+#+LATEX_HEADER: \usepackage[ngerman]{babel}
+
+#+LATEX: \newpage
+
+* Einleitung
+
+Das MuseScore Plugin Nn2GS übersetzt zwischen Normalnoten und
+Griffschrift für Steirische Harmonika und verwandte Instrumente.
+Es bietet dem Benutzer außerdem alle alternativen Griffweisen für
+einen Ton oder Akkord an.
+
+- Es ist eine Internetverbindung notwendig um das Plugin zu benutzen.
+- Die Benutzung des Plugins wird zukünftig etwas kosten.
+
+* Einführungsbeispiel
+
+Das folgende Beispiel zeigt Noten, die mit dem Plugin in Griffschrift
+umgewandelt wurden. Die Umwandlung zurück in normale Noten
+funktioniert genauso einfach.
+
+Zuerst wird /Instrument/ und /Aktuelle Dur-Tonart/ ausgewählt und
+die Übersetzungsrichtung eingestellt (z.B. /Normal → GS/).
+Anschließend markiert man Noten und klickt auf die Buttons /Zug/ oder
+/Druck/ um die Übersetzung zu durchzuführen.
+Den „Druck-Balken“ muss man noch manuell hinzufügin (ein Klick).
+Auch die Verwendung von Tastenkürzel ist möglich,
+siehe [[*Schnellere Bedienung durch Tastenkürzeln][Schnellere Bedienung durch Tastenkürzeln]].
+
+#+DOWNLOADED: https://musescore.org/sites/musescore.org/files/styles/width_1480/public/2021-01/screenshot.png @ 2021-01-09 19:43:03
+[[file:../../../../org/images/Einführungsbeispiel/2021-01-09_19-43-03_screenshot.png]]
+
+* Installation
+
+Die Plugin-Datei muss heruntergeladen werden und zur
+Installation in einen bestimmten Ordner kopiert werden, damit
+MuseScore sie findet.
+
+Gehen Sie auf die Download-Seite, laden Sie die aktuelle Version
+herunter und folgen Sie den Installationsanweisungen:
+
+https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika
+
+1. Öffnen Sie MuseScore gehen Sie auf /Bearbeiten → Einstellungen…/.
+2. Kopieren Sie den Dateipfad, der unter /Verzeichnisse/ bei
+   /Plug-Ins/ steht (markieren und =Strg+C=).
+3. Öffnen Sie ein Explorer-Fenster (Dateimanager) und fügen Sie als
+   Adresse den Dateipfad ein, den Sie eben aus den
+   MuseScore-Einstellungen kopiert haben.
+4. Verschieben Sie die Plugin-Datei nn2gs.qml aus der Zip-Datei von Ihrem
+   Download-Ordner in den Plugin-Ordner.
+5. Gehen Sie in MuseScore auf /Plug-Ins → Plug-In Manager…/.
+6. Klicken Sie auf /Plug-Ins neu laden/.
+7. Aktivieren Sie nn2gs in der Liste links, indem Sie ein Häckchen setzen.
+8. Klicken Sie auf /OK/
+
+Sie finden das Plugin nun unter /Plug-Ins → Nn2GS/.
+
+Details zur Plugin-Installation auf englisch:
+https://musescore.org/de/node/278601
+
+* Allgemeine Bedienung
+
+Das MuseScore Plugin kann gestartet werden über das Menü /Plug-Ins → Nn2GS/.
+Die Bedienoberfläche erscheint dann am linken Rand von MuseScore.
+
+#+DOWNLOADED: screenshot @ 2021-01-09 20:10:46
+#+ATTR_LATEX: :width 5cm
+[[file:../../../../org/images/Allgemeine_Bedienung/2021-01-09_20-10-46_screenshot.png]]
+
+Bevor man zu arbeiten beginnt, müssen hier /Instrument/ und /Aktuelle
+Tonart/ eingestellt werden. Dabei ist zu beachten:
+
+- Das Instrument, z.B. eine ADGC-Harmonika, sollte zur Tonart passen,
+  in der das Stück steht. Ist das nicht der Fall, wird die
+  Griffschrift später schwer zu spielen sein. Außerdem sind manche
+  Töne auf dem Instrument vielleicht gar nicht vorhanden.
+  Siehe dazu auch die folgenden beiden Kapitel.
+- Die /Aktuelle Tonart/ muss manuell auf die Tonart gestellt werden,
+  in der das Stück steht. Ansonsten werden vom Plugin häufig nicht die
+  optimalen Griffweisen für Töne und Akkorde gewählt.
+
+# TODO Hinweis zu Einstellungen und Lizenzschlüssel
+
+Nun kann die Arbeit beginnen:
+Standardmäßig ist die Übersetzung /Normal → GS/ aktiviert, also die
+Übersetzung von Normalnoten zu Griffschrift.
+Durch Klick auf diesen Button kann die Übersetzungsrichtung umgekehrt werden.
+
+** Normalnoten zu Griffschrift umwandeln
+
+Die Übersetzungsrichtung muss auf /Normal → GS/ eingestellt sein.
+
+Markieren Sie die Takte oder Akkorde, die in einer vorgegebener
+Balgrichtung gespielt werden sollen.
+
+Klicken Sie auf /Zug/ oder /Druck/, um die Normalnoten zu Griffschrift
+zu übersetzen.
+
+Solange Sie die Auswahl der Takte oder Akkorde nicht ändern, können
+Sie beliebig oft und auch abwechselnd auf beide Buttons klicken.
+
+Bei mehrfachem Klicken auf einen der beiden Buttons, werden alle
+alternativen Griffweisen durchgeschaltet.
+
+*Beispiel:*
+
+- Sie wollen Takte, die in der IV. Stufe stehen auf Zug spielen:
+  /Zug/ klicken.
+- Sie sehen, dass diese Griffweise umständlich ist und wollen die
+  alternativen Griffweisen sehen: /Zug/ weitere Male klicken um durch
+  alle Griffweisen zu schalten.
+- Es ist keine gute Griffweise unter den Alternativen. Sie wollen
+  sehen, wie es auf Druck wäre: /Druck/ klicken.
+- Wenn sie zufrieden sind, können Sie abschließen: Auswähl der
+  Takte/Akkorde aufheben oder direkt die nächsten Takte markieren.
+
+*Hinweis:*
+Die Balken-Unterstreichung für Takte/Akkorde, die auf Druck gespielt
+werden, muss manuell hinzugefügt werden. Das geht aber einfach:
+
+1. Takte/Akkorde markieren.
+2. Aus der Palette unter /Linien/ auf den gewünschten Balken klicken.
+
+** Griffschrift zu Normalnoten umwandeln
+
+Die Übersetzungsrichtung muss auf /GS → Normal/ eingestellt sein.
+Die Auswahl des Instruments bestimmt die Tonart der resultierenden
+Normalnotation.
+
+Markieren Sie die Takte oder Akkorde, die in einer Balgrichtung gespielt werden.
+
+Klicken Sie auf /Zug/ oder /Druck/, um die Griffschrift zu
+entsprechenden Normnoten zu übersetzen.
+
+Bei dieser Übersetzungsrichtung gibt es nur eine eindeutige Lösung
+(nicht mehrere Alternativen). Deshalb ist auch nur /ein/ Klick
+erlaubt.
+Die Aktion kann rückgängig gemacht werden mit =Strg+Z= oder indem
+wieder auf /Normal → GS/ gestellt und erneut übersetzt wird.
+
+Nach dem Umwandeln zu Normalnoten muss noch die Tonart
+richtig eingestellt werden und Versetzungszeichen neu berechnet werden.
+
+Die Tonart stellt man ein, indem man aus der Palette (/Ansicht →
+Paletten/ oder =F9=) unter /Tonarten/ das entsprechende Tonartsymbol
+auf den ersten Takt des Notensystems zieht.
+
+Anschließend müssen Versetzungszeichen neu berechnet werden:
+/Werkzeuge → Versetzungszeichen neu berechnen/.
+
+** Griffweisen in Griffschrift durchschalten
+
+Bei bestehender Griffschrift kann zwischen verschiedenen Griffweisen
+einzelner Akkorde (oder auch längere Passagen) durchgeschalten werden.
+
+1. Die Akkorde markieren.
+2. Die Übersetzungsrichtung auf /GS-Alternativen/ stellen.
+3. Button /Zug/ (für Zug-Passagen) bzw. /Druck/ (für Druck-Passagen)
+   klicken. Zug/Druck wird noch nicht von selbst erkannt, deswegen
+   muss hier aufgepasst werden.
+4. Dann beliebig /Zug/ oder /Druck/ klicken, um die Alternativen
+   durchzuschalten.
+
+** Der „Druck-Balken“
+
+Der „Druck-Balken“ ist Unterstreichung der Passagen, die auf Druck
+gespielt werden. Bei Zug-Passagen hat man keine spezielle Markierung.
+
+*Wichtig:*
+Die Unterstreichung funktioniert noch nicht automatisch.
+Durch Setzen eines Häckchens bei /Zug-GS blau färben/ erhält aber
+Griffschrift, die auf Zug steht, automatisch blaue Notenköpfe.
+Die blaue Farbe kann entfernt werden, indem das Häckchen wieder
+abgewählt wird.
+
+Um die Stellen, die auf Druck gespielt werden zu markieren, wird eine
+Linie zum Unterstreichen verwendet. Das funktioniert wie folgt:
+
+1. /Ansicht → Paletten/ oder die Taste =F9= um die Palette von
+   Elementen/Symbolen sichtbar zu machen.
+2. /Linien/ aufklappen (über /Mehr/ stehen noch weitere zur Auswahl)
+3. Einmal auf das gewünschte Linienelement klicken um die markierten
+   Noten zu unterstreichen.
+
+Die Unterstreichung geht dann automatisch vom ersten bis zum
+letzten markierten Akkord.
+
+Das macht man am Besten direkt nach dem Umwandeln zu Griffschrift,
+solange die Auswahl der Takte/Akkorde noch unverändert ist.
+Die Linie kann nachträglich mit der Maus angepasst werden (anklicken
+und ziehen).
+
+* Die erzeugte Griffschrift enthält Auflösungszeichen
+
+Steht das Stück original in einer b-Tonart ist z.B. der Gleichton der
+zweiten Reihe (Position der Note h) mit einem Auflösungszeichen versehen.
+
+#+DOWNLOADED: screenshot @ 2021-02-10 00:21:09
+[[file:../../../../org/images/Die_erzeugte_Griffschrift_enthält_Auflösungszeichen/2021-02-10_00-21-09_screenshot.png]]
+
+
+Das liegt daran, dass immer noch die Vorzeichen des Originalstückes
+eingestellt sind.
+
+*Lösung:*
+Erst nachdem das Stück komplett in Griffschrift umgewandelt ist, kann
+man einfach die Tonart nach C-Dur (keine Vorzeichen) ändern und auch
+den Notenschlüssel unsichtbar machen.
+
+Falsch wäre es, die Tonart vor dem Umwandeln zu ändern, weil dann
+andere Töne (z.B. f statt fis) auf dem eingestellten Instrument
+gesucht werden und so eine falsche Griffschrift entsteht.
+
+Die Vorzeichen stellt man per Drag & Drop über die Palette (Taste
+=F9=) unter /Tonarten/ ein.
+Den Violinschlüssel kann man über den Inspektor (Taste =F8=)
+unsichtbar machen.
+
+*Hinweis:*
+Das Tabulatursymbol als Schlüssel zu verwenden funktioniert leider
+noch nicht ohne weiteres, da dieser (wie auch Bass- oder
+Tenorschlüssel) die Noten der Griffschrift auf andere Positionen verschiebt.
+
+* Tonart der Normalnoten passt nicht zum Instrument
+
+Wenn die Normalnotation z.B. in E-Dur steht kann für die verfügbaren
+Instrumente ADGC-, GCFB-, und BEsAsDes-Harmonika keine gut spielbare
+Griffschrift herauskommen. Die Griffschrift wäre zwar korrekt, soweit
+alle Töne auf dem Instrument vorhanden sind, aber wenn schon der erste
+Teil auf der nicht existierenden 0-ten Reihe gespielt werden muss wird
+es schwierig.
+
+In so einem Fall sollten die Noten vorher transponiert werden.
+
+Das Transponieren von E-Dur auf D-Dur geht in MuseScore
+folgendermaßen:
+
+1. Gesamte Partitur markieren (=Strg+A=)
+2. /Werkzeuge → Transponieren…/
+3. Im Dialog bei /Nach Tonart/ die Zieltonart /D-Dur / h-Moll/ auswählen
+4. /OK/ klicken
+
+#+DOWNLOADED: screenshot @ 2020-12-30 12:41:21
+[[file:../../../../org/images/Allgemeine_Bedienung/2020-12-30_12-41-21_screenshot.png]]
+
+* Grundsätzliche Bedienung von MuseScore (für Sibelius-, Finale-, …-Benutzer)
+
+** Allgemein
+
+In MuseScore gibt es den "Normalen Modus" und den
+"Noten-Eingabe-Modus".
+*Für die Nutzung des Plugins wird nur der normale Modus benötigt.*
+Vom Eingabemodus kann man durch drücken der Taste =Esc= in den
+normalen Modus zurückwechseln.
+
+Über /Datei → Öffnen…/ können Sie eine Vielzahl von Dateiformaten
+öffnen. Als Austauschformat zwischen verschieden
+Notenschreibprogrammen bietet sich [[https://www.musicxml.com/][MusicXML]] an.
+
+- Takte markieren :: Klicken Sie innerhalb eines Systems auf freien
+  Platz zischen den Noten, um einen Takt zu markieren.
+- Mehrere Takte markieren :: Markieren Sie einen Takt, halten Sie die
+  Taste =Shift= gedrückt und markieren Sie einen zweiten Takt. Die
+  freien Takte zwischen dem ersten und dem zweiten Klick werden
+  dadurch ebenfalls ausgewählt.
+- Akkorde und mehrere Noten markieren :: Klicken Sie die erste Note
+  an, halten Sie die Taste =Shift= gedruckt und klicken Sie eine
+  weitere Note an. Die dazwischenliegenden Noten bzw. Akkorde werden
+  damit ebenfalls markiert.
+- Markierung aufheben :: Klicken Sie einfach auf irgendeinen freien
+  Platz auf der Seite.
+- Normalnoten abspielen :: Markieren Sie eine Note um den Start
+  festzulegen. Drücken Sie dann die Leertaste um das Abspielen zu
+  starten oder zu pausieren.
+
+** Tipps und Tricks
+
+*** Mehrere Einzelstimmen in einer Notenzeile zusammenführen
+
+Dazu sind zwei Schritte notwendig:
+
+1. Alle Noten aus allen Notenzeilen markieren, dann /Werkzeuge →
+   Sammeln/.
+2. Alle Noten in der zusammengeführten Notenzeile nochmals markieren
+   und wieder /Werkzeuge → Sammeln/. Damit werden die Einzelstimmen
+   (einzelene Notenhälse) zu Akkorden zusammengefasst.
+
+https://musescore.org/de/node/278656#implode
+
+*** Alle ähnliche Noten markieren (z.B. Kreuznoten)
+
+Manchmal will man z.B. alle Noten mit Kreuz-Notenköpfen markieren, um
+deren Aussehen oder eine andere Eigenschaft zu ändern.
+Das geht folgendermaßen:
+
+1. Eine Note markieren.
+2. Rechtsklick, /Auswählen → Alle ähnlichen Elemente/ oder
+   /Auswählen → Mehr…/
+
+https://musescore.org/de/node/278652#all-similar-selection
+
+* Schnellere Bedienung durch Tastenkürzeln
+
+Über /Plug-Ins → Plug-In Manager/ kann ein Tastenkürzel zum Starten
+des Plugins definiert werden.
+
+Für die wichtigsten Funktionen des Plugins gibt es
+Tastenkürzel:
+
+- =Alt+R= :: _R_ ichtung der Übersetzung festlegen (/GS → Normal/,
+  /GS-Alternativen/, /Normal → GS/)
+- =Alt+J= :: Auswahl auf /Zug/ nehmen
+- =Alt+K= :: Auswahl auf /Druck/ nehmen
+
+=Alt+Z/D= waren nicht frei, deswegen die Tasten =J= / =K= für Zug/Druck,
+die gut erreichbar nebeneinander liegen.
+
+Wie auch in einem Textverarbeitungsprogramm (z.B. Word), kann man
+Noten mit der Tastatur markieren:
+
+1. =Shift= gedrückt halten und Pfeiltasten =Links= / =Rechts=: Noten
+   werden markiert.
+2. =Strg+Shift= gedrückt halten und Pfeiltasten =Links= / =Rechts=: Ganze
+   Takte werden markiert.
+3. =Shift= gedrückt halten, dann =Rechts=, dann =Links=: Nur
+   /eine einzelne/ Note bzw. /ein/ Akkord wird markiert.
+
+Noten sind nur dann richtig markiert, wenn ein blauer Rahmen rundherum
+sichtbar ist.
+
+* Verschiedene Griffschrift-Varianten
+
+Es stehen verschiedene „Schriftarten“ der erzeugten Griffschrift zur
+Auswahl.
+Tasten der 1. und 2. Reihe werden durch einen normalen Notenkopf
+bezeichnet.
+Tasten der 3. und 4. Reihe werden grundsätzlich mit „Kreuznoten“
+gekennzeichnet, also entweder ein Notenkopf in Kreuzform oder ein
+normaler Notenkopf mit einem Kreuz davor.
+Das folgende Bild zeigt die verschieden Varianten.
+
+#+DOWNLOADED: screenshot @ 2021-01-09 19:57:15
+[[file:../../../../org/images/Verschiedene_Griffschrift-Varianten/2021-01-09_19-57-15_screenshot.png]]
+
+Die Wahl kann der Notensetzer über die /Einstellungen/ treffen.
+
+Vor- und Nachteile verschiedener Varianten:
+
+- Die Variante in Takt 9 ff. passen die Kreise bei halben/ganzen Noten
+  nicht zwischen zwei Notenlinien was v.a. beim Schlussakkord nicht
+  so schön aussieht.
+- Die Variante in Takt 13 ff. benutzt zwei ganz verschiedene Arten von
+  Kreuzen zur Markierung (Kreuz-Notenkopf und das
+  Doppelkreuz-Versetzungszeichen). Die beiden passen optisch nicht so
+  gut zusammen.
+- Die Doppelkreuze der Varianten in Takt 13 ff. und 17 ff. müssen bei
+  Akkorden noch manuell platziert werden und standardmäßig ist „keine Luft“
+  zwischen übernanderliegenden Doppelkreuzen, was
+  die Darstellung zum Teil seltsam aussehen lässt.
+- Vorteil der Variante in Takt 17 ff. gegenüber Takt 13 ff. sind die
+  einheitlichen Kreuzformen bei allen Notenwerten.

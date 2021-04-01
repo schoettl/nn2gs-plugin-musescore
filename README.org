@@ -1,0 +1,126 @@
+
+* MuseScore 3 Plugin
+
+- [[https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika][Plugin page at musescore.org]]
+- [[https://musescore.org/en/node/315330][Plugin discussion thread on musescore.org]]
+
+Nn2GS („Normalnototation zu Griffschrift“) ist ein Computerprogramm zum
+Übersetzen zwischen Normalnoten und Griffschrift für Steirische
+Harmonika, Schwyzer-Orgel und ähnliche Instrumente.
+
+/Nn2GS is a software to convert between normal music notation and
+Griffschrift for Steirische Harmonika (a diatonic button accordion), and
+similar instruments./
+
+Die Webseite https://ziach.intensovet.de/ zeigt die
+Diskant-Tastenanordnungen, für die Griffschrift erzeugt werden kann. Auf
+Anfrage können auch weitere Tastenanordnungen hinzugefügt werden.
+
+Demo-Videos gibt es hier bei YouTube:
+https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV
+
+*Features:*
+
+- *Übersetzen in beide Richtungen*
+- „Durchschalten“ der *alternativen Griffweisen*.
+- Übersetzte *Griffschrift ist abspielbar* in MuseScore.
+- In Griffschrift werden die *Notenköpfe automatisch auf die richtige
+  Seite* des Notenhalses sortiert (optional).
+- In Griffschrift werden Zusatztasten zusätzlich durch spezielle
+  Notenköpfe gekennzeichnet.
+- Verschiedene Griffschrift-Varianten (=Schriftarten), z.B. Kreuz vor
+  Notenkopf oder Notenkopf in Kreuzform.
+- Zug-Passagen werden wahlweise blau gefärbt, damit man sich auskennt.
+- Die Färbung kann auch wieder rückgängig gemacht werden durch abwählen
+  des Häckchens.
+- Tonart automatisch auswählen durch Klick auf /Aktuelle Dur-Tonart/.
+- Tastenbelegungs-Schema anzeigen (im Browser).
+- Kann mit Tastenkürzeln bedient werden.
+
+*Geplante Erweiterungen:*
+
+- Druckbalken automatisch einfügen (ist leider nicht so einfach).
+- Existierende Griffschrift abspielbar machen.
+- Bassbegleitung halbautomatisch einfügen.
+- Option um Violinschlüssel auszublenden und evtl. stattdessen ein
+  TAB-Symbol einzufügen.
+
+[[screenshot.png]]
+
+*Installation:*
+
+1. Plugin als Zip-Datei herunterladen
+2. QML-Datei extrahieren und in den Ordner Dokumente / MuseScore3 /
+   Plug-Ins ablegen
+3. MuseScore starten und das Plugin im Plugin-Manager aktivieren
+4. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
+
+Getestet habe ich das Plugin mit MuseScore 3.6.1 unter Windows 10 und
+Linux.
+
+Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
+umgewandeltes Stück.
+
+Kontakt: Jakob Schöttl, jschoett@gmail.com
+
+* Most important plugin features [100%]
+
+- [X] Select instrument
+- [X] Enter current key (Tonart)
+- [X] Convert to Griffschrift (both Zug and Druck)
+- [X] Cycle alternative Griffweisen
+- [X] React on selection changes
+- [X] Automatically recognize when Griffschrift is selected
+- [X] Select tabulature note display for half/whole notes
+- [X] Enter license key
+
+** Hinzufügen der Balken für Druck?
+
+=newElement(type)= where type is one of:
+https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/class_ms_1_1_plugin_a_p_i_1_1_plugin_a_p_i.html#a5fcfe46c56901e9f3998a72a458e66dc
+
+I guess =Spanner= would be the right one but it's not yet implemented
+as plugin API.
+
+** Umwandlung von Normalnotation zu Griffschrift
+
+Dies ist die komplizierte Richtung, weil
+
+- es meist mehrere Tasten gibt, die ein und denselben Ton erzeugen.
+- es Töne gibt, die auf dem Instrument gar nicht gespielt werden
+  können (z.B. bestimmte Halbtöne bei einer Harmonika ohne Zusatztöne).
+
+Es gibt also pro Akkord meistens verschiedene Griffweisen/Alternativen.
+Außerdem unterscheidet man natürlich zwischen dem Spielen auf Zug und Druck.
+
+Überprüfen Sie zuerst in der Plugin-Toolbar:
+
+- Ist das richtige Instrument ausgewählt?
+- Ist die richtige Tonart ausgewählt?
+- Ist die Richtung /Normal → GS/ ausgewählt?
+- Ist ein gültiger Lizenzschlüssel eingegeben?
+
+Dann kann es losgehen:
+
+Mit den Buttons /Zug/ und /Druck/ werden die markierten Akkorde
+bzw. Takte in Griffschrift umgewandelt.
+
+Nachdem Sie einen der beiden Buttons gedrückt haben, haben Sie
+folgende Möglichkeiten:
+
+- Sie können sich mehrfach umentscheiden und doch die andere Balgrichtung
+  verwenden, indem sie auf den entsprechenden Button klicken.
+- Sie können die nächste alternative Griffweise verwenden, indem sie
+  wiederholt auf gleichen Button klicken. Die Alternativen werden dann
+  der Reihe nach durchgeschaltet. Die besten Alternativen erscheinen immer zuerst.
+
+** Umwandlung von Griffschrift zu Normalnotation
+* Documentation sources
+
+- https://musescore.org/de/handbook/developers-handbook/plugin-development
+- A more description of important score elements and their properties:
+  https://musescore.org/en/handbook/developers-handbook/plugins-3x
+- Doxygen technical doc on QML classes, properties, methods:
+  https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/
+
+
