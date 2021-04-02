@@ -113,6 +113,9 @@ MuseScore {
             });
         }
 
+        // End of polyfills
+
+        populateInstrumentList()
     }
     onScoreStateChanged: {
         if (state.selectionChanged) {

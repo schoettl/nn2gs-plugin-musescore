@@ -61,6 +61,31 @@ function applyToChordsInSelection(limit, func) {
       }
 }
 
+function populateInstrumentList() {
+    let request = new XMLHttpRequest()
+    request.onreadystatechange = function() {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+                console.log("Fetched instrument list:\n" + request.responseText)
+                // request.response is not a JS object for some reason?!
+                const result = JSON.parse(request.responseText)
+                const model = comboModel.model
+                model.clear()
+                // Populate list; see also nn2gs.qml: comboModel -> ListModel
+                result.map(i => model.append({ key: i.iModelId.toLowerCase(), value: i.iDescription, tonarten: i.iTonarten }));
+                comboModel.currentIndex = 0
+            } else {
+                console.log("Ignoring HTTP error on fetching instrument list.");
+                console.log(request.status)
+            }
+        }
+    }
+    const url = apiUrl + '/instruments?isGoodForGriffschrift'
+    console.log('GET ' + url)
+    request.open('GET', url, true)
+    request.send()
+}
+
 // Adapted from abc import plugin
 function callApi(chords, reverse, successCallback) {
     let content = JSON.stringify(chordsAsApiInput(chords, reverse))
