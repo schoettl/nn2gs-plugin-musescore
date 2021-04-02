@@ -6,7 +6,7 @@
 
 Nn2GS („Normalnototation zu Griffschrift“) ist ein Computerprogramm zum
 Übersetzen zwischen Normalnoten und Griffschrift für Steirische
-Harmonika, Schwyzer-Orgel und ähnliche Instrumente.
+Harmonika, Club Harmonika, Schwyzer-Orgel und ähnliche Instrumente.
 
 /Nn2GS is a software to convert between normal music notation and
 Griffschrift for Steirische Harmonika (a diatonic button accordion), and
