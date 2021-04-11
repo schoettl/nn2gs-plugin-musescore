@@ -80,7 +80,8 @@ function populateInstrumentList() {
             }
         }
     }
-    const url = apiUrl + '/instruments?isGoodForGriffschrift'
+    // const url = apiUrl + '/instruments?isGoodForGriffschrift'
+    const url = apiUrl + '/instruments' // <-- for now, allow all instruments; see https://musescore.org/en/node/318711
     console.log('GET ' + url)
     request.open('GET', url, true)
     request.send()
