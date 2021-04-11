@@ -72,7 +72,7 @@ function populateInstrumentList() {
                 const model = comboModel.model
                 model.clear()
                 // Populate list; see also nn2gs.qml: comboModel -> ListModel
-                result.map(i => model.append({ key: i.iModelId.toLowerCase(), value: i.iDescription, tonarten: i.iTonarten }));
+                result.map(i => model.append({ key: i.iModelId.toLowerCase(), value: i.iDescription, tonarten: JSON.stringify(i.iTonarten) }));
                 comboModel.currentIndex = 0
             } else {
                 console.log("Ignoring HTTP error on fetching instrument list.");
