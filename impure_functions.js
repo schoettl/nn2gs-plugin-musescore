@@ -491,24 +491,37 @@ function parseVoicesFromTextField() {
     return result
 }
 
+// Implements jsArray.find().map(); if not found, return null.
+function find(list, filterFun, mapFun) {
+    // .find() and .first() are not supported by normal JS arrays...
+    const result = list.filter(filterFun).map(mapFun)
+    return result ? result[0] : null;
+}
+
+function getGermanNoteNamesFromNotes(noteList) {
+    let noteNames = []
+    for (let i = 0; i < noteList.length; i++) {
+        const note = noteList[i]
+        const name = find(midiPitchMap, ([_, p]) => note.pitch == p, ([n, _]) => n)
+        const nameGerman = find(germanNoteNames, ([n, _]) => n === name, ([_, n]) => n)
+        if (nameGerman) {
+            noteNames.push(nameGerman)
+        }
+    }
+    return noteNames
+}
+
 function lblShowInstrumentClick() {
     // TODO Directly open first selected chord? note names must be in German for this!
-    let model = comboModel.currentKey()
-    let chords = collectChords()
-    //let chord = chords.length > 0 ? chords[0] : []
-    //console.log(chords)
-    let noteNames = []
-    //for (let i = 0; i < chord.notes.length; i++) {
-    //    var note = chord.notes[i]
-    //    var name = germanNoteNames.find(([n, _]) => n === note)
-    //    if (name) {
-    //        noteNames.push(name[1])
-    //    }
-    //}
-    console.log(noteNames.join(' '))
+    const model = comboModel.currentKey()
+    const chords = collectChords()
+    const notes = chords.length > 0 ? chords[0].notes : []
+    const noteNames = getGermanNoteNamesFromNotes(notes)
+    const noteNamesJoined = noteNames.join(' ')
+    console.log(noteNamesJoined)
     Qt.openUrlExternally(apiUrl + '?' +
                             queryStringArg('model', model, true) +
-                            (noteNames.length ? queryStringArg('notes', noteNames.join(' '), false) : '') +
+                            (noteNames.length ? queryStringArg('notes', noteNamesJoined, false) : '') +
                             (txtLicenseKey.text ? queryStringArg('license', txtLicenseKey.text) : ''))
 }
 
