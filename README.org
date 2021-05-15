@@ -75,8 +75,7 @@ Kontakt: Jakob Schöttl, jschoett@gmail.com
 
 ** Hinzufügen der Balken für Druck?
 
-=newElement(type)= where type is one of:
-https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/class_ms_1_1_plugin_a_p_i_1_1_plugin_a_p_i.html#a5fcfe46c56901e9f3998a72a458e66dc
+=newElement(type)= where type is one of [these](https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/class_ms_1_1_plugin_a_p_i_1_1_plugin_a_p_i.html#a5fcfe46c56901e9f3998a72a458e66dc).
 
 I guess =Spanner= would be the right one but it's not yet implemented
 as plugin API.
