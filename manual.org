@@ -121,11 +121,15 @@ alternativen Griffweisen durchgeschaltet.
   Takte/Akkorde aufheben oder direkt die nächsten Takte markieren.
 
 *Hinweis:*
+
 Die Balken-Unterstreichung für Takte/Akkorde, die auf Druck gespielt
 werden, muss manuell hinzugefügt werden. Das geht aber einfach:
 
 1. Takte/Akkorde markieren.
 2. Aus der Palette unter /Linien/ auf den gewünschten Balken klicken.
+
+Bei der Verwendung von Pedallinien kann es sein, dass die
+Druck-Passagen beim Abspielen gedämpft erklingen.
 
 ** Griffschrift zu Normalnoten umwandeln
 
