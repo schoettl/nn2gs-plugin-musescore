@@ -200,59 +200,6 @@ solange die Auswahl der Takte/Akkorde noch unverändert ist.
 Die Linie kann nachträglich mit der Maus angepasst werden (anklicken
 und ziehen).
 
-* Die erzeugte Griffschrift enthält Auflösungszeichen
-
-Steht das Stück original in einer b-Tonart ist z.B. der Gleichton der
-zweiten Reihe (Position der Note h) mit einem Auflösungszeichen versehen.
-
-#+DOWNLOADED: screenshot @ 2021-02-10 00:21:09
-[[file:../../../../org/images/Die_erzeugte_Griffschrift_enthält_Auflösungszeichen/2021-02-10_00-21-09_screenshot.png]]
-
-
-Das liegt daran, dass immer noch die Vorzeichen des Originalstückes
-eingestellt sind.
-
-*Lösung:*
-Erst nachdem das Stück komplett in Griffschrift umgewandelt ist, kann
-man einfach die Tonart nach C-Dur (keine Vorzeichen) ändern und auch
-den Notenschlüssel unsichtbar machen.
-
-Falsch wäre es, die Tonart vor dem Umwandeln zu ändern, weil dann
-andere Töne (z.B. f statt fis) auf dem eingestellten Instrument
-gesucht werden und so eine falsche Griffschrift entsteht.
-
-Die Vorzeichen stellt man per Drag & Drop über die Palette (Taste
-=F9=) unter /Tonarten/ ein.
-Den Violinschlüssel kann man über den Inspektor (Taste =F8=)
-unsichtbar machen.
-
-*Hinweis:*
-Das Tabulatursymbol als Schlüssel zu verwenden funktioniert leider
-noch nicht ohne weiteres, da dieser (wie auch Bass- oder
-Tenorschlüssel) die Noten der Griffschrift auf andere Positionen verschiebt.
-
-* Tonart der Normalnoten passt nicht zum Instrument
-
-Wenn die Normalnotation z.B. in E-Dur steht kann für die verfügbaren
-Instrumente ADGC-, GCFB-, und BEsAsDes-Harmonika keine gut spielbare
-Griffschrift herauskommen. Die Griffschrift wäre zwar korrekt, soweit
-alle Töne auf dem Instrument vorhanden sind, aber wenn schon der erste
-Teil auf der nicht existierenden 0-ten Reihe gespielt werden muss wird
-es schwierig.
-
-In so einem Fall sollten die Noten vorher transponiert werden.
-
-Das Transponieren von E-Dur auf D-Dur geht in MuseScore
-folgendermaßen:
-
-1. Gesamte Partitur markieren (=Strg+A=)
-2. /Werkzeuge → Transponieren…/
-3. Im Dialog bei /Nach Tonart/ die Zieltonart /D-Dur / h-Moll/ auswählen
-4. /OK/ klicken
-
-#+DOWNLOADED: screenshot @ 2020-12-30 12:41:21
-[[file:../../../../org/images/Allgemeine_Bedienung/2020-12-30_12-41-21_screenshot.png]]
-
 * Grundsätzliche Bedienung von MuseScore (für Sibelius-, Finale-, …-Benutzer)
 
 ** Allgemein
@@ -369,3 +316,115 @@ Vor- und Nachteile verschiedener Varianten:
   die Darstellung zum Teil seltsam aussehen lässt.
 - Vorteil der Variante in Takt 17 ff. gegenüber Takt 13 ff. sind die
   einheitlichen Kreuzformen bei allen Notenwerten.
+
+* FAQ / Häufige Fragen
+** Die erzeugte Griffschrift enthält Auflösungszeichen
+
+Steht das Stück original in einer b-Tonart ist z.B. der Gleichton der
+zweiten Reihe (Position der Note h) mit einem Auflösungszeichen versehen.
+
+#+DOWNLOADED: screenshot @ 2021-02-10 00:21:09
+[[file:../../../../org/images/Die_erzeugte_Griffschrift_enthält_Auflösungszeichen/2021-02-10_00-21-09_screenshot.png]]
+
+
+Das liegt daran, dass immer noch die Vorzeichen des Originalstückes
+eingestellt sind.
+
+*Lösung:*
+Erst nachdem das Stück komplett in Griffschrift umgewandelt ist, kann
+man einfach die Tonart nach C-Dur (keine Vorzeichen) ändern und auch
+den Notenschlüssel unsichtbar machen.
+
+Falsch wäre es, die Tonart vor dem Umwandeln zu ändern, weil dann
+andere Töne (z.B. f statt fis) auf dem eingestellten Instrument
+gesucht werden und so eine falsche Griffschrift entsteht.
+
+Die Vorzeichen stellt man per Drag & Drop über die Palette (Taste
+=F9=) unter /Tonarten/ ein.
+Den Violinschlüssel kann man über den Inspektor (Taste =F8=)
+unsichtbar machen.
+
+*Hinweis:*
+Das Tabulatursymbol als Schlüssel zu verwenden funktioniert leider
+noch nicht ohne weiteres, da dieser (wie auch Bass- oder
+Tenorschlüssel) die Noten der Griffschrift auf andere Positionen verschiebt.
+
+** Tonart der Normalnoten passt nicht zum Instrument
+
+Wenn die Normalnotation z.B. in E-Dur steht kann für die verfügbaren
+Instrumente ADGC-, GCFB-, und BEsAsDes-Harmonika keine gut spielbare
+Griffschrift herauskommen. Die Griffschrift wäre zwar korrekt, soweit
+alle Töne auf dem Instrument vorhanden sind, aber wenn schon der erste
+Teil auf der nicht existierenden 0-ten Reihe gespielt werden muss wird
+es schwierig.
+
+In so einem Fall sollten die Noten vorher transponiert werden.
+
+Das Transponieren von E-Dur auf D-Dur geht in MuseScore
+folgendermaßen:
+
+1. Gesamte Partitur markieren (=Strg+A=)
+2. /Werkzeuge → Transponieren…/
+3. Im Dialog bei /Nach Tonart/ die Zieltonart /D-Dur / h-Moll/ auswählen
+4. /OK/ klicken
+
+#+DOWNLOADED: screenshot @ 2020-12-30 12:41:21
+[[file:../../../../org/images/Allgemeine_Bedienung/2020-12-30_12-41-21_screenshot.png]]
+
+** Ich möchte für die Griffschrift keine Vorzeichen, für andere Notenzeilen/Stimmen aber schon!
+
+#+DOWNLOADED: screenshot @ 2021-06-05 16:54:20
+#+caption: Beispiel: Griffschrift und Normalnotation in einer Akkolade.
+[[file:../../org/images/FAQ_/_Häufige_Fragen/2021-06-05_16-54-20_screenshot.png]]
+
+Wenn man die Tonart aus der Palette auf eine Notenzeile
+(Notensystem) zieht, wird diese Tonart für alle zusammengehörenden
+Notenzeilen in der Akkolade gleichzeitig gesetzt.
+
+Es kommt aber vor, dass mehrere Notenzeilen in einer Akkoladenklammer
+zusammengefasst sind, z.B. Griffschrift, Gittarrenbegleitung und
+dritte Stimme.
+
+Wenn man jetzt nur für die Griffschrift die Tonart auf C-Dur setzen
+will, damit keine Vorzeichen/Auflösungszeichen sichtbar sind, muss
+die *Tonart ohne Vorzeichen auf die Griffschrift-Notenzeile ziehen und
+gleichzeitig =Strg= gedrückt halten.*
+
+Auf diese weise wird die Tonart nur für eine Notenzeile der Akkolade
+gesetzt.
+
+** Wie mache ich den Violinschlüssel weg?
+
+Bei Griffschrift gehört natürlich kein Violinschlüssel vor die
+Notenzeilen. Entweder gar kein Symbol, oder ein senkrechtes „TAB“
+(Schlüssel für Tabulatur).
+
+Die Lösung ist, den Violinschlüssel unsichtbar zu machen. Löschen kann
+man ihn nicht, da Notenzeilen immer in irgendeinem Schlüssel stehen müssen.
+Ersetzen durch den Tabulatur-Schlüssel kann man ihn auch nicht, weil
+dieser Schlüssel die Position der Noten verschieben würde!
+
+*Violinschlüssel unsichtbar machen* geht so:
+
+1. Ersten Violinschlüssel markieren
+2. Rechtsklick auf den Violinschlüssel, dann im Kontextmenü
+   /Auswählen/ → /Alle ähnlichen Elemente in der gleichen Notenzeile/
+   (/Alle ähnlichen Elemente/ geht auch, wenn man nur eine Notenzeile hat)
+3. Jetzt, da alle Violinschlüssel markiert sind: /Inspektor/ öffnen
+   (/Ansicht/ → /Inspektor/ oder =F8=)
+4. Im /Inspektor/ das Häkchen bei /Sichtbar/ wegnehmen
+
+** Wie mache ich ein „TAB“-Symbol statt dem Violinschlüssel?
+
+Zuerst muss der
+[[*Wie mache ich den Violinschlüssel weg?][Violinschlüssel unsichtbar]]
+gemacht werden.
+
+Dann kann aus der /Gesamtpalette/ (/Ansicht/ → /Gesamtpalette/ oder
+=Shift+F9=) die Symboltafel aufgerufen werden und unter dem Punkt
+/Symbole/ nach „tab“ gesucht werden.
+Eines dieser Symbole kann dann jeweils auf die Zeilenanfänge gezogen werden.
+
+*Wichtig:*
+Verwenden Sie /nicht/ die „TAB“-Symbole, die unter /Schlüssel/
+aufgeführt sind. Diese würden die Position aller Notenköpfe ändern.
