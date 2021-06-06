@@ -33,7 +33,7 @@ Auch die Verwendung von Tastenkürzel ist möglich,
 siehe [[*Schnellere Bedienung durch Tastenkürzeln][Schnellere Bedienung durch Tastenkürzeln]].
 
 #+DOWNLOADED: https://musescore.org/sites/musescore.org/files/styles/width_1480/public/2021-01/screenshot.png @ 2021-01-09 19:43:03
-[[file:../../../../org/images/Einführungsbeispiel/2021-01-09_19-43-03_screenshot.png]]
+[[file:../../org/images/Einführungsbeispiel/2021-01-09_19-43-03_screenshot.png]]
 
 * Installation
 
@@ -71,7 +71,7 @@ Die Bedienoberfläche erscheint dann am linken Rand von MuseScore.
 
 #+DOWNLOADED: screenshot @ 2021-01-09 20:10:46
 #+ATTR_LATEX: :width 5cm
-[[file:../../../../org/images/Allgemeine_Bedienung/2021-01-09_20-10-46_screenshot.png]]
+[[file:../../org/images/Allgemeine_Bedienung/2021-01-09_20-10-46_screenshot.png]]
 
 Bevor man zu arbeiten beginnt, müssen hier /Instrument/ und /Aktuelle
 Tonart/ eingestellt werden. Dabei ist zu beachten:
@@ -297,7 +297,7 @@ normaler Notenkopf mit einem Kreuz davor.
 Das folgende Bild zeigt die verschieden Varianten.
 
 #+DOWNLOADED: screenshot @ 2021-01-09 19:57:15
-[[file:../../../../org/images/Verschiedene_Griffschrift-Varianten/2021-01-09_19-57-15_screenshot.png]]
+[[file:../../org/images/Verschiedene_Griffschrift-Varianten/2021-01-09_19-57-15_screenshot.png]]
 
 Die Wahl kann der Notensetzer über die /Einstellungen/ treffen.
 
@@ -324,7 +324,7 @@ Steht das Stück original in einer b-Tonart ist z.B. der Gleichton der
 zweiten Reihe (Position der Note h) mit einem Auflösungszeichen versehen.
 
 #+DOWNLOADED: screenshot @ 2021-02-10 00:21:09
-[[file:../../../../org/images/Die_erzeugte_Griffschrift_enthält_Auflösungszeichen/2021-02-10_00-21-09_screenshot.png]]
+[[file:../../org/images/Die_erzeugte_Griffschrift_enthält_Auflösungszeichen/2021-02-10_00-21-09_screenshot.png]]
 
 
 Das liegt daran, dass immer noch die Vorzeichen des Originalstückes
@@ -369,7 +369,7 @@ folgendermaßen:
 4. /OK/ klicken
 
 #+DOWNLOADED: screenshot @ 2020-12-30 12:41:21
-[[file:../../../../org/images/Allgemeine_Bedienung/2020-12-30_12-41-21_screenshot.png]]
+[[file:../../org/images/Allgemeine_Bedienung/2020-12-30_12-41-21_screenshot.png]]
 
 ** Ich möchte für die Griffschrift keine Vorzeichen, für andere Notenzeilen/Stimmen aber schon!
 
