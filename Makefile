@@ -6,7 +6,7 @@ API_URL := https://ziach.intensovet.de/nn2gs
 package: doc nn2gs-v$(VERSION).zip beispiele.zip
 
 .PHONY: doc
-doc: manual.pdf
+doc: manual.pdf manual.html
 
 .PHONY: build
 build: nn2gs.qml nn2gs-v$(VERSION).qml
@@ -48,6 +48,9 @@ beispiele.zip: beispiele/D-Dur.mscz beispiele/Griffschrift-Varianten.mscz beispi
 
 manual.pdf: manual.org
 	emacs $^ --batch -f org-latex-export-to-pdf --kill
+
+manual.html: manual.org
+	emacs $^ --batch -f org-html-export-to-html --kill
 
 .PHONY: clean
 clean:
