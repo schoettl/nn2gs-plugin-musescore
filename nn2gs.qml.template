@@ -197,6 +197,11 @@ MuseScore {
                 clickDruck()
         }
     }
+    Shortcut {
+        sequence: "Alt+N"
+        context: Qt.ApplicationShortcut
+        onActivated: proceedToNextChord()
+    }
 
     MessageDialog {
         id: errorDialog
@@ -423,6 +428,12 @@ MuseScore {
             enabled: false
             id: btnNextAlternative
             onClicked: clickNextAlternative()
+        }
+        Button {
+            text: "Nächster Akkord"
+            Layout.fillWidth: true
+            //background.color: colorButtonNormal
+            onClicked: proceedToNextChord()
         }
 
         Text {

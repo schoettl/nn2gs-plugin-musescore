@@ -531,6 +531,12 @@ function lblCurrentKeyClick() {
     spinnerTonart.value = 8 + keysig
 }
 
+function proceedToNextChord() {
+    cmd('next-chord')
+    cmd('select-next-chord')
+    cmd('select-prev-chord')
+}
+
 function checkBoxColorZugClick() {
     if (!checkBoxColorZug.checked) {
         curScore.startCmd()
