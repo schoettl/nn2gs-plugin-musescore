@@ -2,6 +2,11 @@
 VERSION := 1.3.3
 API_URL := https://ziach.intensovet.de/nn2gs
 
+.PHONY: publish
+publish: build package
+	$(info Publish at: https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika)
+	$(info make -C ~/projects/nn2gs deploy-static-files)
+
 .PHONY: package
 package: doc nn2gs-v$(VERSION).zip beispiele.zip
 
