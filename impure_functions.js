@@ -146,7 +146,7 @@ curl -H "Content-Type: application/json" --data-binary @test.json "${apiUrl + qu
 
 function collectChords() {
     // It seems to work: Chords are always associated to a voice.
-    const selectedVoices = parseVoicesFromTextField()
+    const selectedVoices = getSelectedVoices()
     let chords = []
     function chordCollecter(chord) {
         if (containsRedNote(chord)) {
@@ -405,6 +405,7 @@ function changeNotesOfChord(chord, result, zd, chordIndex) {
 }
 
 function handleClickZugDruck(zd) {
+    checkVoiceCheckboxesValidity()
     let reverse = isReverseDirection()
     console.log(`Starting translation: ${zd}${reverse ? ' reverse' : ''}`)
     let chords = collectChords()
@@ -476,18 +477,18 @@ function toGriffschrift(zd) {
     }
 }
 
-function parseVoicesFromTextField() {
-    const text = txtVoices.text
+function checkVoiceCheckboxesValidity() {
+    if (!(checkBoxVoice1.checked || checkBoxVoice2.checked || checkBoxVoice3.checked || checkBoxVoice4.checked)) {
+        warningDialog.show("Mindestens eine Stimme muss zum Übersetzen ausgewählt sein.")
+    }
+}
+
+function getSelectedVoices() {
     let result = []
-    for (let i = 0; i < text.length; i++) {
-        if (text[i].match(/[1-4]/)) {
-            const voiceIndex = parseInt(text[i]) - 1;
-            result.push(voiceIndex)
-        }
-    }
-    if (result.length === 0) {
-        result = [0]
-    }
+    checkBoxVoice1.checked && result.push(0)
+    checkBoxVoice2.checked && result.push(1)
+    checkBoxVoice3.checked && result.push(2)
+    checkBoxVoice4.checked && result.push(3)
     return result
 }
 

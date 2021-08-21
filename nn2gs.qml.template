@@ -302,218 +302,282 @@ MuseScore {
         btnReverseDirection.background.color = (state === 2) ? colorDirectionReverse : colorButtonNormal
     }
 
-    GridLayout {
+    Pane {
         anchors.fill: parent
-        Layout.fillWidth: true
-        columns: 1
-        rowSpacing: 1
+        padding: 2
+        ColumnLayout {
+            anchors.fill: parent
+            Layout.fillWidth: true
 
-        Text {
-            text: "Instrument (anzeigen)"
-            horizontalAlignment: Text.AlignHCenter
-            Layout.fillWidth: true
-            MouseArea {
-                anchors.fill: parent
-                onClicked: lblShowInstrumentClick()
-            }
-        }
-        ComboBox {
-            id: comboModel
-            Layout.fillWidth: true
-            textRole: "value"
-            model: ListModel {
-                // Generated using Nn2GS.hs:
-                // :{
-                // f (Steirische {steirModelId=x, steirTonarten=ts}) = (x, Just ts)
-                // f instrument = (modelId instrument, Nothing)
-                // :}
-                // putStrLn $ unlines $ map (\(x, ts) -> "ListElement { key: \"" ++ map toLower x ++ "\"; value: \"" ++ x ++ "\"; tonarten: " ++ maybe "\"null\"" (show . show . map show) ts ++ "; }") $ map f listOfInstruments
-                // Cannot define array as property value; use JSON.parse() to decode property 'tonarten'.
-                ListElement { key: "adgc50"; value: "ADGC50"; tonarten: "[\"A\",\"D\",\"G\",\"C\"]"; }
-                ListElement { key: "besasdes50"; value: "BEsAsDes50"; tonarten: "[\"Bes\",\"Ees\",\"Aes\",\"Des\"]"; }
-                ListElement { key: "besasdes46"; value: "BEsAsDes46"; tonarten: "[\"Bes\",\"Ees\",\"Aes\",\"Des\"]"; }
-                ListElement { key: "gcfb50"; value: "GCFB50"; tonarten: "[\"G\",\"C\",\"F\",\"B\"]"; }
-                ListElement { key: "schwyzer-orgel_b"; value: "Schwyzer-Orgel_B"; tonarten: "[\"B\",\"Ees\"]"; }
-                ListElement { key: "club_cf"; value: "Club_CF"; tonarten: "[\"C\",\"F\"]"; }
-                ListElement { key: "knopfakkordeon_b"; value: "Knopfakkordeon_B"; tonarten: "null"; }
-            }
-            function currentKey() {
-                return model.get(currentIndex).key
-            }
-            onCurrentIndexChanged: {
-                invalidateCurrentResults()
-            }
-        }
-        Text {
-            text: "Aktuelle Dur-Tonart"
-            horizontalAlignment: Text.AlignHCenter
-            Layout.fillWidth: true
-            MouseArea {
-                anchors.fill: parent
-                onClicked: lblCurrentKeyClick()
-            }
-        }
-
-        SpinBox {
-            width: parent.width
-            Layout.fillWidth: true
-            id: spinnerTonart
-            value: 8
-            from: 0
-            to: 20
-            editable: true
-            //validator: QRegExpValidator(/.*/) // tonarten.join('|') + ^$ anchors?
-            validator: null
-            textFromValue: function(value, locale) {
-                return tonarten[value][1]
-            }
-            valueFromText: function(text, locale) {
-                var i = tonarten.indexOf(text)
-                if (i >= 0) return i
-                return 0
-            }
-            onValueChanged: {
-                invalidateCurrentResults()
-            }
-        }
-
-        ComboBox {
-            id: comboDirection
-            Layout.fillWidth: true
-            visible: false // in favor of btnReverseDirection
-            textRole: "value"
-            model: ListModel {
-                  ListElement { value: "Normal → GS" }
-                  ListElement { value: "GS-Alternativen" }
-                  ListElement { value: "GS → Normal" }
-            }
-            onCurrentIndexChanged: {
-                invalidateCurrentResults()
-            }
-        }
-        Button {
-            id: btnReverseDirection
-            Layout.fillWidth: true
-            readonly property var texts: ["Normal → GS", "GS-Alternativen", "GS → Normal"]
-            //background.color: colorButtonNormal
-            text: "Reverse"
-            property int state: 0
-            checkable: false // checked state doesn't work reliably with double clicks
-            checked: false
-            // Handle both events because on double click, click AND
-            // double click are fired which causes a faster switching:
-            onClicked: clickReverseDirection()
-            //onDoubleClicked: clickReverseDirection() <- does not work on Windows
-        }
-
-        Button {
-            text: "Zug"
-            id: btnZug
-            Layout.fillWidth: true
-            //background.color: colorButtonNormal
-            onClicked: clickZug()
-        }
-        Button {
-            text: "Druck"
-            id: btnDruck
-            Layout.fillWidth: true
-            //background.color: colorButtonNormal
-            onClicked: clickDruck()
-        }
-        Button {
-            text: "Nächste Alternative"
-            Layout.fillWidth: true
-            //background.color: colorButtonNormal
-            visible: false
-            enabled: false
-            id: btnNextAlternative
-            onClicked: clickNextAlternative()
-        }
-        Button {
-            text: "Nächster Akkord"
-            Layout.fillWidth: true
-            //background.color: colorButtonNormal
-            onClicked: proceedToNextChord()
-        }
-
-        Text {
-            text: "Einstellungen"
-            horizontalAlignment: Text.AlignHCenter
-            Layout.fillWidth: true
-        }
-        ComboBox {
-            id: comboTabulatureDisplay
-            Layout.fillWidth: true
-            textRole: "text"
-            enabled: true
-            currentIndex: 0
-            model: ListModel {
-                  ListElement { text: "Modern"; key: "modern" }  // Modern
-                  ListElement { text: "Modern 2"; key: "johannesservi.de" }   // Johannes Servi
-                  ListElement { text: "Modern 3"; key: "johannesservi.de_2" }   // Johannes Servi
-                  ListElement { text: "Klassisch (Kreuz)"; key: "klassisch_kreuz" }          // Rosenzopf, klassisch, Kreuz vor Noten
-                  ListElement { text: "Klassisch (Kreuz, vor langen Noten)"; key: "klassisch_kreuz2" }          // wie klassisch_kreuz, aber Notenkopf in Kreuzform (außer bei Halben/Ganzen)
-                  ListElement { text: "Klassisch (Doppelkreuz)"; key: "klassisch_doppelkreuz" } // Klassisch, Doppelkreuz vor Noten
-                  ListElement { text: "Klassisch (Doppelkreuz, vor langen Noten)"; key: "klassisch_doppelkreuz2" } // wie klassisch_doppelkreuz, aber Notenkopf in Doppelkreuzform (außer bei Halben/Ganzen)
-                  ListElement { text: "Michlbauer"; key: "michlbauer.com" } // Kreuz vor Noten, 3. R. einfaches Kreuz, 4. R. kleine umringeltes Kreuz => Bravura
-                  ListElement { text: "Knöpferl"; key: "knoepferl.at" } // Kreuz vor Noten, 3. R. einfaches Kreuz, 4. R. Doppelkreuz - Quelle: https://knoepferl.at/produkt/orf-wetterpanorama/
-                  ListElement { text: "Dickes Kreuz für 4. Reihe"; key: "dickes_kreuz" } // wie klassisch_kreuz, aber das dicke Kreuz für 4. Reihe
-                  ListElement { text: "Kreuz/Doppelkreuz gemischt"; key: "matthiaspuerner.de" }  // Matthias Pürner, Doppelkreuz vor Halben/Ganzen, normales Kreuz als Notenkopf sonst - Quelle: https://matthiaspuerner.de/wp-content/uploads/2020/11/01_19er-Marscherl-Griffschrift-2S-Partitur.pdf
-            }
-            function currentKey() {
-                return model.get(currentIndex).key
-            }
-        }
-        TextField {
-            text: ""
-            id: txtLicenseKey
-            Layout.fillWidth: true
-            visible: false
-            placeholderText: "Lizenz-Schlüssel eingeben…"
-            Keys.onPressed: {
-                if (text.trim() === '' && event.key === Qt.Key_Return) {
-                    console.log("Opening URL in browser.")
-                    Qt.openUrlExternally(apiUrl + '#faq-kosten')
-                    text = ''
+            Text {
+                text: "Instrument (anzeigen)"
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: lblShowInstrumentClick()
                 }
             }
-            // Use local storage to save the key for the next session
-            // https://doc.qt.io/qt-5/qtquick-localstorage-qmlmodule.html
-        }
+            ComboBox {
+                id: comboModel
+                Layout.fillWidth: true
+                textRole: "value"
+                model: ListModel {
+                    // Generated using Nn2GS.hs:
+                    // :{
+                    // f (Steirische {steirModelId=x, steirTonarten=ts}) = (x, Just ts)
+                    // f instrument = (modelId instrument, Nothing)
+                    // :}
+                    // putStrLn $ unlines $ map (\(x, ts) -> "ListElement { key: \"" ++ map toLower x ++ "\"; value: \"" ++ x ++ "\"; tonarten: " ++ maybe "\"null\"" (show . show . map show) ts ++ "; }") $ map f listOfInstruments
+                    // Cannot define array as property value; use JSON.parse() to decode property 'tonarten'.
+                    ListElement { key: "adgc50"; value: "ADGC50"; tonarten: "[\"A\",\"D\",\"G\",\"C\"]"; }
+                    ListElement { key: "besasdes50"; value: "BEsAsDes50"; tonarten: "[\"Bes\",\"Ees\",\"Aes\",\"Des\"]"; }
+                    ListElement { key: "besasdes46"; value: "BEsAsDes46"; tonarten: "[\"Bes\",\"Ees\",\"Aes\",\"Des\"]"; }
+                    ListElement { key: "gcfb50"; value: "GCFB50"; tonarten: "[\"G\",\"C\",\"F\",\"B\"]"; }
+                    ListElement { key: "schwyzer-orgel_b"; value: "Schwyzer-Orgel_B"; tonarten: "[\"B\",\"Ees\"]"; }
+                    ListElement { key: "club_cf"; value: "Club_CF"; tonarten: "[\"C\",\"F\"]"; }
+                    ListElement { key: "knopfakkordeon_b"; value: "Knopfakkordeon_B"; tonarten: "null"; }
+                }
+                function currentKey() {
+                    return model.get(currentIndex).key
+                }
+                onCurrentIndexChanged: {
+                    invalidateCurrentResults()
+                }
+            }
+            Text {
+                text: "Aktuelle Dur-Tonart"
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: lblCurrentKeyClick()
+                }
+            }
 
-        CheckBox {
-            id: checkBoxSortHeads
-            checked: true
-            text: "Um Notenhals sortieren"
-        }
+            SpinBox {
+                width: parent.width
+                Layout.fillWidth: true
+                id: spinnerTonart
+                value: 8
+                from: 0
+                to: 20
+                editable: true
+                //validator: QRegExpValidator(/.*/) // tonarten.join('|') + ^$ anchors?
+                validator: null
+                textFromValue: function(value, locale) {
+                    return tonarten[value][1]
+                }
+                valueFromText: function(text, locale) {
+                    var i = tonarten.indexOf(text)
+                    if (i >= 0) return i
+                    return 0
+                }
+                onValueChanged: {
+                    invalidateCurrentResults()
+                }
+            }
 
-        CheckBox {
-            id: checkBoxColorZug
-            checked: true
-            text: "Zug-GS blau färben"
-            onClicked: checkBoxColorZugClick()
-        }
+            ComboBox {
+                id: comboDirection
+                Layout.fillWidth: true
+                visible: false // in favor of btnReverseDirection
+                textRole: "value"
+                model: ListModel {
+                    ListElement { value: "Normal → GS" }
+                    ListElement { value: "GS-Alternativen" }
+                    ListElement { value: "GS → Normal" }
+                }
+                onCurrentIndexChanged: {
+                    invalidateCurrentResults()
+                }
+            }
+            Button {
+                id: btnReverseDirection
+                Layout.fillWidth: true
+                readonly property var texts: ["Normal → GS", "GS-Alternativen", "GS → Normal"]
+                //background.color: colorButtonNormal
+                text: "Reverse"
+                property int state: 0
+                checkable: false // checked state doesn't work reliably with double clicks
+                checked: false
+                // Handle both events because on double click, click AND
+                // double click are fired which causes a faster switching:
+                onClicked: clickReverseDirection()
+                //onDoubleClicked: clickReverseDirection() <- does not work on Windows
+            }
 
-        Button {
-            text: "GS abspielbar machen"
-            visible: false
-            Layout.fillWidth: true
-            //background.color: colorButtonNormal
-            onClicked: makePlayable()
-        }
+            Button {
+                text: "Zug"
+                id: btnZug
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                onClicked: clickZug()
+            }
+            Button {
+                text: "Druck"
+                id: btnDruck
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                onClicked: clickDruck()
+            }
+            Button {
+                text: "Nächste Alternative"
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                visible: false
+                enabled: false
+                id: btnNextAlternative
+                onClicked: clickNextAlternative()
+            }
+            Button {
+                text: "Nächster Akkord"
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                onClicked: proceedToNextChord()
+            }
 
-        TextField {
-            text: ""
-            id: txtVoices
-            Layout.fillWidth: true
-            placeholderText: "Stimmen übersetzen, z.B. 1, 2, 3"
-        }
+            //GroupBox {
+            //    title: "Einstellungen"
+            //    ColumnLayout {
 
-        Button {
-            text: "Info"
-            Layout.fillWidth: true
-            //background.color: colorButtonNormal
-            onClicked: infoDialog.open()
+            Text {
+                text: "Griffschrift-Variante"
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
+            }
+
+            ComboBox {
+                id: comboTabulatureDisplay
+                Layout.fillWidth: true
+                textRole: "text"
+                enabled: true
+                currentIndex: 0
+                model: ListModel {
+                    ListElement { text: "Modern (~ Schaborak)"; key: "modern" }  // Modern
+                    ListElement { text: "Klassisch (× vor Note)"; key: "klassisch_kreuz" }          // klassisch, Kreuz vor Noten
+                    ListElement { text: "Klassisch (× nur vor langer Note)"; key: "klassisch_kreuz2" } // wie klassisch_kreuz, aber Notenkopf in Kreuzform (außer bei Halben/Ganzen)
+                    ListElement { text: "Rosenzopf (𝄪 vor Note)"; key: "klassisch_doppelkreuz" } // Klassisch, Doppelkreuz vor Noten
+                    ListElement { text: "Rosenzopf (𝄪 nur vor langer Note)"; key: "klassisch_doppelkreuz2" } // wie klassisch_doppelkreuz, aber Notenkopf in Doppelkreuzform (außer bei Halben/Ganzen)
+                    ListElement { text: "Michlbauer"; key: "michlbauer.com" } // Kreuz vor Noten, 3. R. einfaches Kreuz, 4. R. kleine umringeltes Kreuz => Bravura
+                    ListElement { text: "Knöpferl"; key: "knoepferl.at" } // Kreuz vor Noten, 3. R. einfaches Kreuz, 4. R. Doppelkreuz - Quelle: https://knoepferl.at/produkt/orf-wetterpanorama/
+                    ListElement { text: "Klassisch (4. Reihe dickes ×)"; key: "dickes_kreuz" } // wie klassisch_kreuz, aber das dicke Kreuz für 4. Reihe
+                    ListElement { text: "Matthias Pürner (×/𝄪 gemischt)"; key: "matthiaspuerner.de" }  // Matthias Pürner, Doppelkreuz vor Halben/Ganzen, normales Kreuz als Notenkopf sonst - Quelle: https://matthiaspuerner.de/wp-content/uploads/2020/11/01_19er-Marscherl-Griffschrift-2S-Partitur.pdf
+                    ListElement { text: "Johannes Servi"; key: "johannesservi.de" }   // Johannes Servi (kleines Kreuz in kleinem Kreis bei langen Noten)
+                    ListElement { text: "Johannes Servi mod."; key: "johannesservi.de_2" }   // Johannes Servi (Kreuz in rundem, größerem Kreis bei langen Noten)
+                }
+                function currentKey() {
+                    return model.get(currentIndex).key
+                }
+            }
+            TextField {
+                text: ""
+                id: txtLicenseKey
+                Layout.fillWidth: true
+                visible: false
+                placeholderText: "Lizenz-Schlüssel eingeben…"
+                Keys.onPressed: {
+                    if (text.trim() === '' && event.key === Qt.Key_Return) {
+                        console.log("Opening URL in browser.")
+                        Qt.openUrlExternally(apiUrl + '#faq-kosten')
+                        text = ''
+                    }
+                }
+                // Use local storage to save the key for the next session
+                // https://doc.qt.io/qt-5/qtquick-localstorage-qmlmodule.html
+            }
+
+            CheckBox {
+                id: checkBoxSortHeads
+                checked: true
+                text: "Um Notenhals sortieren"
+            }
+
+            CheckBox {
+                id: checkBoxColorZug
+                checked: true
+                text: "Zug-GS blau färben"
+                onClicked: checkBoxColorZugClick()
+            }
+
+            Button {
+                text: "GS abspielbar machen"
+                visible: false
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                onClicked: makePlayable()
+            }
+
+            Pane {
+                Layout.fillWidth: true
+                padding: 3
+                GridLayout {
+                    anchors.fill: parent
+                    Layout.fillWidth: true
+                    columns: 4
+                    rowSpacing: 0
+                    Text {
+                        text: "Stimmen übersetzen"
+                        horizontalAlignment: Text.AlignHCenter
+                        bottomPadding: 3
+                        Layout.fillWidth: true
+                        Layout.columnSpan: 4
+                    }
+
+                    Text {
+                        text: "1. St."
+                        leftPadding: 4
+                        Layout.fillWidth: true
+                    }
+                    Text {
+                        text: "2. St."
+                        leftPadding: 4
+                        Layout.fillWidth: true
+                    }
+                    Text {
+                        text: "3. St."
+                        leftPadding: 4
+                        Layout.fillWidth: true
+                    }
+                    Text {
+                        text: "4. St."
+                        leftPadding: 4
+                        Layout.fillWidth: true
+                    }
+
+                    CheckBox {
+                        id: checkBoxVoice1
+                        leftPadding: 0
+                        checked: true
+                        onClicked: checkVoiceCheckboxesValidity()
+                    }
+                    CheckBox {
+                        id: checkBoxVoice2
+                        leftPadding: 0
+                        checked: true
+                        onClicked: checkVoiceCheckboxesValidity()
+                    }
+                    CheckBox {
+                        id: checkBoxVoice3
+                        leftPadding: 0
+                        checked: true
+                        onClicked: checkVoiceCheckboxesValidity()
+                    }
+                    CheckBox {
+                        id: checkBoxVoice4
+                        leftPadding: 0
+                        checked: true
+                        onClicked: checkVoiceCheckboxesValidity()
+                    }
+                }
+            }
+
+            Button {
+                text: "Info"
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                onClicked: infoDialog.open()
+            }
         }
-     }
+    }
   }
