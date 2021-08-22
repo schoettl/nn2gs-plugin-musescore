@@ -42,8 +42,6 @@ https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV
 - Druckbalken automatisch einfügen (ist leider nicht so einfach).
 - Existierende Griffschrift abspielbar machen.
 - Bassbegleitung halbautomatisch einfügen.
-- Option um Violinschlüssel auszublenden und evtl. stattdessen ein
-  TAB-Symbol einzufügen.
 
 [[screenshot.png]]
 
