@@ -1,7 +1,7 @@
 
 // from colornotes.qml:
 // apply function to notes in selection (or all notes)
-function applyToChordsInSelection(limit, func) {
+function applyToChordsInSelection(fullScoreIfNoSelection, limit, func) {
       var cursor = curScore.newCursor();
       cursor.rewind(1);
       var startStaff;
@@ -9,6 +9,9 @@ function applyToChordsInSelection(limit, func) {
       var endTick;
       var fullScore = false;
       if (!cursor.segment) { // no selection
+            if (!fullScoreIfNoSelection) {
+                  return
+            }
             fullScore = true;
             startStaff = 0; // start with 1st staff
             endStaff = curScore.nstaves - 1; // and end with last
@@ -155,7 +158,7 @@ function collectChords() {
             chords.push(chord)
         }
     }
-    applyToChordsInSelection(maxChordLimit + 1, chordCollecter)
+    applyToChordsInSelection(false, maxChordLimit + 1, chordCollecter)
     return chords
 }
 
@@ -411,10 +414,12 @@ function handleClickZugDruck(zd) {
     let chords = collectChords()
     if (chords.length === 0) {
         console.warn("Keine Noten ausgewählt. Abbruch.")
+        warningDialog.show("Es sind keine Noten bzw. Takte ausgewählt.")
         return
     }
     if (chords.length > maxChordLimit) {
         console.warn("Zu viele Noten ausgewählt. Abbruch.")
+        warningDialog.show("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
         return
     }
     // Sonderfall: Alternative Griffweisen durchzappen
@@ -541,7 +546,7 @@ function proceedToNextChord() {
 function checkBoxColorZugClick() {
     if (!checkBoxColorZug.checked) {
         curScore.startCmd()
-        applyToChordsInSelection(1000, (chord) => {
+        applyToChordsInSelection(true, 10000, (chord) => {
             for (let j = 0; j < chord.notes.length; j++) {
                 let note = chord.notes[j]
                 if (note.color == colorBlue) {
