@@ -405,15 +405,11 @@ man ihn nicht, da Notenzeilen immer in irgendeinem Schlüssel stehen müssen.
 Ersetzen durch den Tabulatur-Schlüssel kann man ihn auch nicht, weil
 dieser Schlüssel die Position der Noten verschieben würde!
 
-*Violinschlüssel unsichtbar machen* geht so:
+*Violinschlüssel ausblenden* geht so:
 
-1. Ersten Violinschlüssel markieren
-2. Rechtsklick auf den Violinschlüssel, dann im Kontextmenü
-   /Auswählen/ → /Alle ähnlichen Elemente in der gleichen Notenzeile/
-   (/Alle ähnlichen Elemente/ geht auch, wenn man nur eine Notenzeile hat)
-3. Jetzt, da alle Violinschlüssel markiert sind: /Inspektor/ öffnen
-   (/Ansicht/ → /Inspektor/ oder =F8=)
-4. Im /Inspektor/ das Häkchen bei /Sichtbar/ wegnehmen
+1. Rechtsklick auf die Notenzeile und /Eigenschaften Notenzeile/Instrument…/ wählen
+2. Häkchen bei /Schlüssel anzeigen/ herausnehmen
+3. Dialogfenster mit /OK/ schließen.
 
 ** Wie mache ich ein „TAB“-Symbol statt dem Violinschlüssel?
 
