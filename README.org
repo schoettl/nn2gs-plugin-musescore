@@ -34,8 +34,8 @@ https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV
 - Die Färbung kann auch wieder rückgängig gemacht werden durch abwählen
   des Häckchens.
 - Tonart automatisch auswählen durch Klick auf /Aktuelle Dur-Tonart/.
-- Tastenbelegungs-Schema anzeigen (im Browser).
-- Kann mit Tastenkürzeln bedient werden.
+- Tastaturschema mit aktuell markiertem Akkord anzeigen (im Browser).
+- Kann komplett mit Tastenkürzeln bedient werden.
 
 *Geplante Erweiterungen:*
 
