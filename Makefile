@@ -1,5 +1,5 @@
 
-VERSION := 1.4.0
+VERSION := 1.4.1
 API_URL := https://ziach.intensovet.de/nn2gs
 
 .PHONY: publish

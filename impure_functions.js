@@ -96,7 +96,7 @@ function callApi(chords, reverse, successCallback) {
     //console.log("content : " + content)
     let queryString = '?' +
         // queryStringArg('tonart', spinnerTonart.displayText, true) +
-        queryStringArg('tonart', tonarten[spinnerTonart.value][1], true) +
+        queryStringArg('tonart', tonarten[spinnerTonart.value][1].toLowerCase(), true) +
         queryStringArg('model', comboModel.currentKey()) +
         (reverse ? queryStringArg('reverse', 'yes') : '') +
         (txtLicenseKey.text ? queryStringArg('license', txtLicenseKey.text) : '')
