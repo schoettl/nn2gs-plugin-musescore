@@ -322,6 +322,8 @@ MuseScore {
                     anchors.fill: parent
                     onClicked: lblShowInstrumentClick()
                 }
+                ToolTip.visible: hovered // TODO ToolTip funktioniert für Text labels leider nicht
+                ToolTip.text: "Klicken, um Instrument auf Webseite anzuzeigen"
             }
             ComboBox {
                 id: comboModel
@@ -358,6 +360,8 @@ MuseScore {
                     anchors.fill: parent
                     onClicked: lblCurrentKeyClick()
                 }
+                ToolTip.visible: hovered // TODO ToolTip funktioniert für Text labels leider nicht
+                ToolTip.text: "Klicken, um Haupttonart automatisch zu erkennen"
             }
 
             SpinBox {
@@ -381,6 +385,8 @@ MuseScore {
                 onValueChanged: {
                     invalidateCurrentResults()
                 }
+                ToolTip.visible: hovered
+                ToolTip.text: "Tonart des Teils, der übersetzt werden soll"
             }
 
             ComboBox {
@@ -410,6 +416,8 @@ MuseScore {
                 // double click are fired which causes a faster switching:
                 onClicked: clickReverseDirection()
                 //onDoubleClicked: clickReverseDirection() <- does not work on Windows
+                ToolTip.visible: hovered
+                ToolTip.text: "Übersetzungsrichtung (Alt+R)"
             }
 
             Button {
@@ -418,6 +426,8 @@ MuseScore {
                 Layout.fillWidth: true
                 //background.color: colorButtonNormal
                 onClicked: clickZug()
+                ToolTip.visible: hovered
+                ToolTip.text: "Ausgewählte Takte auf Zug (Alt+J)"
             }
             Button {
                 text: "Druck"
@@ -425,6 +435,8 @@ MuseScore {
                 Layout.fillWidth: true
                 //background.color: colorButtonNormal
                 onClicked: clickDruck()
+                ToolTip.visible: hovered
+                ToolTip.text: "Ausgewählte Takte auf Druck (Alt+K)"
             }
             Button {
                 text: "Nächste Alternative"
@@ -434,12 +446,16 @@ MuseScore {
                 enabled: false
                 id: btnNextAlternative
                 onClicked: clickNextAlternative()
+                ToolTip.visible: hovered
+                ToolTip.text: "Alternative Griffweisen durchschalten"
             }
             Button {
                 text: "Nächster Akkord"
                 Layout.fillWidth: true
                 //background.color: colorButtonNormal
                 onClicked: proceedToNextChord()
+                ToolTip.visible: hovered
+                ToolTip.text: "Nächsten Akkord markieren (Alt+N)"
             }
 
             //GroupBox {
@@ -474,6 +490,8 @@ MuseScore {
                 function currentKey() {
                     return model.get(currentIndex).key
                 }
+                ToolTip.visible: hovered
+                ToolTip.text: "Aussehen der Griffschrift (Notenköpfe, Kreuzsymbole usw.)"
             }
             TextField {
                 text: ""
@@ -496,6 +514,8 @@ MuseScore {
                 id: checkBoxSortHeads
                 checked: true
                 text: "Um Notenhals sortieren"
+                ToolTip.visible: hovered
+                ToolTip.text: "Notenköpfe platzieren je nach Lage auf Tastatur"
             }
 
             CheckBox {
@@ -503,6 +523,8 @@ MuseScore {
                 checked: true
                 text: "Zug-GS blau färben"
                 onClicked: checkBoxColorZugClick()
+                ToolTip.visible: hovered
+                ToolTip.text: "Haken wegnehmen, um alles schwarz zu färben"
             }
 
             Button {
@@ -555,24 +577,32 @@ MuseScore {
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Innerhalb einer Notenzeile können mehrere Stimmen stehen."
                     }
                     CheckBox {
                         id: checkBoxVoice2
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Für die meisten zwei- und dreistimmigen Stücke reicht aber die 1. Stimme aus."
                     }
                     CheckBox {
                         id: checkBoxVoice3
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Für die meisten zwei- und dreistimmigen Stücke reicht aber die 1. Stimme aus."
                     }
                     CheckBox {
                         id: checkBoxVoice4
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Eine unsichtbare 4. Stimme mit Liedtext kann z.B. für Bassnotation verwendet werden."
                     }
                 }
             }
