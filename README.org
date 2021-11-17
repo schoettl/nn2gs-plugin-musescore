@@ -16,8 +16,7 @@ Die Webseite https://ziach.intensovet.de/ zeigt die
 Diskant-Tastenanordnungen, für die Griffschrift erzeugt werden kann. Auf
 Anfrage können auch weitere Tastenanordnungen hinzugefügt werden.
 
-Demo-Videos gibt es hier bei YouTube:
-https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV
+Demo-Videos gibt es [[https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV][hier bei YouTube]].
 
 *Features:*
 
@@ -53,13 +52,20 @@ https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV
 3. MuseScore starten und das Plugin im Plugin-Manager aktivieren
 4. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
 
-Getestet habe ich das Plugin mit MuseScore 3.6.1 unter Windows 10 und
-Linux.
+Getestet habe ich das Plugin mit MuseScore 3.6.2 unter Windows 10,
+Linux und Mac OS.
 
 Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
 umgewandeltes Stück.
 
 Kontakt: Jakob Schöttl, jschoett@gmail.com
+
+* Downloads
+
+Die Plugin QML-Datei für MuseScore wird per Skript generiert.
+Sie kann hier heruntergeladen werden:
+
+https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika
 
 * Documentation sources
 
@@ -75,7 +81,8 @@ Kontakt: Jakob Schöttl, jschoett@gmail.com
 
 =newElement(type)= where type is one of [[https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/class_ms_1_1_plugin_a_p_i_1_1_plugin_a_p_i.html#a5fcfe46c56901e9f3998a72a458e66dc][these]].
 
-I guess =Spanner= would be the right one but it's not yet implemented
+I guess =Spanner= would be the right one but it's
+[[https://musescore.org/en/node/118231][not yet implemented]]
 as plugin API.
 
 ** Umwandlung von Normalnotation zu Griffschrift
