@@ -128,7 +128,9 @@ function callApi(chords, reverse, successCallback) {
                 errorDialog.show(`Wahrscheinlich passt die Lizenz nicht oder Sie haben noch eine alte Version dieses Plugins. Überprüfen: ${apiUrl}?license=${txtLicenseKey.text}.`)
             } else {
                 // Netzwerkfehler?
-                errorDialog.show(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?`)
+                let s = `Request failed with HTTP status ${request.status}\nReceived response headers:\n${request.getAllResponseHeaders()}\nResponse text:\n${request.responseText}`
+                errorDialog.show(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?\n\n${s}`)
+                console.error(s)
             }
         } else {
             // Netzwerkfehler?
