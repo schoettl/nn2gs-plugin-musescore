@@ -70,7 +70,7 @@ https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirisch
 * Documentation sources
 
 - https://musescore.org/de/handbook/developers-handbook/plugin-development
-- A more description of important score elements and their properties:
+- More description of important score elements and their properties:
   https://musescore.org/en/handbook/developers-handbook/plugins-3x
 - Doxygen technical doc on QML classes, properties, methods:
   https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/
