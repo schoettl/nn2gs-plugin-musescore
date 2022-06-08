@@ -215,7 +215,7 @@ normalen Modus zurückwechseln.
 Notenschreibprogrammen bietet sich [[https://www.musicxml.com/][MusicXML]] an.
 
 - Takte markieren :: Klicken Sie innerhalb eines Systems auf freien
-  Platz zischen den Noten, um einen Takt zu markieren.
+  Platz zwischen den Noten, um einen Takt zu markieren.
 - Mehrere Takte markieren :: Markieren Sie einen Takt, halten Sie die
   Taste =Shift= gedrückt und markieren Sie einen zweiten Takt. Die
   freien Takte zwischen dem ersten und dem zweiten Klick werden
