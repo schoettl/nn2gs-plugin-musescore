@@ -73,17 +73,21 @@ Die Bedienoberfläche erscheint dann am linken Rand von MuseScore.
 #+ATTR_LATEX: :width 5cm
 [[file:images/2021-01-09_20-10-46_screenshot.png]]
 
-Bevor man zu arbeiten beginnt, müssen hier /Instrument/ und /Aktuelle
-Tonart/ eingestellt werden. Dabei ist zu beachten:
+Bevor man zu arbeiten beginnt, müssen hier /Instrument/ und
+/Aktuelle Dur-Tonart/ eingestellt werden. Dabei ist zu beachten:
 
 - Das Instrument, z.B. eine ADGC-Harmonika, sollte zur Tonart passen,
   in der das Stück steht. Ist das nicht der Fall, wird die
-  Griffschrift später schwer zu spielen sein. Außerdem sind manche
+  Griffschrift später (extrem) schwer zu spielen sein. Außerdem sind manche
   Töne auf dem Instrument vielleicht gar nicht vorhanden.
   Siehe dazu auch die folgenden beiden Kapitel.
-- Die /Aktuelle Tonart/ muss manuell auf die Tonart gestellt werden,
-  in der das Stück steht. Ansonsten werden vom Plugin häufig nicht die
-  optimalen Griffweisen für Töne und Akkorde gewählt.
+- Die /Aktuelle Dur-Tonart/ muss manuell auf die Tonart gestellt werden,
+  in der das Stück bzw. der Teil steht.[fn:: Die Einstellung der
+  Tonart ist wichtig, da ansonsten vom Plugin häufig nicht die
+  optimalen Griffweisen für Töne und Akkorde gewählt werden.]
+  *Wichtig:* Bei mehrteiligen Volksmusikstücken stehen die Teile meistens in
+  verschiedene Tonarten! Daher muss für jeden Teil die
+  /Aktuelle Dur-Tonart/ richtig eingestellt werden.
 
 # TODO Hinweis zu Einstellungen und Lizenzschlüssel
 
