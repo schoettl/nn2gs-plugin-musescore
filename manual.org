@@ -429,3 +429,41 @@ Eines dieser Symbole kann dann jeweils auf die Zeilenanfänge gezogen werden.
 *Wichtig:*
 Verwenden Sie /nicht/ die „TAB“-Symbole, die unter /Schlüssel/
 aufgeführt sind. Diese würden die Position aller Notenköpfe ändern.
+
+** Wie schreibe ich die Bassnotation?
+
+Eine Möglichkeit, die Bassnotation zu schreiben ist die folgende:
+
+1. Man fügt eine unsichtbare und stumme vierte Stimme in der gleichen Notenzeile
+   hinzu, in der auch die Griffschrift steht. Der Rhythmus dieser
+   Stimme muss mit dem Bass übereinstimmen.
+2. Für diese unsichtbare Stimme gibt man dann einen Liedtext ein,
+   z.B. die Silben „B b A b“.
+
+In einer Notenzeile können nämlich bis zu vier unabhängige Stimmen stehen.
+Auf diese Weise erscheint die Bassnotation rhythmisch korrekt unter
+den jeweiligen Noten, ist aber trotzdem unabhängig von der Diskantstimme.
+
+Die folgende Abbildung zeigt das Vorgehen:
+
+#+DOWNLOADED: screenshot @ 2022-11-13 17:38:50
+[[file:FAQ_/_Häufige_Fragen/2022-11-13_17-38-50_screenshot.png]]
+
+- Zuerst wird die vierte Stimme für die Bassnotation eingegeben, indem
+  man die Noteneingabe startet und bei *1.* die vierte Stimme auswählt.
+- Bei *2.* kann über den Noteneingabemodus für Rhythmus auch nur mit
+  der Tastatur der Rhythmus eingegeben werden.
+- Bei *3.* wird über /Hinzufügen → Text → Liedtext/ (=Strg+L=) für die vierte
+  Stimme die Bassnotation eingegeben.
+  Durch Drücken der Leertaste springt man bei der Liedtexteingabe zur
+  nächsten Note bzw. Silbe.
+- Durch Rechtsklick, /Auswählen → Mehr…/ kommt man zum Dialog *4.* um
+  alle Noten der vierten Stimme zu markieren und sie über *5.* dann
+  unsichtbar zu schalten.
+- Über das Mischpult (/Ansicht → Mischpult/, =F10=) kann man bei *6.*
+  die vierte Stimme stummschalten damit sie beim Abspielen nicht stört.
+- Über *7.*, /Ansicht → Unsichtbares anzeigen/ kann man einstellen, ob
+  unsichtbare Elemente grau angezeigt oder ganz ausgeblendet werden sollen.
+
+Über /Formatierung → Dehnung/Stauchung/ (Tasten ={= bzw. =}=) kann
+außerdem der Abstand zwischen den markierten Noten optisch angepasst werden.
