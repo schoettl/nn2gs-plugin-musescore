@@ -16,7 +16,7 @@ Die Webseite https://ziach.intensovet.de/ zeigt die
 Diskant-Tastenanordnungen, für die Griffschrift erzeugt werden kann. Auf
 Anfrage können auch weitere Tastenanordnungen hinzugefügt werden.
 
-Demo-Videos gibt es [[https://www.youtube.com/playlist?list=PLJAjIcAuAxEyupyH3aIus9uFEtWV-3yzV][hier bei YouTube]].
+Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]].
 
 *Features:*
 
