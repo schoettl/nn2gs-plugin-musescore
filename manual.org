@@ -467,3 +467,66 @@ Die folgende Abbildung zeigt das Vorgehen:
 
 Über /Formatierung → Dehnung/Stauchung/ (Tasten ={= bzw. =}=) kann
 außerdem der Abstand zwischen den markierten Noten optisch angepasst werden.
+
+** Wie ändere ich nachträglich den Druck-Balken?
+
+Der Druck-Balken kann angeklickt und Anfangs- und Endpunkt mit der
+Maus angepasst werden.
+Diese Funktion sollte man aber nur für die Feinanpassung verwenden.
+
+Wenn die Linie mehr oder weniger Noten/Akkorde umfassen soll, geht man
+wie folgt vor:
+
+1. Linie durch Klick markieren
+2. Anfangs- bzw. Endpunkt der Linie durch Klick auswählen
+3. Tastenkombination =Shift+Links/Rechts= um Anfang oder Ende um einen
+   Akkord zu verschieben
+
+** Gibt es eine Tastenkombination für den Druck-Balken?
+
+Nicht direkt für das Einfügen der Linie, aber dafür für das Einfügen
+des zuletzt verwendeten Elements aus der Palette.
+
+Dafür muss man die Tastenkombination in den Einstellungen festlegen:
+
+# TODO Screenshot
+
+Menü /Bearbeiten → Einstellungen/, Reiter „Tastenkürzel“, suchen nach
+„Aktuelles Palettenelement“ und /Festlegen/ klicken.
+
+Der Shortcut =M-y= wäre z.B. frei und kann hierfür vergeben werden.
+
+Danach kann man sich angewöhnen, nach =M-k= (Übersetzung auf Druck)
+immer gleich =M-y= zu drücken, nachdem man den Druck-Balken einmal per
+Maus eingefügt hat.
+
+* MuseScore Cheet Sheet
+
+- i :: Instrumente/Notenzeilen hinzufügen/ändern
+- n :: Noteneingabe starten
+- Esc :: Noteneingabe beenden
+- Leertaste :: Wiedergabe starten/stoppen
+- x :: Notenhälse oder Druckbalken horizontal switchen
+- + :: Note in nächsten Takt überbinden
+- r :: Repeat last chord
+- Strg-k :: Akkordsymbole einfügen (z.B. =A7=, klingt auch!)
+- Strg-l :: Liedtext einfügen (für Bass =B b A b=)
+- Strg-t :: Text einfügen (für Begleit-Stufen =I V=)
+- Strg-Entf :: Takte oder Pausen löschen (noten nachrücken)
+- Einf / Strg-Einf :: Takte einfügen
+- Strg-B / Alt-Shift-B :: Takte anhängen
+- Strg-h :: Unsichtbare Elemente verbergen/anzeigen
+
+-------
+
+- Alt-k :: Druck
+- Alt-j :: Zug
+- Alt-r :: Übersetzungsrichtung umschalten
+- Alt-y[fn:zudef] :: Letztes Element aus Palette einfügen (=apply-current-palette-element=)
+- (Strg-)Shift-Pfeiltasten :: Noten/Takte markieren
+
+-------
+
+Menüpunkt /Werkzeuge/ bietet sehr nützliche Funktionen.
+
+[fn:zudef] Shortcut muss erst noch definiert werden
