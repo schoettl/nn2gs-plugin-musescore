@@ -277,6 +277,9 @@ MuseScore {
         invalidateResultsTimer.restart()
     }
 
+    function clickTest() {
+        addLyrics('zug')
+    }
     function clickZug() {
         handleClickZugDruck('zug')
     }
@@ -420,6 +423,14 @@ MuseScore {
                 ToolTip.text: "Übersetzungsrichtung (Alt+R)"
             }
 
+            Button {
+                text: "Test"
+                id: btnTest
+                Layout.fillWidth: true
+                //background.color: colorButtonNormal
+                onClicked: clickTest()
+                ToolTip.visible: hovered
+            }
             Button {
                 text: "Zug"
                 id: btnZug
