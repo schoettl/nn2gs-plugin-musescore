@@ -412,21 +412,24 @@ function changeNotesOfChord(chord, result, zd, chordIndex) {
 function addLyricsToChord(chord, result, zd, chordIndex) {
     let notes = chord.notes
     let invalidNotesCounter = 0
+    console.log(`result for chord: ${result}`)
     for (let j = 0; j < notes.length; j++) {
-        let resAlternative = result.Right[alternativeIndex % result.Right.length]
-        let res = resAlternative[j]
+        let resNote = result[j]
+        let resAlternative = resNote[alternativeIndex % resNote.length]
         let note = notes[j]
-        if (notes.length !== resAlternative.length) {
-            console.warn(`Length of current chord (${notes.length}) and translation result (${resAlternative.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
+        if (notes.length !== result.length) {
+            console.warn(`Length of current chord (${notes.length}) and translation result (${result.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
             break
         }
-        // TODO add lyrics to `note`
-        let keyName = "C'"
+        // TODO color note red if resNote is empty
+        // TODO use different apiUrl (/nn2gs/bass)
+        // TODO make switch to switch to bass translation
+        // TODO allow selection of bass mappings
+        let keyName = resAlternative
         let lyrics = newElement(Element.LYRICS)
         lyrics.text = keyName
-        lyrics.setNo(j) // not working?? https://musescore.github.io/MuseScore_PluginAPI_Docs/plugins/html/class_ms_1_1_lyrics.html
+        lyrics.verse = j
         chord.add(lyrics)
-        //note.add(lyrics) // does not work
     }
 }
 

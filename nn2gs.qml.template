@@ -129,7 +129,7 @@ MuseScore {
     }
 
     //readonly property string apiUrl: "https://ziach.intensovet.de/nn2gs"
-    readonly property string apiUrl: "http://localhost:3000/nn2gs"
+    readonly property string apiUrl: "http://localhost:3000/nn2gs/bass"
 
     readonly property var colorRed: "#ff0000"
     readonly property var colorBlue: "#0000ff"
