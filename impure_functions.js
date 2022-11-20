@@ -445,8 +445,9 @@ function callBassApi(chords, successCallback) {
     let queryString = '?' +
         // queryStringArg('tonart', spinnerTonart.displayText, true) +
         queryStringArg('tonart', tonarten[spinnerTonart.value][1].toLowerCase(), true) +
-        queryStringArg('model', comboModel.currentKey()) +
-        (txtLicenseKey.text ? queryStringArg('license', txtLicenseKey.text) : '')
+        queryStringArg('stimmung', comboStimmung.currentKey()) +
+        queryStringArg('basssystem', comboBasssystem.currentKey()) +
+        queryStringArg('bassbenennung', comboBassbenennung.currentKey())
 
     console.log(queryString)
 
@@ -530,6 +531,7 @@ function addLyricsToNotes(zd) {
 }
 
 function addBassNamesAsLyrics(zd) {
+    checkVoiceCheckboxesValidity()
     console.log(`Starting translation: ${zd}`)
     let chords = collectChords()
     if (chords.length === 0) {
