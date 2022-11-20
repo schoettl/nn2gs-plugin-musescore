@@ -529,7 +529,7 @@ function addLyricsToNotes(zd) {
     }
 }
 
-function addLyrics(zd) {
+function addBassNamesAsLyrics(zd) {
     console.log(`Starting translation: ${zd}`)
     let chords = collectChords()
     if (chords.length === 0) {
@@ -558,7 +558,7 @@ function addLyrics(zd) {
     invalidateResultsAfterTimeout()
 }
 
-function handleClickZugDruck(zd) {
+function translateToFromGriffschrift(zd) {
     checkVoiceCheckboxesValidity()
     let reverse = isReverseDirection()
     console.log(`Starting translation: ${zd}${reverse ? ' reverse' : ''}`)

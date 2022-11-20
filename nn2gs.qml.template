@@ -293,19 +293,19 @@ MuseScore {
     }
 
     function clickTest() {
-        addLyrics('zug')
+        addBassNamesAsLyrics('zug')
     }
     function clickZug() {
         if (comboSide.isBassMode())
-            addLyrics('zug')
+            addBassNamesAsLyrics('zug')
         else
-            handleClickZugDruck('zug')
+            translateToFromGriffschrift('zug')
     }
     function clickDruck() {
         if (comboSide.isBassMode())
-            addLyrics('druck')
+            addBassNamesAsLyrics('druck')
         else
-            handleClickZugDruck('druck')
+            translateToFromGriffschrift('druck')
     }
     function isReverseDirection() {
         //return comboDirection.currentIndex !== 0
