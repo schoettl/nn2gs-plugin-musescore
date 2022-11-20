@@ -413,29 +413,35 @@ function addLyricsToChord(chord, result, zd, chordIndex) {
     let notes = chord.notes
     let invalidNotesCounter = 0
     console.log(`result for chord: ${result}`)
+    removeAllLyrics(chord)
     for (let j = 0; j < notes.length; j++) {
         let resNote = result[j]
-        let resAlternative = resNote[alternativeIndex % resNote.length]
+        let buttonName = resNote[alternativeIndex % resNote.length]
         let note = notes[j]
         if (notes.length !== result.length) {
             console.warn(`Length of current chord (${notes.length}) and translation result (${result.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
             break
         }
-        // TODO color note red if resNote is empty
-        // TODO use different apiUrl (/nn2gs/bass)
-        // TODO make switch to switch to bass translation
-        // TODO allow selection of bass mappings
-        let keyName = resAlternative
-        let lyrics = newElement(Element.LYRICS)
-        lyrics.text = keyName
-        lyrics.verse = j
-        chord.add(lyrics)
+
+        colorNoteZugDruck(note, zd, checkBoxColorZug)
+
+        if (buttonName) {
+            let lyrics = newElement(Element.LYRICS)
+            lyrics.text = buttonName
+            lyrics.verse = j
+            chord.add(lyrics)
+        } else {
+            note.color = colorRed
+            invalidNotesCounter++
+        }
     }
+    return invalidNotesCounter
 }
 
 function callBassApi(chords, successCallback) {
     let content = JSON.stringify(chordsAsApiInput(chords, false))
     //console.log("content : " + content)
+    const apiUrlBass = apiUrl + '/bass'
     let queryString = '?' +
         // queryStringArg('tonart', spinnerTonart.displayText, true) +
         queryStringArg('tonart', tonarten[spinnerTonart.value][1].toLowerCase(), true) +
@@ -483,9 +489,9 @@ function callBassApi(chords, successCallback) {
 cat <<TEXT > test.json
 ${content}
 TEXT
-curl -H "Content-Type: application/json" --data-binary @test.json "${apiUrl + queryString}"
+curl -H "Content-Type: application/json" --data-binary @test.json "${apiUrlBass + queryString}"
 `)
-    request.open("POST", apiUrl + queryString, true)
+    request.open("POST", apiUrlBass + queryString, true)
     request.setRequestHeader("Content-Type", "application/json")
     request.send(content)
 }
@@ -536,7 +542,7 @@ function addLyrics(zd) {
         warningDialog.show("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
         return
     }
-    if (true) { // !isCurrentResultValid()) { // TODO use result of bass translation
+    if (!isCurrentResultValid()) {
         alternativeIndex = 0
         callBassApi(chords, addLyricsToNotes(zd))
         btnNextAlternative.enabled = true

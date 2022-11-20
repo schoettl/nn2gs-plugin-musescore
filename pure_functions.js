@@ -110,6 +110,16 @@ function removeCrossBeforeHead(note) {
     }
 }
 
+function removeAllLyrics(chord) {
+    for (let i = 0; i < chord.lyrics.length; i++) {
+        let elem = chord.lyrics[i]
+        chord.remove(elem)
+        // TODO Bug: This function seem to not always remove all
+        // lyrics. Sometimes one verse stays.
+        //console.log(`lyrics to remove: ${elem}`)
+    }
+}
+
 function isHalfOrWhole(chord) {
     return durationIs(chord, 1) || durationIs(chord, 2)
 }
