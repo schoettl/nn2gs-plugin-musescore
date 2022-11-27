@@ -409,7 +409,158 @@ function changeNotesOfChord(chord, result, zd, chordIndex) {
     return invalidNotesCounter
 }
 
-function handleClickZugDruck(zd) {
+function addLyricsToChord(chord, result, zd, chordIndex) {
+    let notes = chord.notes
+    let invalidNotesCounter = 0
+    console.log(`result for chord: ${result}`)
+    removeAllLyrics(chord)
+    for (let j = 0; j < notes.length; j++) {
+        let resNote = result[j]
+        let buttonName = resNote[alternativeIndex % resNote.length]
+        let note = notes[j]
+        if (notes.length !== result.length) {
+            console.warn(`Length of current chord (${notes.length}) and translation result (${result.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
+            break
+        }
+
+        colorNoteZugDruck(note, zd, checkBoxColorZug)
+
+        if (buttonName) {
+            let lyrics = newElement(Element.LYRICS)
+            lyrics.text = buttonName
+            lyrics.verse = j
+            chord.add(lyrics)
+        } else {
+            note.color = colorRed
+            invalidNotesCounter++
+        }
+    }
+    return invalidNotesCounter
+}
+
+function callBassApi(chords, successCallback) {
+    let content = JSON.stringify(chordsAsApiInput(chords, false))
+    //console.log("content : " + content)
+    const apiUrlBass = apiUrl + '/bass'
+    let queryString = '?' +
+        // queryStringArg('tonart', spinnerTonart.displayText, true) +
+        queryStringArg('tonart', tonarten[spinnerTonart.value][1].toLowerCase(), true) +
+        queryStringArg('stimmung', comboStimmung.currentKey()) +
+        queryStringArg('basssystem', comboBasssystem.currentKey()) +
+        queryStringArg('bassbenennung', comboBassbenennung.currentKey())
+
+    console.log(queryString)
+
+    let request = new XMLHttpRequest()
+    request.onreadystatechange = function() {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            console.log("HTTP status: " + request.status)
+            if (request.status === 200) {
+                console.log("API response:\n" + request.responseText)
+                try {
+                    lastResults = JSON.parse(request.responseText)
+                } catch (e) {
+                    console.error("Invalid JSON response. Could not parse.")
+                    errorDialog.show("Ungültige Antwort vom Server.")
+                }
+                successCallback(chords, lastResults)
+            } else if (request.status >= 500) {
+                // Server-Fehler.
+                errorDialog.show(`Fehler beim Server. Funktioniert ${apiUrl}?`)
+            } else if (request.status >= 400) {
+                // Fehler bei Kommunikation.
+                errorDialog.show(`Fehler bei der Kommunikation mit dem Server. Funktioniert ${apiUrl}?`)
+            } else if (request.status >= 300) {
+                // Lizenzfehler?
+                // TODO change error message when authorize system works...
+                errorDialog.show(`Wahrscheinlich passt die Lizenz nicht oder Sie haben noch eine alte Version dieses Plugins. Überprüfen: ${apiUrl}?license=${txtLicenseKey.text}.`)
+            } else {
+                // Netzwerkfehler?
+                let s = `Request failed with HTTP status ${request.status}\nReceived response headers:\n${request.getAllResponseHeaders()}\nResponse text:\n${request.responseText}`
+                errorDialog.show(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?\n\n${s}`)
+                console.error(s)
+            }
+        } else {
+            // Netzwerkfehler?
+            //errorDialog.show(`Wahrscheinlich Netzwerkfehler. Funktioniert das Internet? Funktioniert ${apiUrl}?`)
+            console.log(`HTTP request ready status: ${request.readyState} (not DONE)`)
+        }
+    }
+    console.log(`Run in shell for testing:
+cat <<TEXT > test.json
+${content}
+TEXT
+curl -H "Content-Type: application/json" --data-binary @test.json "${apiUrlBass + queryString}"
+`)
+    request.open("POST", apiUrlBass + queryString, true)
+    request.setRequestHeader("Content-Type", "application/json")
+    request.send(content)
+}
+
+function addLyricsToNotes(zd) {
+    return function(chords, zdResults) {
+        lastZD = zd
+        let results = extractZDResults(zd, zdResults)
+        console.log(zd + ' ' + results)
+        if (chords.length !== results.length) {
+            console.warn(`Length of selected chords (${chords.length}) and translation result (${results.length}) do not match. Aborting.`)
+            return
+        }
+        let invalidNotesCounter = 0
+        let error = null
+        curScore.startCmd()
+        for (let i = 0; i < chords.length; i++) {
+            let chord = chords[i]
+            let result = results[i]
+            // try {
+                invalidNotesCounter += addLyricsToChord(chord, result, zd, i)
+            // } catch (e) {
+            //     console.error(e.message)
+            //     console.trace()
+            //     error = e
+            // }
+        }
+        curScore.endCmd()
+        if (error) {
+            errorDialog.show(`Fehler: ${error.message}`)
+        }
+        if (invalidNotesCounter) {
+            errorDialog.show(`${invalidNotesCounter} Note(n) konnten nicht übersetzt werden und wurden rot markiert.\n\nEntweder existieren sie nicht auf dem Instrument oder sie waren bereits rot markiert. Die Akkorde mit roten Noten wurden bei der Übersetzung übersprungen.`)
+        }
+    }
+}
+
+function addBassNamesAsLyrics(zd) {
+    checkVoiceCheckboxesValidity()
+    console.log(`Starting translation: ${zd}`)
+    let chords = collectChords()
+    if (chords.length === 0) {
+        console.warn("Keine Noten ausgewählt. Abbruch.")
+        warningDialog.show("Es sind keine Noten bzw. Takte ausgewählt.")
+        return
+    }
+    if (chords.length > maxChordLimit) {
+        console.warn("Zu viele Noten ausgewählt. Abbruch.")
+        warningDialog.show("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
+        return
+    }
+    if (!isCurrentResultValid()) {
+        alternativeIndex = 0
+        callBassApi(chords, addLyricsToNotes(zd))
+        btnNextAlternative.enabled = true
+    } else {
+        // Reuse lastResults
+        if (zd !== lastZD) {
+            alternativeIndex = 0
+        } else {
+            alternativeIndex += 1
+        }
+        addLyricsToNotes(zd)(chords, lastResults)
+    }
+    invalidateResultsAfterTimeout()
+}
+
+function translateToFromGriffschrift(zd) {
     checkVoiceCheckboxesValidity()
     let reverse = isReverseDirection()
     console.log(`Starting translation: ${zd}${reverse ? ' reverse' : ''}`)

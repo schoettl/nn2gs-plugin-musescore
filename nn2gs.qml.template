@@ -2,7 +2,7 @@
 /*
 
     Nn2GS - Übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika.
-    Copyright (C) 2021  Jakob Schöttl <jschoett@gmail.com>
+    Copyright (C) 2021-2022  Jakob Schöttl <jschoett@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -277,11 +277,35 @@ MuseScore {
         invalidateResultsTimer.restart()
     }
 
+    function switchDiskantBass() {
+        invalidateCurrentResults()
+        // Set visibility of controls:
+        var bassMode = comboSide.isBassMode()
+        var diskantMode = comboSide.isDiskantMode()
+        spinnerTonart.enabled = !bassMode
+        panelBass.visible = bassMode
+        txtInstrument.visible = diskantMode
+        comboModel.visible = diskantMode
+        btnReverseDirection.visible = diskantMode
+        txtGSVariante.visible = diskantMode
+        comboTabulatureDisplay.visible = diskantMode
+        checkBoxSortHeads.visible = diskantMode
+    }
+
+    function clickTest() {
+        addBassNamesAsLyrics('zug')
+    }
     function clickZug() {
-        handleClickZugDruck('zug')
+        if (comboSide.isBassMode())
+            addBassNamesAsLyrics('zug')
+        else
+            translateToFromGriffschrift('zug')
     }
     function clickDruck() {
-        handleClickZugDruck('druck')
+        if (comboSide.isBassMode())
+            addBassNamesAsLyrics('druck')
+        else
+            translateToFromGriffschrift('druck')
     }
     function isReverseDirection() {
         //return comboDirection.currentIndex !== 0
@@ -314,8 +338,119 @@ MuseScore {
             anchors.fill: parent
             Layout.fillWidth: true
 
+            ComboBox {
+                id: comboSide
+                Layout.fillWidth: true
+                onCurrentIndexChanged: switchDiskantBass()
+                model: ListModel {
+                    ListElement { value: "Diskant-/Melodieseite"; }
+                    ListElement { value: "Bassseite"; }
+                }
+                function isBassMode() {
+                    return currentIndex == 1
+                }
+                function isDiskantMode() {
+                    return !isBassMode()
+                }
+            }
+
+            Pane {
+                Layout.fillWidth: true
+                padding: 0
+                id: panelBass
+                ColumnLayout {
+                    anchors.fill: parent
+                    Layout.fillWidth: true
+                    Text {
+                        text: "Stimmung der Harmonika"
+                        horizontalAlignment: Text.AlignHCenter
+                        Layout.fillWidth: true
+                    }
+                    ComboBox {
+                        id: comboStimmung
+                        Layout.fillWidth: true
+                        textRole: "value"
+                        model: ListModel {
+                            // Generated using Nn2GS:
+                            // :m +Music.Nn2GS
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ showStimmung x ++ "\"; value: \"" ++ showStimmung x ++ "\"; }") stimmungen
+                            ListElement { key: "G-C-F-B"; value: "G-C-F-B"; }
+                            ListElement { key: "A-D-G-C"; value: "A-D-G-C"; }
+                            ListElement { key: "C-F-B-Es"; value: "C-F-B-Es"; }
+                            ListElement { key: "B-Es-As-Des"; value: "B-Es-As-Des"; }
+                        }
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Stimmung = Tonarten der Harmonika"
+                        function currentKey() {
+                            return model.get(currentIndex).key
+                        }
+                        onCurrentIndexChanged: {
+                            invalidateCurrentResults()
+                        }
+                    }
+                    Text {
+                        text: "Basssystem"
+                        horizontalAlignment: Text.AlignHCenter
+                        Layout.fillWidth: true
+                        // TODO bei klick das hier verlinken?
+                        // Qt.openUrlExternally('http://ziach.de/Tastenbelegung/index.htm')
+                    }
+                    ComboBox {
+                        id: comboBasssystem
+                        Layout.fillWidth: true
+                        textRole: "value"
+                        model: ListModel {
+                            // Generated using Nn2GS:
+                            // :m +Music.Nn2GS Music.Nn2GS.Bass
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ modelId x ++ "\"; value: \"" ++ modelId x ++ "\"; }") basssysteme
+                            ListElement { key: "15 Bässe (Ronegg, Steiermark)"; value: "15 Bässe (Ronegg, Steiermark)"; }
+                            ListElement { key: "16 Bässe (Bayern-Salzburg)"; value: "16 Bässe (Bayern-Salzburg)"; }
+                            ListElement { key: "16 Bässe (überliefert böhmisch)"; value: "16 Bässe (überliefert böhmisch)"; }
+                            ListElement { key: "16 Bässe (Hans Auer, böhmisch)"; value: "16 Bässe (Hans Auer, böhmisch)"; }
+                            ListElement { key: "16 Bässe (Michlbauer)"; value: "16 Bässe (Michlbauer)"; }
+                            ListElement { key: "18 Bässe (Gmachl, Salzburg)"; value: "18 Bässe (Gmachl, Salzburg)"; }
+                            ListElement { key: "22 Bässe (Jakob)"; value: "22 Bässe (Jakob)"; }
+                        }
+                        function currentKey() {
+                            return model.get(currentIndex).key
+                        }
+                        onCurrentIndexChanged: {
+                            invalidateCurrentResults()
+                        }
+                    }
+                    Text {
+                        text: "Benennungsschema für Basstasten"
+                        horizontalAlignment: Text.AlignHCenter
+                        Layout.fillWidth: true
+                    }
+                    ComboBox {
+                        id: comboBassbenennung
+                        Layout.fillWidth: true
+                        textRole: "value"
+                        model: ListModel {
+                            // Generated using Nn2GS:
+                            // :m +Music.Nn2GS.Bass
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ bassId x ++ "\"; value: \"" ++ bassDescription x ++ "\"; }") bassbenennungsschemas
+                            ListElement { key: "15-8-7-A'"; value: "15 Bässe, A, A', …"; }
+                            ListElement { key: "15-8-7-A-H"; value: "15 Bässe, A-H"; }
+                            ListElement { key: "16-8-8-A-H"; value: "16 Bässe, A-H"; }
+                            ListElement { key: "16-9-7-A-H+X"; value: "16 Bässe, A-H + X"; }
+                            ListElement { key: "18-9-9"; value: "18 Bässe, A, A', …, X, Y"; }
+                            ListElement { key: "22-11-11-A'XYZ"; value: "22 Bässe, A, A', …, X, Y, Z"; }
+                        }
+                        function currentKey() {
+                            return model.get(currentIndex).key
+                        }
+                        onCurrentIndexChanged: {
+                            invalidateCurrentResults()
+                        }
+                    }
+                }
+            }
+
             Text {
                 text: "Instrument (anzeigen)"
+                id: txtInstrument
                 horizontalAlignment: Text.AlignHCenter
                 Layout.fillWidth: true
                 MouseArea {
@@ -421,6 +556,13 @@ MuseScore {
             }
 
             Button {
+                text: "Test"
+                id: btnTest
+                visible: false
+                Layout.fillWidth: true
+                onClicked: clickTest()
+            }
+            Button {
                 text: "Zug"
                 id: btnZug
                 Layout.fillWidth: true
@@ -464,6 +606,7 @@ MuseScore {
 
             Text {
                 text: "Griffschrift-Variante"
+                id: txtGSVariante
                 horizontalAlignment: Text.AlignHCenter
                 Layout.fillWidth: true
             }

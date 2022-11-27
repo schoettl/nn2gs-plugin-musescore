@@ -96,6 +96,19 @@ Dies ist die komplizierte Richtung, weil
 Es gibt also pro Akkord meistens verschiedene Griffweisen/Alternativen.
 Außerdem unterscheidet man natürlich zwischen dem Spielen auf Zug und Druck.
 
+** Umwandlung von Basslinien (ausgeschriebene Bassstimme) in Tastennamen
+
+Die Tastennamen werden dann als „Liedtext“ unter die Noten geschrieben.
+So funktioniert es:
+
+Anhand der Stimmung und des Basssystems wird das konkrete Basssystem
+für die Stimmung berechnet.
+
+1. Anhand dieses Mappings von Ton zu Taste (auf Druck und Zug) wird dann
+   für jeden Ton der Basslinie die Basstaste berechnet.
+2. Anhand des Basstasten-Benennungsschemas wird aus der Basstaste dann
+   der Name des zu drückenden Knopfes berechnet.
+
 * Contributing
 
 Um zu diesem Plugin beizutragen und mitzuentwickeln können gerne

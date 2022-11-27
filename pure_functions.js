@@ -33,7 +33,7 @@ function resetPlayedNotePitch(note) {
 }
 
 function colorNoteZugDruck(note, zd, checkBoxColorZug) {
-    if (note.color == colorBlue && zd !== 'zug') {
+    if ((note.color == colorBlue || note.color == colorRed) && zd !== 'zug') {
         note.color = colorBlack
     } else if (checkBoxColorZug.checked && zd === 'zug') {
         note.color = colorBlue
@@ -107,6 +107,16 @@ function removeCrossBeforeHead(note) {
         if (isCrossSymbol(elem)) {
             note.remove(elem)
         }
+    }
+}
+
+function removeAllLyrics(chord) {
+    for (let i = 0; i < chord.lyrics.length; i++) {
+        let elem = chord.lyrics[i]
+        chord.remove(elem)
+        // TODO Bug: This function seem to not always remove all
+        // lyrics. Sometimes one verse stays.
+        //console.log(`lyrics to remove: ${elem}`)
     }
 }
 
