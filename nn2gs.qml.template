@@ -404,7 +404,11 @@ MuseScore {
                             // :m +Music.Nn2GS Music.Nn2GS.Bass
                             // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ modelId x ++ "\"; value: \"" ++ modelId x ++ "\"; }") basssysteme
                             ListElement { key: "15 Bässe (Ronegg, Steiermark)"; value: "15 Bässe (Ronegg, Steiermark)"; }
+                            ListElement { key: "16 Bässe (Bayern-Salzburg)"; value: "16 Bässe (Bayern-Salzburg)"; }
+                            ListElement { key: "16 Bässe (überliefert böhmisch)"; value: "16 Bässe (überliefert böhmisch)"; }
+                            ListElement { key: "16 Bässe (Hans Auer, böhmisch)"; value: "16 Bässe (Hans Auer, böhmisch)"; }
                             ListElement { key: "16 Bässe (Michlbauer)"; value: "16 Bässe (Michlbauer)"; }
+                            ListElement { key: "18 Bässe (Gmachl, Salzburg)"; value: "18 Bässe (Gmachl, Salzburg)"; }
                             ListElement { key: "22 Bässe (Jakob)"; value: "22 Bässe (Jakob)"; }
                         }
                         function currentKey() {
@@ -431,6 +435,7 @@ MuseScore {
                             ListElement { key: "15-8-7-A-H"; value: "15 Bässe, A-H"; }
                             ListElement { key: "16-8-8-A-H"; value: "16 Bässe, A-H"; }
                             ListElement { key: "16-9-7-A-H+X"; value: "16 Bässe, A-H + X"; }
+                            ListElement { key: "18-9-9"; value: "18 Bässe, A, A', …, X, Y"; }
                             ListElement { key: "22-11-11-A'XYZ"; value: "22 Bässe, A, A', …, X, Y, Z"; }
                         }
                         function currentKey() {
