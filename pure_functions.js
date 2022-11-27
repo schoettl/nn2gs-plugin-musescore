@@ -33,7 +33,7 @@ function resetPlayedNotePitch(note) {
 }
 
 function colorNoteZugDruck(note, zd, checkBoxColorZug) {
-    if (note.color == colorBlue && zd !== 'zug') {
+    if ((note.color == colorBlue || note.color == colorRed) && zd !== 'zug') {
         note.color = colorBlack
     } else if (checkBoxColorZug.checked && zd === 'zug') {
         note.color = colorBlue
