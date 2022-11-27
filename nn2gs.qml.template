@@ -371,10 +371,13 @@ MuseScore {
                         Layout.fillWidth: true
                         textRole: "value"
                         model: ListModel {
-                            ListElement { key: "adgc"; value: "A-D-G-C"; }
-                            ListElement { key: "gcfb"; value: "G-C-F-B"; }
-                            ListElement { key: "cfbes"; value: "C-F-B-Es"; }
-                            ListElement { key: "besasdes"; value: "B-Es-As-Des"; }
+                            // Generated using Nn2GS:
+                            // :m +Music.Nn2GS
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ showStimmung x ++ "\"; value: \"" ++ showStimmung x ++ "\"; }") stimmungen
+                            ListElement { key: "G-C-F-B"; value: "G-C-F-B"; }
+                            ListElement { key: "A-D-G-C"; value: "A-D-G-C"; }
+                            ListElement { key: "C-F-B-Es"; value: "C-F-B-Es"; }
+                            ListElement { key: "B-Es-As-Des"; value: "B-Es-As-Des"; }
                         }
                         ToolTip.visible: hovered
                         ToolTip.text: "Stimmung = Tonarten der Harmonika"
@@ -397,8 +400,12 @@ MuseScore {
                         Layout.fillWidth: true
                         textRole: "value"
                         model: ListModel {
-                            ListElement { key: "22-11-11-deutsch"; value: "22 Bässe, deutsch"; }
-                            ListElement { key: "15-8-7-ronegg"; value: "15 Bässe, Steiermark, Ronegg"; }
+                            // Generated using Nn2GS:
+                            // :m +Music.Nn2GS Music.Nn2GS.Bass
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ modelId x ++ "\"; value: \"" ++ modelId x ++ "\"; }") basssysteme
+                            ListElement { key: "15 Bässe (Ronegg, Steiermark)"; value: "15 Bässe (Ronegg, Steiermark)"; }
+                            ListElement { key: "16 Bässe (Michlbauer)"; value: "16 Bässe (Michlbauer)"; }
+                            ListElement { key: "22 Bässe (Jakob)"; value: "22 Bässe (Jakob)"; }
                         }
                         function currentKey() {
                             return model.get(currentIndex).key
@@ -417,9 +424,14 @@ MuseScore {
                         Layout.fillWidth: true
                         textRole: "value"
                         model: ListModel {
-                            ListElement { key: "22-11-11"; value: "22 Bässe (11/11)"; }
-                            ListElement { key: "15-8-7"; value: "15 Bässe (8/7), Steiermark, Ronegg"; }
-                        }
+                            // Generated using Nn2GS:
+                            // :m +Music.Nn2GS.Bass
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ bassId x ++ "\"; value: \"" ++ bassDescription x ++ "\"; }") bassbenennungsschemas
+                            ListElement { key: "22-11-11-A'XYZ"; value: "22 Bässe, A, A', …, X, Y, Z"; }
+                            ListElement { key: "15-8-7-A'"; value: "15 Bässe, A, A', …"; }
+                            ListElement { key: "15-8-7-A-H"; value: "15 Bässe, A-H"; }
+                            ListElement { key: "16-8-8-A-H"; value: "16 Bässe, A-H"; }
+                            ListElement { key: "16-9-7-A-H+X"; value: "16 Bässe, A-H + X"; }                        }
                         function currentKey() {
                             return model.get(currentIndex).key
                         }
