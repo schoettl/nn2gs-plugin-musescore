@@ -427,11 +427,12 @@ MuseScore {
                             // Generated using Nn2GS:
                             // :m +Music.Nn2GS.Bass
                             // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ bassId x ++ "\"; value: \"" ++ bassDescription x ++ "\"; }") bassbenennungsschemas
-                            ListElement { key: "22-11-11-A'XYZ"; value: "22 Bässe, A, A', …, X, Y, Z"; }
                             ListElement { key: "15-8-7-A'"; value: "15 Bässe, A, A', …"; }
                             ListElement { key: "15-8-7-A-H"; value: "15 Bässe, A-H"; }
                             ListElement { key: "16-8-8-A-H"; value: "16 Bässe, A-H"; }
-                            ListElement { key: "16-9-7-A-H+X"; value: "16 Bässe, A-H + X"; }                        }
+                            ListElement { key: "16-9-7-A-H+X"; value: "16 Bässe, A-H + X"; }
+                            ListElement { key: "22-11-11-A'XYZ"; value: "22 Bässe, A, A', …, X, Y, Z"; }
+                        }
                         function currentKey() {
                             return model.get(currentIndex).key
                         }
