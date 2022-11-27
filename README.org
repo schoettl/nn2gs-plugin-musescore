@@ -35,9 +35,10 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 - Tonart automatisch auswählen durch Klick auf /Aktuelle Dur-Tonart/.
 - Tastaturschema mit aktuell markiertem Akkord anzeigen (im Browser).
 - Kann komplett mit Tastenkürzeln bedient werden.
-- Bassbezifferung zu ausnotierten Basslinien (z.B. bei Chorälen)
-  hinzufügen. Dabei kann zwischen verschiedene Basssystemen und
-  Schemas für die Bassbenennung (A-H vs. A, A', …) ausgewählt werden.
+- Bassbezifferung zu ausnotierten Basslinien hinzufügen (z.B. bei
+  Chorälen).
+- Unterstützung für verschiedene Basssystemen und Schemas für die
+  Bassbenennung (A-H vs. A, A’, …).
 
 *Geplante Erweiterungen:*
 
