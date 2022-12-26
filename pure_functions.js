@@ -17,6 +17,12 @@ function propertiesOfObject(obj) {
     return result
 }
 
+function findTonartIndex(tonarten, tonart) {
+    let i = tonarten.findIndex(([i, x, _]) => x == tonart)
+    if (i >= 0) return i
+    return 8
+}
+
 // Make Griffschrift note sound like it sounds.
 function fixPlayedNotePitch(note, originalPitch) {
     // console.log(`playEvents[0]: ${note?.playEvents?.[0]}`)
