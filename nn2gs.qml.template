@@ -19,11 +19,11 @@
 
 */
 
-import QtQuick 2.9
+import QtQuick 2.15
 import MuseScore 3.0
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
+import QtQuick.Dialogs 1.3
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 // Discussion about QtQuick versions:
 // https://musescore.org/en/node/281629
@@ -280,8 +280,8 @@ MuseScore {
     function switchDiskantBass() {
         invalidateCurrentResults()
         // Set visibility of controls:
-        var bassMode = comboSide.isBassMode()
-        var diskantMode = comboSide.isDiskantMode()
+        var bassMode = tabBar.isBassMode()
+        var diskantMode = tabBar.isDiskantMode()
         spinnerTonart.enabled = !bassMode
         panelBass.visible = bassMode
         txtInstrument.visible = diskantMode
@@ -296,13 +296,13 @@ MuseScore {
         addBassNamesAsLyrics('zug')
     }
     function clickZug() {
-        if (comboSide.isBassMode())
+        if (tabBar.isBassMode())
             addBassNamesAsLyrics('zug')
         else
             translateToFromGriffschrift('zug')
     }
     function clickDruck() {
-        if (comboSide.isBassMode())
+        if (tabBar.isBassMode())
             addBassNamesAsLyrics('druck')
         else
             translateToFromGriffschrift('druck')
@@ -338,13 +338,17 @@ MuseScore {
             anchors.fill: parent
             Layout.fillWidth: true
 
-            ComboBox {
-                id: comboSide
-                Layout.fillWidth: true
+            TabBar {
+                id: tabBar
+                width: parent.width
                 onCurrentIndexChanged: switchDiskantBass()
-                model: ListModel {
-                    ListElement { value: "Diskant-/Melodieseite"; }
-                    ListElement { value: "Bassseite"; }
+                TabButton {
+                    text: "Diskant"
+                    width: 100
+                }
+                TabButton {
+                    text: "Bass"
+                    width: 100
                 }
                 function isBassMode() {
                     return currentIndex == 1
@@ -354,7 +358,21 @@ MuseScore {
                 }
             }
 
+            // Layout for a tab view's content; currently unused
+            // because there are so many common controls.
+            //StackLayout {
+            //    width: parent.width
+            //    currentIndex: tabBar.currentIndex
+            //    Item {
+            //        id: diskantTab
+            //    }
+            //    Item {
+            //        id: bassTab
+            //    }
+            //}
+
             Pane {
+                visible: false // default view is "Diskant", "Bass" is invisible
                 Layout.fillWidth: true
                 padding: 0
                 id: panelBass
