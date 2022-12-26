@@ -402,14 +402,17 @@ MuseScore {
                         model: ListModel {
                             // Generated using Nn2GS:
                             // :m +Music.Nn2GS Music.Nn2GS.Bass
-                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ modelId x ++ "\"; value: \"" ++ modelId x ++ "\"; }") basssysteme
-                            ListElement { key: "15 Bässe (Ronegg, Steiermark)"; value: "15 Bässe (Ronegg, Steiermark)"; }
-                            ListElement { key: "16 Bässe (Bayern-Salzburg)"; value: "16 Bässe (Bayern-Salzburg)"; }
-                            ListElement { key: "16 Bässe (überliefert böhmisch)"; value: "16 Bässe (überliefert böhmisch)"; }
-                            ListElement { key: "16 Bässe (Hans Auer, böhmisch)"; value: "16 Bässe (Hans Auer, böhmisch)"; }
-                            ListElement { key: "16 Bässe (Michlbauer)"; value: "16 Bässe (Michlbauer)"; }
-                            ListElement { key: "18 Bässe (Gmachl, Salzburg)"; value: "18 Bässe (Gmachl, Salzburg)"; }
-                            ListElement { key: "22 Bässe (Jakob)"; value: "22 Bässe (Jakob)"; }
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ modelId x ++ "\"; value: \"" ++ description x ++ "\"; }") basssysteme
+                            ListElement { key: "GCFB_15-8-7-Ronegg"; value: "15 Tasten (Ronegg, Steiermark)"; }
+                            ListElement { key: "ADGC_16-8-8-BayernSalzburg"; value: "16 Tasten (Bayern-Salzburg)"; }
+                            ListElement { key: "ADGC_16-8-8-Schaborak"; value: "16 Tasten (Schaborak/Dufter)"; }
+                            ListElement { key: "ADGC_16-8-8-Boehmisch"; value: "16 Tasten (überliefert böhmisch)"; }
+                            ListElement { key: "ADGC_16-8-8-BoehmischAuer"; value: "16 Tasten (Hans Auer, böhmisch)"; }
+                            ListElement { key: "GCFB_16-9-7-Michlbauer"; value: "16 Tasten (Michlbauer)"; }
+                            ListElement { key: "ADGC_18-9-9-Gmachl"; value: "18 Tasten (Gmachl, Salzburg)"; }
+                            ListElement { key: "ADGC_18-9-9-Schaborak"; value: "18 Tasten (Schaborak)"; }
+                            ListElement { key: "ADGC_21-10-11-Schaborak"; value: "21 Tasten (Schaborak)"; }
+                            ListElement { key: "ADGC_22-11-11-Schaborak"; value: "22 Tasten (Schaborak, 21 + 1)"; }
                         }
                         function currentKey() {
                             return model.get(currentIndex).key
@@ -430,12 +433,13 @@ MuseScore {
                         model: ListModel {
                             // Generated using Nn2GS:
                             // :m +Music.Nn2GS.Bass
-                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ bassId x ++ "\"; value: \"" ++ bassDescription x ++ "\"; }") bassbenennungsschemas
+                            // putStrLn $ unlines $ map (\x -> "ListElement { key: \"" ++ bbId x ++ "\"; value: \"" ++ bbDescription x ++ "\"; }") bassbenennungsschemas
                             ListElement { key: "15-8-7-A'"; value: "15 Bässe, A, A', …"; }
                             ListElement { key: "15-8-7-A-H"; value: "15 Bässe, A-H"; }
                             ListElement { key: "16-8-8-A-H"; value: "16 Bässe, A-H"; }
                             ListElement { key: "16-9-7-A-H+X"; value: "16 Bässe, A-H + X"; }
                             ListElement { key: "18-9-9"; value: "18 Bässe, A, A', …, X, Y"; }
+                            ListElement { key: "22-10-11-A'XYZ'"; value: "22 Bässe, A, A', …, X, Y"; }
                             ListElement { key: "22-11-11-A'XYZ"; value: "22 Bässe, A, A', …, X, Y, Z"; }
                         }
                         function currentKey() {
