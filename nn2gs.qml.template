@@ -2,7 +2,7 @@
 /*
 
     Nn2GS - Übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika.
-    Copyright (C) 2021-2022  Jakob Schöttl <jschoett@gmail.com>
+    Copyright (C) 2021-2023  Jakob Schöttl <jschoett@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,13 +38,15 @@ import QtQuick.Layouts 1.15
 
 MuseScore {
     id: plugin
-    menuPath:   "Plugins.Griffschrift (Nn2GS)"
+    title:      "Griffschrift (Nn2GS)" // MS4: replaces menuPath
+    menuPath:   "Plugins.Griffschrift (Nn2GS)" // MS3: plugin title
     version:    "1.0"  // DO NOT CHANGE THIS LINE - version will be set from Makefile
     description: "Dieses Plugin übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika."
     requiresScore: true
 
-    pluginType: "dock"
-    dockArea:   "left"
+    // pluginType: "dock" doesn't work in MS4, see https://musescore.org/en/node/338769
+    pluginType: "dialog"
+    //dockArea:   "left"
 
     implicitWidth:  200
     implicitHeight: 700
@@ -397,6 +399,7 @@ MuseScore {
                             ListElement { key: "C-F-B-Es"; value: "C-F-B-Es"; }
                             ListElement { key: "B-Es-As-Des"; value: "B-Es-As-Des"; }
                         }
+                        hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: "Stimmung = Tonarten der Harmonika"
                         function currentKey() {
@@ -417,6 +420,9 @@ MuseScore {
                         id: comboBasssystem
                         Layout.fillWidth: true
                         textRole: "value"
+                        hoverEnabled: true
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Basssystem der Harmonika"
                         model: ListModel {
                             // Generated using Nn2GS:
                             // :m +Music.Nn2GS Music.Nn2GS.Bass
@@ -448,6 +454,9 @@ MuseScore {
                         id: comboBassbenennung
                         Layout.fillWidth: true
                         textRole: "value"
+                        hoverEnabled: true
+                        ToolTip.visible: hovered
+                        ToolTip.text: "Tastenbenennung (muss zum Basssystem passen)"
                         model: ListModel {
                             // Generated using Nn2GS:
                             // :m +Music.Nn2GS.Bass
@@ -478,9 +487,11 @@ MuseScore {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: lblShowInstrumentClick()
+                    // TODO doesn't work in MS4 - not for Text and not for MouseArea
+                    //hoverEnabled: true
+                    //ToolTip.visible: hovered
+                    //ToolTip.text: "Klicken, um Instrument auf Webseite anzuzeigen"
                 }
-                ToolTip.visible: hovered // TODO ToolTip funktioniert für Text labels leider nicht
-                ToolTip.text: "Klicken, um Instrument auf Webseite anzuzeigen"
             }
             ComboBox {
                 id: comboModel
@@ -516,9 +527,11 @@ MuseScore {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: lblCurrentKeyClick()
+                    // TODO doesn't work in MS4 - not for Text and not for MouseArea
+                    //hoverEnabled: true
+                    //ToolTip.visible: hovered
+                    //ToolTip.text: "Klicken, um Haupttonart automatisch zu erkennen"
                 }
-                ToolTip.visible: hovered // TODO ToolTip funktioniert für Text labels leider nicht
-                ToolTip.text: "Klicken, um Haupttonart automatisch zu erkennen"
             }
 
             SpinBox {
@@ -542,6 +555,7 @@ MuseScore {
                 onValueChanged: {
                     invalidateCurrentResults()
                 }
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Tonart des Teils, der übersetzt werden soll"
             }
@@ -573,6 +587,7 @@ MuseScore {
                 // double click are fired which causes a faster switching:
                 onClicked: clickReverseDirection()
                 //onDoubleClicked: clickReverseDirection() <- does not work on Windows
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Übersetzungsrichtung (Alt+R)"
             }
@@ -590,6 +605,7 @@ MuseScore {
                 Layout.fillWidth: true
                 //background.color: colorButtonNormal
                 onClicked: clickZug()
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Ausgewählte Takte auf Zug (Alt+J)"
             }
@@ -599,6 +615,7 @@ MuseScore {
                 Layout.fillWidth: true
                 //background.color: colorButtonNormal
                 onClicked: clickDruck()
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Ausgewählte Takte auf Druck (Alt+K)"
             }
@@ -610,6 +627,7 @@ MuseScore {
                 enabled: false
                 id: btnNextAlternative
                 onClicked: clickNextAlternative()
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Alternative Griffweisen durchschalten"
             }
@@ -618,6 +636,7 @@ MuseScore {
                 Layout.fillWidth: true
                 //background.color: colorButtonNormal
                 onClicked: proceedToNextChord()
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Nächsten Akkord markieren (Alt+N)"
             }
@@ -655,6 +674,7 @@ MuseScore {
                 function currentKey() {
                     return model.get(currentIndex).key
                 }
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Aussehen der Griffschrift (Notenköpfe, Kreuzsymbole usw.)"
             }
@@ -679,8 +699,11 @@ MuseScore {
                 id: checkBoxSortHeads
                 checked: true
                 text: "Um Notenhals sortieren"
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Notenköpfe platzieren je nach Lage auf Tastatur"
+                indicator.width: 30
+                indicator.height: 30
             }
 
             CheckBox {
@@ -688,6 +711,7 @@ MuseScore {
                 checked: true
                 text: "Zug-GS blau färben"
                 onClicked: checkBoxColorZugClick()
+                hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Haken wegnehmen, um alles schwarz zu färben"
             }
@@ -742,6 +766,7 @@ MuseScore {
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: "Innerhalb einer Notenzeile können mehrere Stimmen stehen."
                     }
@@ -750,6 +775,7 @@ MuseScore {
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: "Für die meisten zwei- und dreistimmigen Stücke reicht aber die 1. Stimme aus."
                     }
@@ -758,6 +784,7 @@ MuseScore {
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: "Für die meisten zwei- und dreistimmigen Stücke reicht aber die 1. Stimme aus."
                     }
@@ -766,6 +793,7 @@ MuseScore {
                         leftPadding: 0
                         checked: true
                         onClicked: checkVoiceCheckboxesValidity()
+                        hoverEnabled: true
                         ToolTip.visible: hovered
                         ToolTip.text: "Eine unsichtbare 4. Stimme mit Liedtext kann z.B. für Bassnotation verwendet werden."
                     }
