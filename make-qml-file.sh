@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Merge .qml.template with compiled .js files.
 
 set -o errexit -o pipefail -o nounset
