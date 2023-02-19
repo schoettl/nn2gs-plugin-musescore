@@ -12,7 +12,7 @@ Harmonika, Club Harmonika, Schwyzer-Orgel und ähnliche Instrumente.
 Griffschrift for Steirische Harmonika (a diatonic button accordion), and
 similar instruments./
 
-Die Webseite https://ziach.intensovet.de/ zeigt die
+Die Webseite https://griffschrift-notation.de/ zeigt die
 Diskant-Tastenanordnungen, für die Griffschrift erzeugt werden kann. Auf
 Anfrage können auch weitere Tastenanordnungen hinzugefügt werden.
 
