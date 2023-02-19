@@ -1,5 +1,5 @@
 
-VERSION := 1.5.0
+VERSION := 1.5.1-ms36
 API_URL := https://griffschrift-notation.de/nn2gs
 
 .PHONY: publish
