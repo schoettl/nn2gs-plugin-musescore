@@ -1,6 +1,6 @@
 
 VERSION := 1.5.0
-API_URL := https://ziach.intensovet.de/nn2gs
+API_URL := https://griffschrift-notation.de/nn2gs
 
 .PHONY: publish
 publish: build package

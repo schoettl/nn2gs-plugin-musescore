@@ -128,7 +128,7 @@ MuseScore {
         }
     }
 
-    //readonly property string apiUrl: "https://ziach.intensovet.de/nn2gs"
+    //readonly property string apiUrl: "https://griffschrift-notation.de/nn2gs"
     readonly property string apiUrl: "http://localhost:3000/nn2gs"
 
     readonly property var colorRed: "#ff0000"
@@ -232,7 +232,7 @@ MuseScore {
         id: infoDialog
         title: "Info"
         icon: StandardIcon.Information
-        text: "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\n      https://ziach.intensovet.de/\n\nMomentan kostenlos, irgendwann wird man für die Nutzung eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
+        text: "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\n      https://griffschrift-notation.de/\n\nMomentan kostenlos, irgendwann wird man für die Nutzung eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
     }
 
     Timer {
