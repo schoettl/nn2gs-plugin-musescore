@@ -71,6 +71,39 @@ Sie kann hier heruntergeladen werden:
 
 https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika
 
+* Contributing
+
+Um zu diesem Plugin beizutragen und mitzuentwickeln können gerne
+GitHub Issues und PRs erstellt werden.
+
+Meine Entwicklungsumgebung ist Linux und folgende Programme müssen
+installiert sein:
+
+- GNU Make, um die QML-Plugin-Datei zu erzeugen
+- closure-compiler, um die ES6 JavaScript-Dateien in einfaches JS zu übersetzen
+- GNU awk/sed/bash, ebenfalls für den Build-Prozess der QML-Datei
+
+Wer den [[https://nixos.org/download.html#download-nix][Nix package manager]] installiert hat kann mit folgenden Befehlen
+alle Abhängigkeiten installieren:
+
+: git clone git@github.com:schoettl/nn2gs-plugin-musescore.git
+: cd nn2gs-plugin-musescore && nix-shell
+
+Folgender Befehl erzeugt die Datei =nn2gs-vXXX.qml=, die in MuseScore 3.6
+im Plugin-Editor (=Strg+Shift+P=) geöffnet und gestartet werden kann.
+
+: make build
+
+Mit diesem Befehl (mithilfe eines "File Watchers") wird die QML-Datei
+bei jeder Änderung von Quell-Dateien automatisch übersetzt:
+
+: watchexec make build
+
+Dieser Befehl ist nur für mich, da hiermit die URL der
+Übersetzungs-API auf =localhost= geändert wird:
+
+: make devbuild
+
 * Documentation sources
 
 - https://musescore.org/de/handbook/developers-handbook/plugin-development
@@ -112,30 +145,3 @@ für die Stimmung berechnet.
    für jeden Ton der Basslinie die Basstaste berechnet.
 2. Anhand des Basstasten-Benennungsschemas wird aus der Basstaste dann
    der Name des zu drückenden Knopfes berechnet.
-
-* Contributing
-
-Um zu diesem Plugin beizutragen und mitzuentwickeln können gerne
-GitHub Issues und PRs erstellt werden.
-
-Meine Entwicklungsumgebung ist Linux und folgende Programme müssen
-installiert sein:
-
-- GNU Make, um die QML-Plugin-Datei zu erzeugen
-- closure-compiler, um die ES6 JavaScript-Dateien in einfaches JS zu übersetzen
-- GNU awk/sed/bash, ebenfalls für den Build-Prozess der QML-Datei
-
-Folgender Befehl erzeugt die Datei =nn2gs-vXXX.qml=, die in MuseScore
-im Plugin-Editor (=Strg+Shift+P=) geöffnet und gestartet werden kann.
-
-: make build
-
-Mit diesem Befehl (mithilfe eines "File Watchers") wird die QML-Datei
-bei jeder Änderung von Quell-Dateien automatisch übersetzt:
-
-: watchexec make build
-
-Dieser Befehl ist nur für mich, da hiermit die URL der
-Übersetzungs-API auf =localhost= geändert wird:
-
-: make devbuild
