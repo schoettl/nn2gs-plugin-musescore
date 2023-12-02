@@ -85,7 +85,6 @@ function addSymbolToNote(note, symId, xoffset) {
 }
 
 function isCrossSymbol(element) {
-    // Operator === doesn't work here
     return element.type == Element.SYMBOL &&
         (element.symbol == SymId.noteheadXBlack  || // light cross
          element.symbol == SymId.noteheadHeavyX  || // heavy cross
@@ -137,16 +136,14 @@ function isHalfOrLonger(chord) {
 function durationIs(chord, value) {
     // value = Notenwert: 1 = Ganze, 2 = Halbe usw.
     //console.log(`Note duration: ${chord.duration.numerator} / ${chord.duration.denominator}`)
-    return chord.duration.numerator === 1 && chord.duration.denominator === value
+    return chord.duration.numerator == 1 && chord.duration.denominator == value
 }
 
 function hasSpecialNoteHead(note) {
-    // Operator === does NOT work here on Windows!
     return hasCrossSymbol(note) ||
            note.headGroup != NoteHeadGroup.HEAD_NORMAL
 }
 function hasCrossedNoteHead(note) {
-    // Operator === does NOT work here on Windows!
     return hasCrossSymbol(note) ||
            note.headGroup == NoteHeadGroup.HEAD_CROSS ||
            note.headGroup == NoteHeadGroup.HEAD_XCIRCLE ||
@@ -217,7 +214,6 @@ function extractZDResults(zd, zdResults) {
 }
 
 function lookupTonalPitchClass(noteName) {
-    // Operator === does NOT work here!
     return tonalPitchClassMap.find(([nn, _]) => noteName == nn)[1]
 }
 
@@ -234,7 +230,6 @@ function containsRedNote(notes) {
     // If a chord contains one red normal note, the
     // other notes are also normal notes.
     for (let i = 0; i < notes.length; i++) {
-        // Operator === does NOT work here!
         if (notes[i].color == colorRed) {
             return true
         }

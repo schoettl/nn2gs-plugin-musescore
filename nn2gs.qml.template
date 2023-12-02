@@ -683,7 +683,7 @@ MuseScore {
                 visible: false
                 placeholderText: "Lizenz-Schlüssel eingeben…"
                 Keys.onPressed: {
-                    if (text.trim() === '' && event.key === Qt.Key_Return) {
+                    if (text.trim() == '' && event.key == Qt.Key_Return) {
                         console.log("Opening URL in browser.")
                         Qt.openUrlExternally(apiUrl + '#faq-kosten')
                         text = ''

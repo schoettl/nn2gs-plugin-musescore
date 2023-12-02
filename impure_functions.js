@@ -18,7 +18,7 @@ function applyToChordsInSelection(fullScoreIfNoSelection, limit, func) {
       } else {
             startStaff = cursor.staffIdx;
             cursor.rewind(2);
-            if (cursor.tick === 0) {
+            if (cursor.tick == 0) {
                   // this happens when the selection includes
                   // the last measure of the score.
                   // rewind(2) goes behind the last segment (where
@@ -41,7 +41,6 @@ function applyToChordsInSelection(fullScoreIfNoSelection, limit, func) {
                         cursor.rewind(0) // if no selection, beginning of score
 
                   while (cursor.segment && (fullScore || cursor.tick < endTick)) {
-                      // Operator === does not work reliably
                       if (cursor.element && cursor.element.type == Element.CHORD) {
                           // The chord element includes grace notes
                           let graceChords = cursor.element.graceNotes;
@@ -67,8 +66,8 @@ function applyToChordsInSelection(fullScoreIfNoSelection, limit, func) {
 function populateInstrumentList() {
     let request = new XMLHttpRequest()
     request.onreadystatechange = function() {
-        if (request.readyState === XMLHttpRequest.DONE) {
-            if (request.status === 200) {
+        if (request.readyState == XMLHttpRequest.DONE) {
+            if (request.status == 200) {
                 console.log("Fetched instrument list:\n" + request.responseText)
                 // request.response is not a JS object for some reason?!
                 const result = JSON.parse(request.responseText)
@@ -105,9 +104,9 @@ function callApi(chords, reverse, successCallback) {
 
     let request = new XMLHttpRequest()
     request.onreadystatechange = function() {
-        if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.readyState == XMLHttpRequest.DONE) {
             console.log("HTTP status: " + request.status)
-            if (request.status === 200) {
+            if (request.status == 200) {
                 console.log("API response:\n" + request.responseText)
                 try {
                     lastResults = JSON.parse(request.responseText)
@@ -169,7 +168,7 @@ function changeNotes(zd, reverse) {
         lastZD = zd
         let results = extractZDResults(zd, zdResults)
         console.log(zd + ' ' + results)
-        if (chords.length !== results.length) {
+        if (chords.length != results.length) {
             console.warn(`Length of selected chords (${chords.length}) and translation result (${results.length}) do not match. Aborting.`)
             return
         }
@@ -211,7 +210,7 @@ function changeNotesOfChordReverse(chord, result, zd, chordIndex) {
         for (let j = 0; j < notes.length; j++) {
             let noteName = resultr[j]
             let note = notes[j]
-            if (notes.length !== resultr.length) {
+            if (notes.length != resultr.length) {
                 console.warn(`Length of current chord (${notes.length}) and translation result (${resultr.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
                 break
             }
@@ -264,7 +263,7 @@ function changeNotesOfChord(chord, result, zd, chordIndex) {
             let resAlternative = result.Right[alternativeIndex % result.Right.length]
             let res = resAlternative[j]
             let note = notes[j]
-            if (notes.length !== resAlternative.length) {
+            if (notes.length != resAlternative.length) {
                 console.warn(`Length of current chord (${notes.length}) and translation result (${resAlternative.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
                 break
             }
@@ -418,7 +417,7 @@ function addLyricsToChord(chord, result, zd, chordIndex) {
         let resNote = result[j]
         let buttonName = resNote[alternativeIndex % resNote.length]
         let note = notes[j]
-        if (notes.length !== result.length) {
+        if (notes.length != result.length) {
             console.warn(`Length of current chord (${notes.length}) and translation result (${result.length}) do not match in chord ${chordIndex}, note ${j}. Skipping to next chord.`)
             break
         }
@@ -453,9 +452,9 @@ function callBassApi(chords, successCallback) {
 
     let request = new XMLHttpRequest()
     request.onreadystatechange = function() {
-        if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.readyState == XMLHttpRequest.DONE) {
             console.log("HTTP status: " + request.status)
-            if (request.status === 200) {
+            if (request.status == 200) {
                 console.log("API response:\n" + request.responseText)
                 try {
                     lastResults = JSON.parse(request.responseText)
@@ -502,7 +501,7 @@ function addLyricsToNotes(zd) {
         lastZD = zd
         let results = extractZDResults(zd, zdResults)
         console.log(zd + ' ' + results)
-        if (chords.length !== results.length) {
+        if (chords.length != results.length) {
             console.warn(`Length of selected chords (${chords.length}) and translation result (${results.length}) do not match. Aborting.`)
             return
         }
@@ -534,7 +533,7 @@ function addBassNamesAsLyrics(zd) {
     checkVoiceCheckboxesValidity()
     console.log(`Starting translation: ${zd}`)
     let chords = collectChords()
-    if (chords.length === 0) {
+    if (chords.length == 0) {
         console.warn("Keine Noten ausgewählt. Abbruch.")
         warningDialog.show("Es sind keine Noten bzw. Takte ausgewählt.")
         return
@@ -565,7 +564,7 @@ function translateToFromGriffschrift(zd) {
     let reverse = isReverseDirection()
     console.log(`Starting translation: ${zd}${reverse ? ' reverse' : ''}`)
     let chords = collectChords()
-    if (chords.length === 0) {
+    if (chords.length == 0) {
         console.warn("Keine Noten ausgewählt. Abbruch.")
         warningDialog.show("Es sind keine Noten bzw. Takte ausgewählt.")
         return
@@ -576,7 +575,7 @@ function translateToFromGriffschrift(zd) {
         return
     }
     // Sonderfall: Alternative Griffweisen durchzappen
-    if (btnReverseDirection.state === 1 && !isCurrentResultValid()) {
+    if (btnReverseDirection.state == 1 && !isCurrentResultValid()) {
         console.log("Alternative Griffweisen durchzappen")
         callApi(chords, /* GS → Nn: reverse = */ true, toGriffschrift(zd))
         return
@@ -608,7 +607,7 @@ function translateToFromGriffschrift(zd) {
 function makePlayable() {
     invalidateCurrentResults()
     let chords = collectChords()
-    if (chords.length === 0) {
+    if (chords.length == 0) {
         console.warn("Keine Noten ausgewählt. Abbruch.")
         return
     }
