@@ -486,7 +486,7 @@ MuseScore {
                 Layout.fillWidth: true
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: lblShowInstrumentClick()
+                    onClicked: openNn2GSBrowser()
                     // TODO doesn't work in MS4 - not for Text and not for MouseArea
                     //hoverEnabled: true
                     //ToolTip.visible: hovered

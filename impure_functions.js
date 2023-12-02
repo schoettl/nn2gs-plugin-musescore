@@ -669,7 +669,7 @@ function getGermanNoteNamesFromNotes(noteList) {
     return noteNames
 }
 
-function lblShowInstrumentClick() {
+function openNn2GSBrowser() {
     // TODO Directly open first selected chord? note names must be in German for this!
     const model = comboModel.currentKey()
     const chords = collectChords()
