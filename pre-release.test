@@ -1,0 +1,20 @@
+
+# VERSION is defined?
+$ bash --rcfile BUILD_CONFIG -c 'test -n "$VERSION"'
+
+# API server can respond with HTML
+$ bash --rcfile BUILD_CONFIG -c 'curl --silent "$API_URL"'
+> /<!doctype html>/
+
+# API server can respond with correct JSON
+$ bash --rcfile BUILD_CONFIG -c 'curl --silent -H "Accept: application/json" "$API_URL?notes=d&model=adgc50&zd=druck&tonart=d" | jq > /dev/null'
+
+$ bash --rcfile BUILD_CONFIG -c 'test -s "nn2gs-v$VERSION.qml"'
+
+$ bash --rcfile BUILD_CONFIG -c 'test -s "nn2gs-v$VERSION.zip"'
+
+$ bash --rcfile BUILD_CONFIG -c 'unzip -qod /tmp "nn2gs-v$VERSION.zip" && diff -u "nn2gs-v$VERSION.qml" "/tmp/nn2gs-v$VERSION.qml"'
+
+$ bash --rcfile BUILD_CONFIG -c 'grep -A1 -F "// PURE FUNCTIONS" "nn2gs-v$VERSION.qml" | grep --quiet ^function'
+
+$ bash --rcfile BUILD_CONFIG -c 'grep -A1 -F "// IMPURE FUNCTIONS" "nn2gs-v$VERSION.qml" | grep --quiet ^function'
