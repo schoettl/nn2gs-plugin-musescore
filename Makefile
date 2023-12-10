@@ -23,7 +23,7 @@ nn2gs-v$(VERSION).zip: nn2gs-v$(VERSION).qml
 	zip $@ $^
 
 nn2gs.qml: nn2gs.qml.template pure_functions.js impure_functions.js
-	./make-qml-file.sh $(VERSION) "" $^ "" > $@
+	./make-qml-file.sh $(VERSION)-dev "" $^ "" > $@
 
 nn2gs-v$(VERSION).qml: nn2gs.qml.template pure_functions.js.functions.compiled impure_functions.js.functions.compiled pure_functions.js.polyfills.compiled impure_functions.js.polyfills.compiled
 	./make-qml-file.sh $(VERSION) $(API_URL) $^ > $@
