@@ -51,13 +51,13 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 *Installation:*
 
 1. Plugin als Zip-Datei herunterladen
-2. QML-Datei extrahieren und in den Ordner Dokumente / MuseScore3 /
+2. QML-Datei extrahieren und in den Ordner Dokumente / MuseScore4 /
    Plug-Ins ablegen
 3. MuseScore starten und das Plugin im Plugin-Manager aktivieren
 4. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
 
 Getestet habe ich das Plugin mit MuseScore 3.6.2 unter Windows 10,
-Linux und Mac OS.
+Linux und Mac OS und MuseScore 4.0.2 unter Linux.
 
 Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
 umgewandeltes Stück.

@@ -46,23 +46,37 @@ herunter und folgen Sie den Installationsanweisungen:
 
 https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika
 
-1. Öffnen Sie MuseScore gehen Sie auf /Bearbeiten → Einstellungen…/.
+Wichtig: Falls diese Anleitung bei MuseScore 4 nicht funktioniert,
+bitte die Hinweise unten beachten.
+
+1. Öffnen Sie MuseScore gehen Sie auf /Bearbeiten → Einstellungen…/
+   bzw. /Bearbeiten → Voreinstellungen…/.
 2. Kopieren Sie den Dateipfad, der unter /Verzeichnisse/ bei
    /Plug-Ins/ steht (markieren und =Strg+C=).
-3. Öffnen Sie ein Explorer-Fenster (Dateimanager) und fügen Sie als
+3. Öffnen Sie den Dateimanager (Explorer-Fenster) und fügen Sie als
    Adresse den Dateipfad ein, den Sie eben aus den
    MuseScore-Einstellungen kopiert haben.
-4. Verschieben Sie die Plugin-Datei nn2gs.qml aus der Zip-Datei von Ihrem
+4. Verschieben Sie die Plugin-Datei =nn2gs-v*.qml= aus der Zip-Datei von Ihrem
    Download-Ordner in den Plugin-Ordner.
 5. Gehen Sie in MuseScore auf /Plug-Ins → Plug-In Manager…/.
-6. Klicken Sie auf /Plug-Ins neu laden/.
-7. Aktivieren Sie nn2gs in der Liste links, indem Sie ein Häckchen setzen.
+6. Klicken Sie auf /Plug-Ins neu laden/ oder starten Sie MuseScore neu.
+7. Aktivieren Sie Nn2GS in der Liste.
 8. Klicken Sie auf /OK/
 
-Sie finden das Plugin nun unter /Plug-Ins → Nn2GS/.
+Sie finden das Plugin nun unter /Plug-Ins → Griffschrift (Nn2GS)/.
 
 Details zur Plugin-Installation auf englisch:
 https://musescore.org/de/node/278601
+
+*Hinweise zu MuseScore 4:*
+
+MuseScore 4 hat noch einige Bugs (2023-12-10).
+
+- Der Button /Plug-Ins neu laden/ scheint nicht zu
+  funktionieren. Stattdessen muss MuseScore neu gestartet werden.
+- Es scheint nur das voreingestellte Plug-In Verzeichnis zu
+  funktionieren (Dokumente / MuseScore4 / Plug-Ins). In anderen
+  eingestellten Verzeichnissen findet MuseScore keine Plugins.
 
 * Allgemeine Bedienung
 
