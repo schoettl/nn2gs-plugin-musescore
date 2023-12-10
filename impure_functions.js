@@ -169,7 +169,8 @@ function changeNotes(zd, reverse) {
         let results = extractZDResults(zd, zdResults)
         console.log(zd + ' ' + results)
         if (chords.length != results.length) {
-            console.warn(`Length of selected chords (${chords.length}) and translation result (${results.length}) do not match. Aborting.`)
+            console.error(`Length of selected chords (${chords.length}) and translation result (${results.length}) do not match. This is likely a bug. Aborting and invalidating current translation result.`)
+            invalidateCurrentResults()
             return
         }
         let change = reverse ? changeNotesOfChordReverse : changeNotesOfChord
@@ -561,6 +562,7 @@ function addBassNamesAsLyrics(zd) {
 
 function translateToFromGriffschrift(zd) {
     checkVoiceCheckboxesValidity()
+    checkHasSelectionChanged()
     let reverse = isReverseDirection()
     console.log(`Starting translation: ${zd}${reverse ? ' reverse' : ''}`)
     let chords = collectChords()
@@ -628,7 +630,7 @@ function toGriffschrift(zd) {
         let results = extractZDResults(zd, zdResults)
         let constructedChords = constructChordsFromNormalResults(results)
         console.log("Aus Normalnoten (die API zurückgeliefert hat) werden jetzt MuseScore Notes erstellt, die dann in GS umgewandelt werden: " + JSON.stringify(constructedChords))
-        alternativeIndex = 0 // Can we set this to current alteranitive? Only if originalGSChords are passed to changeNotes.
+        alternativeIndex = 0 // Can we set this to current alternative? Only if originalGSChords are passed to changeNotes.
         let reverse = false // Nn → GS
         callApi(constructedChords, reverse, changeNotes(zd, reverse))
     }

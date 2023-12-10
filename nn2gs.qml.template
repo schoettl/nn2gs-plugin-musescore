@@ -178,6 +178,9 @@ MuseScore {
     property string lastZD: ''
     property int alternativeIndex: 0
 
+    property var lastSelectionStartTick: null
+    property var lastSelectionEndTick: null
+
     // PURE FUNCTIONS HERE:
 
     // IMPURE FUNCTIONS HERE:
@@ -268,6 +271,22 @@ MuseScore {
 
     function isCurrentResultValid() {
         return !!lastResults
+    }
+
+    function checkHasSelectionChanged() {
+        // MS4 does not notify the plugin about selection change anymore!
+        // onScoreStateChanged is not never called. See
+        // https://github.com/musescore/MuseScore/issues/20290
+        // => check if selection has changed and if so, invalidate last result.
+        var currentSelection = curScore.selection
+        var currStartTick = currentSelection.startSegment ? currentSelection.startSegment.tick : null
+        var currEndTick = currentSelection.endSegment ? currentSelection.endSegment.tick : null
+        if (lastSelectionStartTick != currStartTick || lastSelectionEndTick != currEndTick) {
+            console.log("Selection has changed! Invalidating lastResults and setting lastSelection to currentSelection...")
+            invalidateCurrentResults()
+            lastSelectionStartTick = currStartTick
+            lastSelectionEndTick = currEndTick
+        }
     }
 
     function disableZDButtonsForTimeout() {
