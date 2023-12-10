@@ -56,8 +56,10 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 3. MuseScore starten und das Plugin im Plugin-Manager aktivieren
 4. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
 
-Getestet habe ich das Plugin mit MuseScore 3.6.2 unter Windows 10,
-Linux und Mac OS und MuseScore 4.0.2 unter Linux.
+Getestet wurde das Plugin mit:
+
+- MuseScore 3.6.2 unter Windows 10, Linux und macOS (Plugin Version 1.5.1)
+- MuseScore 4.0.2 und 4.1.1 unter Linux und macOS (Plugin Version 1.6)
 
 Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
 umgewandeltes Stück.

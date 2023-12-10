@@ -18,3 +18,6 @@ $ bash --rcfile BUILD_CONFIG -c 'unzip -qod /tmp "nn2gs-v$VERSION.zip" && diff -
 $ bash --rcfile BUILD_CONFIG -c 'grep -A1 -F "// PURE FUNCTIONS" "nn2gs-v$VERSION.qml" | grep --quiet ^function'
 
 $ bash --rcfile BUILD_CONFIG -c 'grep -A1 -F "// IMPURE FUNCTIONS" "nn2gs-v$VERSION.qml" | grep --quiet ^function'
+
+$ bash --rcfile BUILD_CONFIG -c 'unzip -l -q "nn2gs-v$VERSION.zip"'
+> /   1 file/
