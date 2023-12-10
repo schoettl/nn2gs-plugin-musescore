@@ -1,9 +1,15 @@
 
-VERSION := 1.5.2-ms4-beta
-API_URL := https://griffschrift-notation.de/nn2gs
+ifndef VERSION
+$(error VERSION is not defined. Run `. BUILD_CONFIG' to make this variable available.)
+endif
+
+ifndef API_URL
+$(error VERSION is not defined. Run `. BUILD_CONFIG' to make this variable available.)
+endif
 
 .PHONY: publish
 publish: build package
+	shelltest -c pre-release.test
 	$(info Publish at: https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika)
 	$(info make -C ~/projects/nn2gs deploy-static-files)
 
