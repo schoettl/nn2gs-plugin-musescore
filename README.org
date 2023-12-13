@@ -50,7 +50,8 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 
 *Installation:*
 
-1. Plugin als Zip-Datei herunterladen
+1. Plugin als Zip-Datei herunterladen:
+   nn2gs-v1.6.zip (MuseScore 4) oder nn2gs-v1.5.1-ms36.zip (MuseScore 3.6)
 2. QML-Datei extrahieren und in den Ordner Dokumente / MuseScore4 /
    Plug-Ins ablegen
 3. MuseScore starten und das Plugin im Plugin-Manager aktivieren
@@ -60,6 +61,7 @@ Getestet wurde das Plugin mit:
 
 - MuseScore 3.6.2 unter Windows 10, Linux und macOS (Plugin Version 1.5.1)
 - MuseScore 4.0.2 und 4.1.1 unter Linux und macOS (Plugin Version 1.6)
+- MuseScore 4.1.1 unter Windows 7 (Qt 5.15.2), Windows 11 (Plugin Version 1.6)
 
 Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
 umgewandeltes Stück.
