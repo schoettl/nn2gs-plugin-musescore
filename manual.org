@@ -9,6 +9,9 @@
 #+LATEX: \newpage
 
 * Einleitung
+:PROPERTIES:
+:ID: einleitung
+:END:
 
 Das MuseScore Plugin Nn2GS übersetzt zwischen Normalnoten und
 Griffschrift für Steirische Harmonika und verwandte Instrumente.
@@ -19,6 +22,9 @@ einen Ton oder Akkord an.
 - Die Benutzung des Plugins wird zukünftig etwas kosten.
 
 * Einführungsbeispiel
+:PROPERTIES:
+:ID: beispiel
+:END:
 
 Das folgende Beispiel zeigt Noten, die mit dem Plugin in Griffschrift
 umgewandelt wurden. Die Umwandlung zurück in normale Noten
@@ -36,6 +42,9 @@ siehe [[*Schnellere Bedienung durch Tastenkürzeln][Schnellere Bedienung durch T
 [[file:images/2021-01-09_19-43-03_screenshot.png]]
 
 * Installation
+:PROPERTIES:
+:ID: installation
+:END:
 
 Die Plugin-Datei muss heruntergeladen werden und zur
 Installation in einen bestimmten Ordner kopiert werden, damit
@@ -79,6 +88,9 @@ MuseScore 4 hat noch einige Bugs (2023-12-10).
   eingestellten Verzeichnissen findet MuseScore keine Plugins.
 
 * Allgemeine Bedienung
+:PROPERTIES:
+:ID: bedienung-allgemein
+:END:
 
 Das MuseScore Plugin kann gestartet werden über das Menü /Plug-Ins → Nn2GS/.
 Die Bedienoberfläche erscheint dann am linken Rand von MuseScore.
@@ -111,6 +123,9 @@ Standardmäßig ist die Übersetzung /Normal → GS/ aktiviert, also die
 Durch Klick auf diesen Button kann die Übersetzungsrichtung umgekehrt werden.
 
 ** Normalnoten zu Griffschrift umwandeln
+:PROPERTIES:
+:ID: nn2gs
+:END:
 
 Die Übersetzungsrichtung muss auf /Normal → GS/ eingestellt sein.
 
@@ -150,6 +165,9 @@ Bei der Verwendung von Pedallinien kann es sein, dass die
 Druck-Passagen beim Abspielen gedämpft erklingen.
 
 ** Griffschrift zu Normalnoten umwandeln
+:PROPERTIES:
+:ID: gs2nn
+:END:
 
 Die Übersetzungsrichtung muss auf /GS → Normal/ eingestellt sein.
 Die Auswahl des Instruments bestimmt die Tonart der resultierenden
@@ -177,6 +195,9 @@ Anschließend müssen Versetzungszeichen neu berechnet werden:
 /Werkzeuge → Versetzungszeichen neu berechnen/.
 
 ** Griffweisen in Griffschrift durchschalten
+:PROPERTIES:
+:ID: griffweisen
+:END:
 
 Bei bestehender Griffschrift kann zwischen verschiedenen Griffweisen
 einzelner Akkorde (oder auch längere Passagen) durchgeschalten werden.
@@ -190,6 +211,9 @@ einzelner Akkorde (oder auch längere Passagen) durchgeschalten werden.
    durchzuschalten.
 
 ** Der „Druck-Balken“
+:PROPERTIES:
+:ID: druckbalken
+:END:
 
 Der „Druck-Balken“ ist Unterstreichung der Passagen, die auf Druck
 gespielt werden. Bei Zug-Passagen hat man keine spezielle Markierung.
@@ -219,8 +243,14 @@ Die Linie kann nachträglich mit der Maus angepasst werden (anklicken
 und ziehen).
 
 * Grundsätzliche Bedienung von MuseScore (für Sibelius-, Finale-, …-Benutzer)
+:PROPERTIES:
+:ID: musescore
+:END:
 
 ** Allgemein
+:PROPERTIES:
+:ID: ms-allgemein
+:END:
 
 In MuseScore gibt es den "Normalen Modus" und den
 "Noten-Eingabe-Modus".
@@ -249,8 +279,14 @@ Notenschreibprogrammen bietet sich [[https://www.musicxml.com/][MusicXML]] an.
   starten oder zu pausieren.
 
 ** Tipps und Tricks
+:PROPERTIES:
+:ID: ms-tipps
+:END:
 
 *** Mehrere Einzelstimmen in einer Notenzeile zusammenführen
+:PROPERTIES:
+:ID: tipps-stimmen-zusammenfuehren
+:END:
 
 Dazu sind zwei Schritte notwendig:
 
@@ -263,6 +299,9 @@ Dazu sind zwei Schritte notwendig:
 https://musescore.org/de/node/278656#implode
 
 *** Alle ähnliche Noten markieren (z.B. Kreuznoten)
+:PROPERTIES:
+:ID: tipps-aehnliche-markieren
+:END:
 
 Manchmal will man z.B. alle Noten mit Kreuz-Notenköpfen markieren, um
 deren Aussehen oder eine andere Eigenschaft zu ändern.
@@ -275,6 +314,9 @@ Das geht folgendermaßen:
 https://musescore.org/de/node/278652#all-similar-selection
 
 * Schnellere Bedienung durch Tastenkürzeln
+:PROPERTIES:
+:ID: schnellere
+:END:
 
 Über /Plug-Ins → Plug-In Manager/ kann ein Tastenkürzel zum Starten
 des Plugins definiert werden.
@@ -305,6 +347,9 @@ Noten sind nur dann richtig markiert, wenn ein blauer Rahmen rundherum
 sichtbar ist.
 
 * Verschiedene Griffschrift-Varianten
+:PROPERTIES:
+:ID: gs-varianten
+:END:
 
 Es stehen verschiedene „Schriftarten“ der erzeugten Griffschrift zur
 Auswahl.
@@ -337,7 +382,13 @@ Vor- und Nachteile verschiedener Varianten:
   einheitlichen Kreuzformen bei allen Notenwerten.
 
 * FAQ / Häufige Fragen
+:PROPERTIES:
+:ID: faq
+:END:
 ** Die erzeugte Griffschrift enthält Auflösungszeichen
+:PROPERTIES:
+:ID: faq-aufloesungszeichen
+:END:
 
 Steht das Stück original in einer b-Tonart ist z.B. der Gleichton der
 zweiten Reihe (Position der Note h) mit einem Auflösungszeichen versehen.
@@ -369,6 +420,9 @@ noch nicht ohne weiteres, da dieser (wie auch Bass- oder
 Tenorschlüssel) die Noten der Griffschrift auf andere Positionen verschiebt.
 
 ** Tonart der Normalnoten passt nicht zum Instrument
+:PROPERTIES:
+:ID: faq-tonart
+:END:
 
 Wenn die Normalnotation z.B. in E-Dur steht kann für die verfügbaren
 Instrumente ADGC-, GCFB-, und BEsAsDes-Harmonika keine gut spielbare
@@ -391,6 +445,9 @@ folgendermaßen:
 [[file:images/2020-12-30_12-41-21_screenshot.png]]
 
 ** Ich möchte für die Griffschrift keine Vorzeichen, für andere Notenzeilen/Stimmen aber schon!
+:PROPERTIES:
+:ID: faq-vorzeichen
+:END:
 
 #+DOWNLOADED: screenshot @ 2021-06-05 16:54:20
 #+caption: Beispiel: Griffschrift und Normalnotation in einer Akkolade.
@@ -413,6 +470,9 @@ Auf diese weise wird die Tonart nur für eine Notenzeile der Akkolade
 gesetzt.
 
 ** Wie mache ich den Violinschlüssel weg?
+:PROPERTIES:
+:ID: faq-violinschluessel
+:END:
 
 Bei Griffschrift gehört natürlich kein Violinschlüssel vor die
 Notenzeilen. Entweder gar kein Symbol, oder ein senkrechtes „TAB“
@@ -430,6 +490,9 @@ dieser Schlüssel die Position der Noten verschieben würde!
 3. Dialogfenster mit /OK/ schließen.
 
 ** Wie mache ich ein „TAB“-Symbol statt dem Violinschlüssel?
+:PROPERTIES:
+:ID: faq-tab-schluessel
+:END:
 
 Zuerst muss der
 [[*Wie mache ich den Violinschlüssel weg?][Violinschlüssel unsichtbar]]
@@ -445,6 +508,9 @@ Verwenden Sie /nicht/ die „TAB“-Symbole, die unter /Schlüssel/
 aufgeführt sind. Diese würden die Position aller Notenköpfe ändern.
 
 ** Wie schreibe ich die Bassnotation?
+:PROPERTIES:
+:ID: faq-bassnotation
+:END:
 
 Eine Möglichkeit, die Bassnotation zu schreiben ist die folgende:
 
@@ -483,6 +549,9 @@ Die folgende Abbildung zeigt das Vorgehen:
 außerdem der Abstand zwischen den markierten Noten optisch angepasst werden.
 
 ** Wie ändere ich nachträglich den Druck-Balken?
+:PROPERTIES:
+:ID: faq-druckbalken-aendern
+:END:
 
 Der Druck-Balken kann angeklickt und Anfangs- und Endpunkt mit der
 Maus angepasst werden.
@@ -497,6 +566,9 @@ wie folgt vor:
    Akkord zu verschieben
 
 ** Gibt es eine Tastenkombination für den Druck-Balken?
+:PROPERTIES:
+:ID: faq-druckbalken-per-tastatur
+:END:
 
 Nicht direkt für das Einfügen der Linie, aber dafür für das Einfügen
 des zuletzt verwendeten Elements aus der Palette.
@@ -515,6 +587,9 @@ immer gleich =M-y= zu drücken, nachdem man den Druck-Balken einmal per
 Maus eingefügt hat.
 
 * MuseScore Cheet Sheet
+:PROPERTIES:
+:ID: musescore-cheatsheet
+:END:
 
 - i :: Instrumente/Notenzeilen hinzufügen/ändern
 - n :: Noteneingabe starten
