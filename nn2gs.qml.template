@@ -19,22 +19,14 @@
 
 */
 
-import QtQuick 2.15
-import MuseScore 3.0
-import QtQuick.Dialogs 1.3
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick
+import MuseScore
+import QtQuick.Dialogs
+import QtQuick.Controls
+import QtQuick.Layouts
 
-// Discussion about QtQuick versions:
-// https://musescore.org/en/node/281629
-// https://doc.qt.io/qt-5/qtquickcontrols-index.html#versions
-
-// Funktionen, die ich vllt noch brauche:
-// newElement(type: int)
-// removeElement(elem)
-// openLog()
-// closeLog()
-// log(), logn(), log2()
+// Qt Migration Guide:
+// https://musescore.org/en/node/337468
 
 MuseScore {
     id: plugin
@@ -43,7 +35,9 @@ MuseScore {
     description: "Dieses Plugin übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika."
     requiresScore: true
 
-    // pluginType: "dock" doesn't work in MS4, see https://musescore.org/en/node/338769
+    // pluginType: "dock" doesn't work in MS4, see
+    // https://musescore.org/en/node/338769
+    // https://musescore.org/en/node/337468
     pluginType: "dialog"
     //dockArea:   "left"
 
@@ -215,7 +209,7 @@ MuseScore {
     MessageDialog {
         id: errorDialog
         title: "Fehler"
-        icon: StandardIcon.Critical
+        //icon: StandardIcon.Critical // not supported in Qt 6
         function show(msg) {
             text = msg
             open()
@@ -225,7 +219,7 @@ MuseScore {
     MessageDialog {
         id: warningDialog
         title: "Warnung"
-        icon: StandardIcon.Warning
+        //icon: StandardIcon.Warning // not supported in Qt 6
         function show(msg) {
             text = msg
             open()
@@ -235,8 +229,9 @@ MuseScore {
     MessageDialog {
         id: infoDialog
         title: "Info"
-        icon: StandardIcon.Information
-        text: "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\n      https://griffschrift-notation.de/\n\nMomentan kostenlos, irgendwann wird man für die Nutzung eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
+        //icon: StandardIcon.Information // not supported in Qt 6
+        text: "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\n      https://griffschrift-notation.de/"
+        informativeText: "Momentan kostenlos, irgendwann wird man für die Nutzung eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
     }
 
     Timer {
