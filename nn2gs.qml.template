@@ -49,6 +49,8 @@ MuseScore {
     property var $jscomp: {}
 
     onRun: {
+        checkMuseScoreVersionSupport()
+
         console.log("Starting...")
         btnReverseDirection.text = btnReverseDirection.texts[btnReverseDirection.state]
 

@@ -711,3 +711,9 @@ function checkBoxColorZugClick() {
         curScore.endCmd()
     }
 }
+
+function checkMuseScoreVersionSupport() {
+    if (mscoreMajorVersion < 4 || mscoreMajorVersion >= 4 && mscoreMinorVersion <= 3) {
+        errorDialog.show(`Diese Version des Plugins funktioniert nur mit MuseScore 4.4 und höher. Sie verwenden gerade MuseScore ${mscoreMajorVersion}.${mscoreMinorVersion}.`)
+    }
+}
