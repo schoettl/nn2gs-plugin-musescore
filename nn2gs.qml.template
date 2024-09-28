@@ -21,6 +21,7 @@
 
 import QtQuick
 import MuseScore
+//import Muse.UiComponents // it redefines some components like CheckBox but I use more features than provided there
 import QtQuick.Dialogs
 import QtQuick.Controls
 import QtQuick.Layouts
