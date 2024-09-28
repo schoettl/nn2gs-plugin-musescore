@@ -81,6 +81,12 @@ MS4 kann scheinbar nicht dieses Projektverzeichnis als
 Plugin-Verzeichnis. Deswegen müssen wir das nn2gs.qml in den
 Standard-Plugin-Ordner kopieren.
 
+For MS 4.4:
+
+: mscore ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
+
+For MS 4.0-4.2:
+
 : mscore -D 100 ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
 
 : nix-shell

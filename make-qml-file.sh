@@ -14,6 +14,7 @@ main() {
         -e "/\/\/ PURE FUNCTIONS HERE:/r $pureFile" \
         -e "/\/\/ IMPURE FUNCTIONS HERE:/r $impureFile" \
         -e "s/^ +version: +\"[^\"]*\" .*/version: \"$version\"/" \
+        -e "s/^ +title: +\"[^\"]*\" .*/title: \"Griffschrift (Nn2GS $version)\"/" \
         "$templateFile" \
         | awk -vpolyfillFile="$polyfillFile" '1; /\/\/ POLYFILL IMPLEMENTATION HERE:/ {if(polyfillFile) system("cat \"" polyfillFile "\"")}' \
         | awk -vapiUrl="$apiUrl" '{if(apiUrl) sub(/http:\/\/localhost:[0-9]+\/nn2gs/, apiUrl)};1'

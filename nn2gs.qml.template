@@ -38,8 +38,7 @@ import QtQuick.Layouts 1.15
 
 MuseScore {
     id: plugin
-    title:      "Griffschrift (Nn2GS " + version + ")" // MS4: replaces menuPath
-    menuPath:   "Plugins.Griffschrift (Nn2GS " + version + ")" // MS3: plugin title
+    title:      "Griffschrift (Nn2GS 1.0)" // DO NOT CHANGE THIS LINE - title will be set from Makefile
     version:    "1.0"  // DO NOT CHANGE THIS LINE - version will be set from Makefile
     description: "Dieses Plugin übersetzt zwischen Normalnoten und Griffschrift-Tabulatur für Steirische Harmonika."
     requiresScore: true
