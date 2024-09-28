@@ -50,7 +50,6 @@ MuseScore {
     onRun: {
         console.log("Starting...")
         btnReverseDirection.text = btnReverseDirection.texts[btnReverseDirection.state]
-        btnReverseDirection.background.color = colorButtonNormal
 
         $jscomp = {} // Polyfill object
         // POLYFILL IMPLEMENTATION HERE:
@@ -129,8 +128,6 @@ MuseScore {
     readonly property var colorRed: "#ff0000"
     readonly property var colorBlue: "#0000ff"
     readonly property var colorBlack: "#000000"
-    readonly property var colorButtonNormal: "#bbb"
-    readonly property var colorDirectionReverse: "#666"
 
     // Generated using Nn2GS.hs:
     // :m +Data.Char Data.Aeson
@@ -343,7 +340,7 @@ MuseScore {
         state = (state + 1) % 3
         btnReverseDirection.state = state
         btnReverseDirection.text = btnReverseDirection.texts[state]
-        btnReverseDirection.background.color = (state === 2) ? colorDirectionReverse : colorButtonNormal
+        btnReverseDirection.checked = (state === 2)
     }
 
     Pane {
@@ -589,15 +586,13 @@ MuseScore {
                 id: btnReverseDirection
                 Layout.fillWidth: true
                 readonly property var texts: ["Normal → GS", "GS-Alternativen", "GS → Normal"]
-                //background.color: colorButtonNormal
                 text: "Reverse"
                 property int state: 0
-                checkable: false // checked state doesn't work reliably with double clicks
+                checkable: true
                 checked: false
                 // Handle both events because on double click, click AND
                 // double click are fired which causes a faster switching:
                 onClicked: clickReverseDirection()
-                //onDoubleClicked: clickReverseDirection() <- does not work on Windows
                 hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Übersetzungsrichtung (Alt+R)"
@@ -614,7 +609,6 @@ MuseScore {
                 text: "Zug"
                 id: btnZug
                 Layout.fillWidth: true
-                //background.color: colorButtonNormal
                 onClicked: clickZug()
                 hoverEnabled: true
                 ToolTip.visible: hovered
@@ -624,7 +618,6 @@ MuseScore {
                 text: "Druck"
                 id: btnDruck
                 Layout.fillWidth: true
-                //background.color: colorButtonNormal
                 onClicked: clickDruck()
                 hoverEnabled: true
                 ToolTip.visible: hovered
@@ -633,7 +626,6 @@ MuseScore {
             Button {
                 text: "Nächste Alternative"
                 Layout.fillWidth: true
-                //background.color: colorButtonNormal
                 visible: false
                 enabled: false
                 id: btnNextAlternative
@@ -645,7 +637,6 @@ MuseScore {
             Button {
                 text: "Nächster Akkord"
                 Layout.fillWidth: true
-                //background.color: colorButtonNormal
                 onClicked: proceedToNextChord()
                 hoverEnabled: true
                 ToolTip.visible: hovered
@@ -731,7 +722,6 @@ MuseScore {
                 text: "GS abspielbar machen"
                 visible: false
                 Layout.fillWidth: true
-                //background.color: colorButtonNormal
                 onClicked: makePlayable()
             }
 
@@ -814,7 +804,6 @@ MuseScore {
             Button {
                 text: "Info"
                 Layout.fillWidth: true
-                //background.color: colorButtonNormal
                 onClicked: infoDialog.open()
             }
         }
