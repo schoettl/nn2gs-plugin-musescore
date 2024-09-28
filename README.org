@@ -1,5 +1,5 @@
 
-* MuseScore 3 Plugin
+* MuseScore Plugin
 
 - [[https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirische-harmonika][Plugin page at musescore.org]]
 - [[https://musescore.org/en/node/315330][Plugin discussion thread on musescore.org]]
@@ -81,18 +81,14 @@ MS4 kann scheinbar nicht dieses Projektverzeichnis als
 Plugin-Verzeichnis. Deswegen müssen wir das nn2gs.qml in den
 Standard-Plugin-Ordner kopieren.
 
-For MS 4.4:
-
 : mscore ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
 
-For MS 4.0-4.2:
-
-: mscore -D 100 ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
+For MS 4.0 to 4.3, if resolution is not correct, also pass =-D 100=.
 
 : nix-shell
 : . BUILD_CONFIG
-: watchexec 'make devbuild && cp nn2gs.qml ~/Documents/MuseScore4/Plugins'
-: watchexec 'make build && cp nn2gs.qml "nn2gs-v$VERSION.qml" ~/Documents/MuseScore4/Plugins'
+: watchexec 'make devbuild && cp nn2gs.qml ~/Documents/MuseScore4/Plugins/nn2gs-dev.qml'
+: watchexec 'make build && cp nn2gs.qml "nn2gs-v$VERSION.qml" ~/Documents/MuseScore4/Plugins/'
 
 * Contributing
 
