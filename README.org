@@ -51,17 +51,33 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 *Installation:*
 
 1. Plugin als Zip-Datei herunterladen:
-   nn2gs-v1.6.zip (MuseScore 4) oder nn2gs-v1.5.1-ms36.zip (MuseScore 3.6)
-2. QML-Datei extrahieren und in den Ordner Dokumente / MuseScore4 /
-   Plug-Ins ablegen
-3. MuseScore starten und das Plugin im Plugin-Manager aktivieren
-4. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
+   - nn2gs-v1.7.zip für MuseScore Studio 4.4
+   - nn2gs-v1.6.zip für MuseScore 4.0 bis 4.3
+   - nn2gs-v1.5.1-ms36.zip für MuseScore 3.6
+2. QML-Datei extrahieren und in den Ordner =Dokumente / MuseScore4 / Plugins= ablegen
+3. MuseScore starten, /Plug-Ins → Plug-Ins verwalten…/, dort Nn2GS aktivieren
+4. Partitur öffnen oder erstellen
+5. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
 
 Getestet wurde das Plugin mit:
 
-- MuseScore 3.6.2 unter Windows 10, Linux und macOS (Plugin Version 1.5.1)
-- MuseScore 4.0.2 und 4.1.1 unter Linux und macOS (Plugin Version 1.6)
-- MuseScore 4.1.1 unter Windows 7 (Qt 5.15.2), Windows 11 (Plugin Version 1.6)
+| MuseScore | Plugin Nn2GS | Betriebsystem | Qt     |
+|-----------+--------------+---------------+--------|
+|     4.4.3 | v1.7         | macOS 11.7.10 | -      |
+|     4.4.3 | v1.7         | Windows 11    | 6.2.9  |
+|     4.4.2 | v1.7         | Windows 11    | -      |
+|     4.4.2 | v1.7         | Linux         | 6.7.2  |
+|     4.4.2 | v1.7         | Linux         | 6.8.0  |
+|     4.1.1 | v1.6         | Windows 11    | -      |
+|     4.1.1 | v1.6         | Windows 7     | 5.15.2 |
+|     4.1.1 | v1.6         | Linux         | -      |
+|     4.1.1 | v1.6         | macOS         | -      |
+|     4.0.2 | v1.6         | Linux         | -      |
+|     4.0.2 | v1.6         | macOS         | -      |
+|     3.6.2 | v1.5.1       | Windows 10    | -      |
+|     3.6.2 | v1.5.1       | Linux         | -      |
+|     3.6.2 | v1.5.1       | macOS         | -      |
+
 
 Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
 umgewandeltes Stück.
