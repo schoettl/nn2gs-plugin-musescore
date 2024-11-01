@@ -22,7 +22,7 @@
 import QtQuick
 import MuseScore
 //import Muse.UiComponents // it redefines some components like CheckBox but I use more features than provided there
-import QtQuick.Dialogs
+//import QtQuick.Dialogs // not working on Windows in MS 4.4
 import QtQuick.Controls
 import QtQuick.Layouts
 
@@ -206,34 +206,6 @@ MuseScore {
         onActivated: proceedToNextChord()
     }
 
-    MessageDialog {
-        id: errorDialog
-        title: "Fehler"
-        //icon: StandardIcon.Critical // not supported in Qt 6
-        function show(msg) {
-            text = msg
-            open()
-        }
-    }
-
-    MessageDialog {
-        id: warningDialog
-        title: "Warnung"
-        //icon: StandardIcon.Warning // not supported in Qt 6
-        function show(msg) {
-            text = msg
-            open()
-        }
-    }
-
-    MessageDialog {
-        id: infoDialog
-        title: "Info"
-        //icon: StandardIcon.Information // not supported in Qt 6
-        text: "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\n      https://griffschrift-notation.de/"
-        informativeText: "Momentan kostenlos, irgendwann wird man für die Nutzung eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
-    }
-
     Timer {
       id: invalidateResultsTimer
       interval: 100000
@@ -352,6 +324,58 @@ MuseScore {
         ColumnLayout {
             anchors.fill: parent
             Layout.fillWidth: true
+
+            Pane {
+                id: messagePane
+                visible: false
+                Frame {
+                    width: 174
+                    ColumnLayout {
+                        anchors.fill: parent
+                        Layout.fillWidth: true
+                        Rectangle {
+                            width: 155
+                            height: 400
+                            Text {
+                                id: titleLabel
+                                visible: false
+                                // Without layout, both labels are overlapping.
+                            }
+                            Text {
+                                id: messageLabel
+                                text: "test text should be wrapped automatically at some place"
+                                // NOTE: Text wrapping just doesn't work, only if Text/Label is inside a Rectangle
+                                wrapMode: Text.Wrap
+                                width: 155
+                            }
+                        }
+                        Button {
+                            text: "OK"
+                            onClicked: {
+                                messagePane.visible = false
+                            }
+                        }
+                    }
+                }
+                function showInfo() {
+                    titleLabel.text = "Info"
+                    messageLabel.text = "Nn2GS - Übersetzen zwischen Normalnoten und Griffschrift für Steirische Harmonika und ähnliche Instrumente.\n\nhttps://griffschrift-notation.de/\n\nMomentan kostenlos, irgendwann wird man für die Nutzung vielleicht eine günstige Lizenz kaufen müssen.\n\nTastenkürzel: Alt+R (Übersetzungsrichtung), Alt+J (Zug), Alt+K (Druck); auch auf Beschriftungen im Plugin kann geklickt werden (versteckte Funktionen)."
+                    open()
+                }
+                function showWarning(msg) {
+                    titleLabel.text = "Warnung"
+                    messageLabel.text = msg
+                    open()
+                }
+                function showError(msg) {
+                    titleLabel.text = "Fehler"
+                    messageLabel.text = msg
+                    open()
+                }
+                function open() {
+                    visible = true
+                }
+            }
 
             TabBar {
                 id: tabBar
@@ -807,8 +831,8 @@ MuseScore {
             Button {
                 text: "Info"
                 Layout.fillWidth: true
-                onClicked: infoDialog.open()
+                onClicked: messagePane.showInfo()
             }
         }
     }
-  }
+}

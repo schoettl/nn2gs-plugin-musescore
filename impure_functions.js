@@ -112,28 +112,28 @@ function callApi(chords, reverse, successCallback) {
                     lastResults = JSON.parse(request.responseText)
                 } catch (e) {
                     console.error("Invalid JSON response. Could not parse.")
-                    errorDialog.show("Ungültige Antwort vom Server.")
+                    messagePane.showError("Ungültige Antwort vom Server.")
                 }
                 successCallback(chords, lastResults)
             } else if (request.status >= 500) {
                 // Server-Fehler.
-                errorDialog.show(`Fehler beim Server. Funktioniert ${apiUrl}?`)
+                messagePane.showError(`Fehler beim Server. Funktioniert ${apiUrl}?`)
             } else if (request.status >= 400) {
                 // Fehler bei Kommunikation.
-                errorDialog.show(`Fehler bei der Kommunikation mit dem Server. Funktioniert ${apiUrl}?`)
+                messagePane.showError(`Fehler bei der Kommunikation mit dem Server. Funktioniert ${apiUrl}?`)
             } else if (request.status >= 300) {
                 // Lizenzfehler?
                 // TODO change error message when authorize system works...
-                errorDialog.show(`Wahrscheinlich passt die Lizenz nicht oder Sie haben noch eine alte Version dieses Plugins. Überprüfen: ${apiUrl}?license=${txtLicenseKey.text}.`)
+                messagePane.showError(`Wahrscheinlich passt die Lizenz nicht oder Sie haben noch eine alte Version dieses Plugins. Überprüfen: ${apiUrl}?license=${txtLicenseKey.text}.`)
             } else {
                 // Netzwerkfehler?
                 let s = `Request failed with HTTP status ${request.status}\nReceived response headers:\n${request.getAllResponseHeaders()}\nResponse text:\n${request.responseText}`
-                errorDialog.show(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?\n\n${s}`)
+                messagePane.showError(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?\n\n${s}`)
                 console.error(s)
             }
         } else {
             // Netzwerkfehler?
-            //errorDialog.show(`Wahrscheinlich Netzwerkfehler. Funktioniert das Internet? Funktioniert ${apiUrl}?`)
+            //messagePane.showError(`Wahrscheinlich Netzwerkfehler. Funktioniert das Internet? Funktioniert ${apiUrl}?`)
             console.log(`HTTP request ready status: ${request.readyState} (not DONE)`)
         }
     }
@@ -190,10 +190,10 @@ function changeNotes(zd, reverse) {
         }
         curScore.endCmd()
         if (error) {
-            errorDialog.show(`Fehler: ${error.message}`)
+            messagePane.showError(`Fehler: ${error.message}`)
         }
         if (invalidNotesCounter) {
-            errorDialog.show(`${invalidNotesCounter} Note(n) konnten nicht übersetzt werden und wurden rot markiert.\n\nEntweder existieren sie nicht auf dem Instrument oder sie waren bereits rot markiert. Die Akkorde mit roten Noten wurden bei der Übersetzung übersprungen.`)
+            messagePane.showError(`${invalidNotesCounter} Note(n) konnten nicht übersetzt werden und wurden rot markiert.\n\nEntweder existieren sie nicht auf dem Instrument oder sie waren bereits rot markiert. Die Akkorde mit roten Noten wurden bei der Übersetzung übersprungen.`)
         }
     }
 }
@@ -461,28 +461,28 @@ function callBassApi(chords, successCallback) {
                     lastResults = JSON.parse(request.responseText)
                 } catch (e) {
                     console.error("Invalid JSON response. Could not parse.")
-                    errorDialog.show("Ungültige Antwort vom Server.")
+                    messagePane.showError("Ungültige Antwort vom Server.")
                 }
                 successCallback(chords, lastResults)
             } else if (request.status >= 500) {
                 // Server-Fehler.
-                errorDialog.show(`Fehler beim Server. Funktioniert ${apiUrl}?`)
+                messagePane.showError(`Fehler beim Server. Funktioniert ${apiUrl}?`)
             } else if (request.status >= 400) {
                 // Fehler bei Kommunikation.
-                errorDialog.show(`Fehler bei der Kommunikation mit dem Server. Funktioniert ${apiUrl}?`)
+                messagePane.showError(`Fehler bei der Kommunikation mit dem Server. Funktioniert ${apiUrl}?`)
             } else if (request.status >= 300) {
                 // Lizenzfehler?
                 // TODO change error message when authorize system works...
-                errorDialog.show(`Wahrscheinlich passt die Lizenz nicht oder Sie haben noch eine alte Version dieses Plugins. Überprüfen: ${apiUrl}?license=${txtLicenseKey.text}.`)
+                messagePane.showError(`Wahrscheinlich passt die Lizenz nicht oder Sie haben noch eine alte Version dieses Plugins. Überprüfen: ${apiUrl}?license=${txtLicenseKey.text}.`)
             } else {
                 // Netzwerkfehler?
                 let s = `Request failed with HTTP status ${request.status}\nReceived response headers:\n${request.getAllResponseHeaders()}\nResponse text:\n${request.responseText}`
-                errorDialog.show(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?\n\n${s}`)
+                messagePane.showError(`Unbekannter Netzwerkfehler (HTTP Status Code ${request.status}). Funktioniert das Internet? Funktioniert ${apiUrl}?\n\n${s}`)
                 console.error(s)
             }
         } else {
             // Netzwerkfehler?
-            //errorDialog.show(`Wahrscheinlich Netzwerkfehler. Funktioniert das Internet? Funktioniert ${apiUrl}?`)
+            //messagePane.showError(`Wahrscheinlich Netzwerkfehler. Funktioniert das Internet? Funktioniert ${apiUrl}?`)
             console.log(`HTTP request ready status: ${request.readyState} (not DONE)`)
         }
     }
@@ -522,10 +522,10 @@ function addLyricsToNotes(zd) {
         }
         curScore.endCmd()
         if (error) {
-            errorDialog.show(`Fehler: ${error.message}`)
+            messagePane.showError(`Fehler: ${error.message}`)
         }
         if (invalidNotesCounter) {
-            errorDialog.show(`${invalidNotesCounter} Note(n) konnten nicht übersetzt werden und wurden rot markiert.\n\nEntweder existieren sie nicht auf dem Instrument oder sie waren bereits rot markiert. Die Akkorde mit roten Noten wurden bei der Übersetzung übersprungen.`)
+            messagePane.showError(`${invalidNotesCounter} Note(n) konnten nicht übersetzt werden und wurden rot markiert.\n\nEntweder existieren sie nicht auf dem Instrument oder sie waren bereits rot markiert. Die Akkorde mit roten Noten wurden bei der Übersetzung übersprungen.`)
         }
     }
 }
@@ -536,12 +536,12 @@ function addBassNamesAsLyrics(zd) {
     let chords = collectChords()
     if (chords.length == 0) {
         console.warn("Keine Noten ausgewählt. Abbruch.")
-        warningDialog.show("Es sind keine Noten bzw. Takte ausgewählt.")
+        messagePane.showWarning("Es sind keine Noten bzw. Takte ausgewählt.")
         return
     }
     if (chords.length > maxChordLimit) {
         console.warn("Zu viele Noten ausgewählt. Abbruch.")
-        warningDialog.show("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
+        messagePane.showWarning("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
         return
     }
     if (!isCurrentResultValid()) {
@@ -568,12 +568,12 @@ function translateToFromGriffschrift(zd) {
     let chords = collectChords()
     if (chords.length == 0) {
         console.warn("Keine Noten ausgewählt. Abbruch.")
-        warningDialog.show("Es sind keine Noten bzw. Takte ausgewählt.")
+        messagePane.showWarning("Es sind keine Noten bzw. Takte ausgewählt.")
         return
     }
     if (chords.length > maxChordLimit) {
         console.warn("Zu viele Noten ausgewählt. Abbruch.")
-        warningDialog.show("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
+        messagePane.showWarning("Es sind zu viele Noten bzw. Takte ausgewählt. Es können immer nur ein paar Takte auf einmal übersetzt werden.")
         return
     }
     // Sonderfall: Alternative Griffweisen durchzappen
@@ -585,7 +585,7 @@ function translateToFromGriffschrift(zd) {
     if (reverse || !isCurrentResultValid()) {
         if (looksLikeGriffschrift(chords) && !reverse) {
             console.warn("Markierte Noten sehen nach Griffschrift aus. Abbruch.")
-            warningDialog.show("Markierte Noten sehen nach Griffschrift aus und können so nicht nach Griffschrift übersetzt werden.")
+            messagePane.showWarning("Markierte Noten sehen nach Griffschrift aus und können daher nicht nochmal nach Griffschrift übersetzt werden.")
             return
         }
         alternativeIndex = 0
@@ -638,7 +638,7 @@ function toGriffschrift(zd) {
 
 function checkVoiceCheckboxesValidity() {
     if (!(checkBoxVoice1.checked || checkBoxVoice2.checked || checkBoxVoice3.checked || checkBoxVoice4.checked)) {
-        warningDialog.show("Mindestens eine Stimme muss zum Übersetzen ausgewählt sein.")
+        messagePane.showWarning("Mindestens eine Stimme muss zum Übersetzen ausgewählt sein.")
     }
 }
 
@@ -714,6 +714,6 @@ function checkBoxColorZugClick() {
 
 function checkMuseScoreVersionSupport() {
     if (mscoreMajorVersion < 4 || mscoreMajorVersion >= 4 && mscoreMinorVersion <= 3) {
-        errorDialog.show(`Diese Version des Plugins funktioniert nur mit MuseScore 4.4 und höher. Sie verwenden gerade MuseScore ${mscoreMajorVersion}.${mscoreMinorVersion}.`)
+        messagePane.showError(`Diese Version des Plugins funktioniert nur mit MuseScore 4.4 und höher. Sie verwenden gerade MuseScore ${mscoreMajorVersion}.${mscoreMinorVersion}.`)
     }
 }
