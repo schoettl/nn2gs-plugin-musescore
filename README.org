@@ -23,6 +23,7 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 - *Übersetzen in beide Richtungen*
 - „Durchschalten“ der *alternativen Griffweisen*.
 - Übersetzte *Griffschrift ist abspielbar* in MuseScore.
+  [Aktuell nicht mehr in MuseScore 4.]
 - In Griffschrift werden die *Notenköpfe automatisch auf die richtige
   Seite* des Notenhalses sortiert (optional).
 - In Griffschrift werden Zusatztasten zusätzlich durch spezielle
