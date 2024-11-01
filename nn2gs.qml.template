@@ -731,8 +731,6 @@ MuseScore {
                 hoverEnabled: true
                 ToolTip.visible: hovered
                 ToolTip.text: "Notenköpfe platzieren je nach Lage auf Tastatur"
-                indicator.width: 30
-                indicator.height: 30
             }
 
             CheckBox {
