@@ -72,24 +72,24 @@ Kontakt: Jakob Schöttl, jschoett@gmail.com
 
 Getestet wurde das Plugin mit:
 
-| MuseScore | Plugin Nn2GS | Betriebsystem | Qt      |
-|-----------+--------------+---------------+---------|
-|     4.4.3 | v1.7         | macOS 11.7.10 | -       |
-|     4.4.3 | v1.7         | Windows 11    | 6.2.9   |
-|     4.4.2 | v1.7         | Windows 11    | -       |
-|     4.4.2 | v1.7         | Linux         | 6.7.2   |
-|     4.4.2 | v1.7         | Linux         | 6.8.0   |
-|     4.3.2 | v1.6         | Linux         | 5.15.14 |
-|     4.2.1 | v1.6         | Linux         | 5.15.12 |
-|     4.1.1 | v1.6         | Windows 11    | -       |
-|     4.1.1 | v1.6         | Windows 7     | 5.15.2  |
-|     4.1.1 | v1.6         | Linux         | -       |
-|     4.1.1 | v1.6         | macOS         | -       |
-|     4.0.2 | v1.6         | Linux         | -       |
-|     4.0.2 | v1.6         | macOS         | -       |
-|     3.6.2 | v1.5.1       | Windows 10    | -       |
-|     3.6.2 | v1.5.1       | Linux         | -       |
-|     3.6.2 | v1.5.1       | macOS         | -       |
+| MuseScore | Plugin Nn2GS | Betriebsystem | Qt      | Datum           |
+|-----------+--------------+---------------+---------+-----------------|
+|     4.4.3 | v1.7         | macOS 11.7.10 | -       | [2024-11-01 Fr] |
+|     4.4.3 | v1.7         | Windows 10    | -       | [2024-11-02 Sa] |
+|     4.4.3 | v1.7         | Windows 11    | 6.2.9   | [2024-11-01 Fr] |
+|     4.4.2 | v1.7         | Windows 11    | -       | [2024-11-01 Fr] |
+|     4.4.2 | v1.7         | Linux         | 6.7.2   |                 |
+|     4.4.2 | v1.7         | Linux         | 6.8.0   | [2024-11-01 Fr] |
+|     4.2.1 | v1.6         | Linux         | 5.15.12 |                 |
+|     4.1.1 | v1.6         | Windows 11    | -       |                 |
+|     4.1.1 | v1.6         | Windows 7     | 5.15.2  |                 |
+|     4.1.1 | v1.6         | Linux         | -       |                 |
+|     4.1.1 | v1.6         | macOS         | -       |                 |
+|     4.0.2 | v1.6         | Linux         | -       |                 |
+|     4.0.2 | v1.6         | macOS         | -       |                 |
+|     3.6.2 | v1.5.1       | Windows 10    | -       |                 |
+|     3.6.2 | v1.5.1       | Linux         | -       |                 |
+|     3.6.2 | v1.5.1       | macOS         | -       |                 |
 
 
 * Downloads
