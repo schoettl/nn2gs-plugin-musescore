@@ -59,6 +59,11 @@ Demo-Videos gibt es [[https://www.youtube.com/@jakob.schoettl][hier bei YouTube]
 4. Partitur öffnen oder erstellen
 5. Plugin starten: /Plug-Ins → Griffschrift (Nn2GS)/
 
+Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
+umgewandeltes Stück.
+
+Kontakt: Jakob Schöttl, jschoett@gmail.com
+
 * Compatibilty with MuseScore versions
 :PROPERTIES:
 :ID: compatibility
@@ -85,11 +90,6 @@ Getestet wurde das Plugin mit:
 |     3.6.2 | v1.5.1       | Linux         | -       |
 |     3.6.2 | v1.5.1       | macOS         | -       |
 
-
-Kosten: Aktuell kostenlos, irgendwann später wohl wenige Euro pro
-umgewandeltes Stück.
-
-Kontakt: Jakob Schöttl, jschoett@gmail.com
 
 * Downloads
 
