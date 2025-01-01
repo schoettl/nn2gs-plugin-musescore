@@ -586,6 +586,18 @@ Danach kann man sich angewöhnen, nach =M-k= (Übersetzung auf Druck)
 immer gleich =M-y= zu drücken, nachdem man den Druck-Balken einmal per
 Maus eingefügt hat.
 
+** Das Fenster des Griffschrift-Plugins verschwindet, wenn ich in MuseScore was anklicke
+
+Je nach Betriebsystem verschwindet das Plugin-Fenster eventuell im
+Hintergrund, also hinter dem Hauptfenster von MuseScore.
+
+Bei manchen Betriebsystem gibt es die Möglichkeit, ein Fenster
+"anzupinnen", so dass es immer im Vordergrund bleibt.
+
+Ansonsten muss man die Fenster nebeneinander oder auf zwei verschieden
+Bildschirmen platzieren um zu verhindern, dass das Plugin immer wieder
+in den Hintergrund wandert.
+
 * MuseScore Cheet Sheet
 :PROPERTIES:
 :ID: musescore-cheatsheet
