@@ -91,6 +91,11 @@ Getestet wurde das Plugin mit:
 |     3.6.2 | v1.5.1       | Linux         | -       |                 |
 |     3.6.2 | v1.5.1       | macOS         | -       |                 |
 
+Plugin *funktioniert leider nicht* mit:
+
+| MuseScore | Plugin Nn2GS | Betriebsystem |    Qt | Datum           |
+|-----------+--------------+---------------+-------+-----------------|
+|     3.6.2 | v1.5.1       | Windows 11    | 5.9.9 | [2024-12-29 So] |
 
 * Downloads
 
@@ -102,7 +107,7 @@ https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirisch
 * Development
 
 MS4 kann scheinbar nicht dieses Projektverzeichnis als
-Plugin-Verzeichnis. Deswegen müssen wir das nn2gs.qml in den
+Plugin-Verzeichnis verwenden. Deswegen müssen wir das nn2gs.qml in den
 Standard-Plugin-Ordner kopieren.
 
 : mscore ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
