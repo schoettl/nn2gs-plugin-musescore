@@ -104,14 +104,22 @@ MS4 kann scheinbar nicht dieses Projektverzeichnis als
 Plugin-Verzeichnis verwenden. Deswegen müssen wir das nn2gs.qml in den
 Standard-Plugin-Ordner kopieren.
 
-: mscore ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
-
-For MS 4.0 to 4.3, if resolution is not correct, also pass =-D 100=.
-
 : nix-shell
 : . BUILD_CONFIG
 : watchexec 'make devbuild && cp nn2gs.qml ~/Documents/MuseScore4/Plugins/nn2gs-dev.qml'
 : watchexec 'make build && cp nn2gs.qml "nn2gs-v$VERSION.qml" ~/Documents/MuseScore4/Plugins/'
+
+Start MuseScore:
+
+: mscore ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
+
+If MuseScore screen resolution is not correct, you can pass =-D 100=.
+
+** Older MuseScore versions
+
+To work on the plugin for older MuseScore versions, you need to
+checkout the respecting commit. See =BUILD_CONFIG= for version bumps
+and the branch =musescore36= for plugin version 1.5.1 for MS 3.6.
 
 * Contributing
 
