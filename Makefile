@@ -35,8 +35,9 @@ pure_functions.js.polyfills.compiled: pure_functions.js.compiled
 	awk '/^function / { exit };NR>1' < $^ > $@
 
 pure_functions.js.compiled: pure_functions.js
-	# pretty-print because semicolon is not allowed after QML function definition
-	closure-compiler --rewrite_polyfills false --formatting pretty_print $^ | sed '$$s/;$$//' > $@
+	# pretty-print because semicolon is not allowed after QML function definition.
+	# Without language_out ES5, JS with let and lambdas is generated which is incompatible with MuseScore 3.6.2 and Qt 5.9.9!
+	closure-compiler --rewrite_polyfills false --language_out ECMASCRIPT5 --formatting pretty_print $^ | sed '$$s/;$$//' > $@
 
 impure_functions.js.functions.compiled: impure_functions.js.compiled
 	awk '/^function / { p=1 };p' < $^ > $@
@@ -45,8 +46,9 @@ impure_functions.js.polyfills.compiled: impure_functions.js.compiled
 	awk '/^function / { exit };NR>1' < $^ > $@
 
 impure_functions.js.compiled: impure_functions.js
-	@# pretty-print because semicolon is not allowed after QML function definition
-	closure-compiler --rewrite_polyfills false --formatting pretty_print $^ | sed '$$s/;$$//' > $@
+	# pretty-print because semicolon is not allowed after QML function definition.
+	# Without language_out ES5, JS with let and lambdas is generated which is incompatible with MuseScore 3.6.2 and Qt 5.9.9!
+	closure-compiler --rewrite_polyfills false --language_out ECMASCRIPT5 --formatting pretty_print $^ | sed '$$s/;$$//' > $@
 
 beispiele.zip: beispiele/D-Dur.mscz beispiele/Griffschrift-Varianten.mscz beispiele/Weinschuetz_Landler_Teil_C.mscz beispiele/Terztonleiter.mscz
 	zip $@ $^
