@@ -74,6 +74,7 @@ Getestet wurde das Plugin mit:
 
 | MuseScore | Plugin Nn2GS | Betriebsystem | Qt      | Datum           |
 |-----------+--------------+---------------+---------+-----------------|
+|     4.4.4 | v1.7         | Linux         | 6.8.1   | [2025-01-11 Sa] |
 |     4.4.3 | v1.7         | macOS 11.7.10 | -       | [2024-11-01 Fr] |
 |     4.4.3 | v1.7         | Windows 10    | -       | [2024-11-02 Sa] |
 |     4.4.3 | v1.7         | Windows 11    | 6.2.9   | [2024-11-01 Fr] |
