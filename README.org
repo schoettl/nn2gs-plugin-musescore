@@ -87,15 +87,9 @@ Getestet wurde das Plugin mit:
 |     4.1.1 | v1.6         | macOS         | -       |                 |
 |     4.0.2 | v1.6         | Linux         | -       |                 |
 |     4.0.2 | v1.6         | macOS         | -       |                 |
-|     3.6.2 | v1.5.1       | Windows 10    | -       |                 |
+|     3.6.2 | v1.5.1       | Windows 10    | 5.9.9   | [2025-01-11 Sa] |
 |     3.6.2 | v1.5.1       | Linux         | -       |                 |
 |     3.6.2 | v1.5.1       | macOS         | -       |                 |
-
-Plugin *funktioniert leider nicht* mit:
-
-| MuseScore | Plugin Nn2GS | Betriebsystem |    Qt | Datum           |
-|-----------+--------------+---------------+-------+-----------------|
-|     3.6.2 | v1.5.1       | Windows 11    | 5.9.9 | [2024-12-29 So] |
 
 * Downloads
 
