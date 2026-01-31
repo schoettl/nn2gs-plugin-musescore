@@ -1,4 +1,4 @@
 
-export VERSION=1.7
+export VERSION=1.7.1
 
 export API_URL=https://griffschrift-notation.de/nn2gs
