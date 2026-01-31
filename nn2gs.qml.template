@@ -585,7 +585,7 @@ MuseScore {
                     return tonarten[value][1]
                 }
                 valueFromText: function(text, locale) {
-                    return findTonartIndex(tonarten, text.toUpperCase())
+                    return findTonartIndex(tonarten, text)
                 }
                 onValueChanged: {
                     invalidateCurrentResults()

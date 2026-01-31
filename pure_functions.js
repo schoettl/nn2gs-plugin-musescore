@@ -18,7 +18,7 @@ function propertiesOfObject(obj) {
 }
 
 function findTonartIndex(tonarten, tonart) {
-    let i = tonarten.findIndex(([i, x, _]) => x == tonart)
+    let i = tonarten.findIndex(([i, x, _]) => x.toLowerCase() == tonart.toLowerCase())
     if (i >= 0) return i
     return 8
 }
