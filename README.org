@@ -105,7 +105,7 @@ https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirisch
 
 * Development
 
-MS 4 cannot use this kann project's directory as plugin directory.
+MS 4 cannot use this project's directory as plugin directory.
 We need to copy or symlink the QML file to MuseScore's plugin directory.
 
 : nix-shell
@@ -126,7 +126,7 @@ Start MuseScore with debug mode and a sample file:
 Debug mode is important to show output of =console.debug('logs')=.
 
 If MuseScore screen resolution is not correct, you can pass =-D 100=.
-This was probably only a Xmonad/X11 problem.
+This was probably only a X11/XMonad problem.
 
 Before publishing a new version, call =make=. Only publish it if a tests are green!
 
