@@ -105,20 +105,30 @@ https://musescore.org/en/project/nn2gs-normalnoten-zu-griffschrift-fur-steirisch
 
 * Development
 
-MS4 kann scheinbar nicht dieses Projektverzeichnis als
-Plugin-Verzeichnis verwenden. Deswegen müssen wir das nn2gs.qml in den
-Standard-Plugin-Ordner kopieren.
+MS 4 cannot use this kann project's directory as plugin directory.
+We need to copy or symlink the QML file to MuseScore's plugin directory.
 
 : nix-shell
 : . BUILD_CONFIG
 : watchexec 'make devbuild && cp nn2gs.qml ~/Documents/MuseScore4/Plugins/nn2gs-dev.qml'
 : watchexec 'make build && cp nn2gs.qml "nn2gs-v$VERSION.qml" ~/Documents/MuseScore4/Plugins/'
 
-Start MuseScore:
+Symlinks also work (confirmed with MS 4.6):
 
-: mscore ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
+: ln -s /path/to/nn2gs-plugin-musescore/nn2gs.qml ~/Documents/MuseScore4/Plugins/
+
+*Note:* You must restart MuseScore for every change you make to the plugin code!
+
+Start MuseScore with debug mode and a sample file:
+
+: mscore -d ~/projects/nn2gs-plugin-musescore/beispiele/Echt_Boarischer_Klang_1.mscz
+
+Debug mode is important to show output of =console.debug('logs')=.
 
 If MuseScore screen resolution is not correct, you can pass =-D 100=.
+This was probably only a Xmonad/X11 problem.
+
+Before publishing a new version, call =make=. Only publish it if a tests are green!
 
 ** Older MuseScore versions
 
