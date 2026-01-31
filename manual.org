@@ -87,6 +87,29 @@ MuseScore 4 hat noch einige Bugs (2023-12-10).
   funktionieren (Dokumente / MuseScore4 / Plug-Ins). In anderen
   eingestellten Verzeichnissen findet MuseScore keine Plugins.
 
+* Kurzanleitung
+:PROPERTIES:
+:ID: kurzanleitung
+:END:
+
+Dies ist eine kurze Anleitung zum Übersetzen von normalen Noten zu Griffschrift.
+
+Falls Sie das Plugin noch nicht installiert haben, bitte zuerst
+den Abschnitt [[*Installation][Installation]] lesen.
+
+** Noten für Übersetzung vorbereiten
+1. Vorlage in MuseScore öffnen und ggf. transponieren
+2. Neues leeres Notensystem für Steirische Harmonika hinzufügen
+3. Noten, die übersetzt werden sollen, in das leere System kopieren
+** Noten in Griffschrift umwandeln
+1. Griffschrift-Plugin starten
+2. Instrument auswählen
+3. Tonart auswählen
+4. Übersetzen
+** Griffschrift nachbearbeiten
+1. Vorzeichen im System für die Harmonika löschen
+2. Druck-Balken hinzufügen und positionieren
+3. Blaue Färbung der Noten entfernen
 * Allgemeine Bedienung
 :PROPERTIES:
 :ID: bedienung-allgemein
@@ -331,7 +354,7 @@ Tastenkürzel:
 - =Alt+N= :: Nächsten Akkord anwählen
 
 =Alt+Z/D= waren nicht frei, deswegen die Tasten =J= / =K= für Zug/Druck,
-die gut erreichbar nebeneinander liegen.
+die auf der Computertastatur gut erreichbar nebeneinander liegen.
 
 Wie auch in einem Textverarbeitungsprogramm (z.B. Word), kann man
 Noten mit der Tastatur markieren:
@@ -580,10 +603,10 @@ Dafür muss man die Tastenkombination in den Einstellungen festlegen:
 Menü /Bearbeiten → Einstellungen/, Reiter „Tastenkürzel“, suchen nach
 „Aktuelles Palettenelement“ und /Festlegen/ klicken.
 
-Der Shortcut =M-y= wäre z.B. frei und kann hierfür vergeben werden.
+Der Shortcut =Alt+Y= wäre z.B. frei und kann hierfür vergeben werden.
 
-Danach kann man sich angewöhnen, nach =M-k= (Übersetzung auf Druck)
-immer gleich =M-y= zu drücken, nachdem man den Druck-Balken einmal per
+Danach kann man sich angewöhnen, nach =Alt+K= (Übersetzung auf Druck)
+immer gleich =Alt+Y= zu drücken, nachdem man den Druck-Balken einmal per
 Maus eingefügt hat.
 
 ** Das Fenster des Griffschrift-Plugins verschwindet, wenn ich in MuseScore was anklicke
@@ -603,28 +626,29 @@ in den Hintergrund wandert.
 :ID: musescore-cheatsheet
 :END:
 
-- i :: Instrumente/Notenzeilen hinzufügen/ändern
-- n :: Noteneingabe starten
-- Esc :: Noteneingabe beenden
-- Leertaste :: Wiedergabe starten/stoppen
-- x :: Notenhälse oder Druckbalken horizontal switchen
-- + :: Note in nächsten Takt überbinden
-- r :: Repeat last chord
-- Strg-k :: Akkordsymbole einfügen (z.B. =A7=, klingt auch!)
-- Strg-l :: Liedtext einfügen (für Bass =B b A b=)
-- Strg-t :: Text einfügen (für Begleit-Stufen =I V=)
-- Strg-Entf :: Takte oder Pausen löschen (noten nachrücken)
-- Einf / Strg-Einf :: Takte einfügen
-- Strg-B / Alt-Shift-B :: Takte anhängen
-- Strg-h :: Unsichtbare Elemente verbergen/anzeigen
+- =I= :: Instrumente/Notenzeilen hinzufügen/ändern
+- =N= :: Noteneingabe starten
+- =Esc= :: Noteneingabe beenden
+- =Leertaste= :: Wiedergabe starten/stoppen
+- =X= :: Notenhälse oder Druckbalken horizontal switchen
+- =+= :: Note in nächsten Takt überbinden
+- =R= :: Repeat last chord
+- =Strg+K= :: Akkordsymbole einfügen (z.B. =A7=, klingt auch!)
+- =Strg+L= :: Liedtext einfügen (für Bass =B b A b=)
+- =Strg+T= :: Text einfügen (für Begleit-Stufen =I V=)
+- =Strg+Entf= :: Takte oder Pausen löschen (noten nachrücken)
+- =Einf= / =Strg+Einf= :: Takte einfügen
+- =Strg+B= / =Alt+Shift+B= :: Takte anhängen
+- =Strg+H= :: Unsichtbare Elemente verbergen/anzeigen
 
 -------
 
-- Alt-k :: Druck
-- Alt-j :: Zug
-- Alt-r :: Übersetzungsrichtung umschalten
-- Alt-y[fn:zudef] :: Letztes Element aus Palette einfügen (=apply-current-palette-element=)
-- (Strg-)Shift-Pfeiltasten :: Noten/Takte markieren
+- =Alt+K= :: Druck
+- =Alt+J= :: Zug
+- =Alt+R= :: Übersetzungsrichtung umschalten
+- =Alt+N= :: Nächsten Akkord markieren (bei akkordweiser Übersetzung)
+- =Alt+Y=[fn:zudef] :: Letztes Element aus Palette einfügen (=apply-current-palette-element=)
+- =(Strg-)Shift-Pfeiltasten= :: Noten/Takte markieren
 
 -------
 
