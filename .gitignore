@@ -1,6 +1,7 @@
 *.compiled
 *.zip
 *.qml
+*.html
 *.tex
 *.pdf
 *~

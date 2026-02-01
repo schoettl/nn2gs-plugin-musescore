@@ -39,6 +39,8 @@ Auch die Verwendung von Tastenkürzel ist möglich,
 siehe [[*Schnellere Bedienung durch Tastenkürzeln][Schnellere Bedienung durch Tastenkürzeln]].
 
 #+DOWNLOADED: https://musescore.org/sites/musescore.org/files/styles/width_1480/public/2021-01/screenshot.png @ 2021-01-09 19:43:03
+#+CAPTION: Das Vorgehen für Einfügen von Bassnotation.
+#+ATTR_HTML: :width 800px
 [[file:images/2021-01-09_19-43-03_screenshot.png]]
 
 * Installation
@@ -101,15 +103,70 @@ den Abschnitt [[*Installation][Installation]] lesen.
 1. Vorlage in MuseScore öffnen und ggf. transponieren
 2. Neues leeres Notensystem für Steirische Harmonika hinzufügen
 3. Noten, die übersetzt werden sollen, in das leere System kopieren
+
+#+CAPTION: zu 1.: Vorlage öffnen (am besten eine Kopie der Originaldatei) und ggf. die Noten in eine passende Tonart transponieren (/Werkzeuge → Transponieren/).
+#+ATTR_HTML: :width 800px
+[[./images/Screenshot_20260201_105228.png]]
+
+#+CAPTION: zu 2.: Neues Notensystem für die Harmonika hinzufügen über /Layout → Hinzufügen/.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_105400.png]]
+
+#+CAPTION: zu 2.: Flöte ist passend, da nicht transponierend und im Gegensatz zu Klavier oder Akkordeon wird nur ein System hinzufügt.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_105543.png]]
+
+#+CAPTION: zu 2.: Eigenschaften von Notenzeile/Instrument anpassen durch Doppelklick auf „Steir. Harmonika“ am Anfang der Notenzeile. Violinschlüssel ausblenden, Name des Instruments und Tonumfang ändern. Der maximale Tonumfang ist von H (G-C-F-B) bis cis⁴ (B-Es-As-Des mit 50-Tasten). Noten außerhalb des Tonumfangs werden von MuseScore rot angezeigt.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_111138.png]]
+
+#+CAPTION: zu 3.: Originalnoten markieren (Shift-Taste gedrückt halten und Maus oder =Strg+Shift+Ende= um von Zeilenanfang bis -ende zu markieren). Dann die Noten kopieren und ins leere System für Harmonika einfügen.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_111334.png]]
+
 ** Noten in Griffschrift umwandeln
 1. Griffschrift-Plugin starten
 2. Instrument auswählen
 3. Tonart auswählen
 4. Übersetzen
+
+#+CAPTION: Zum Übersetzen nach Griffschrift, zuerst das Plugin starten (/Plug-Ins → Griffschrift/), dann Instrument wählen (1), Tonart wählen (je nach Teil unterschiedlich!) (2), Übersetzungsrichtung prüfen (3), Noten/Akkorde oder ganze Takte markieren (4) und zum Übersetzen /Zug/ oder /Druck/ klicken (5).
+#+ATTR_HTML: :width 800px
+[[./images/Screenshot_20260201_111817.png]]
+
 ** Griffschrift nachbearbeiten
 1. Vorzeichen im System für die Harmonika löschen
 2. Druck-Balken hinzufügen und positionieren
 3. Blaue Färbung der Noten entfernen
+
+#+CAPTION: zu 1.: Tonart auf C-Dur zurücksetzen, damit verschwinden alle falschen Vorzeichen und Versetzungszeichen.
+#+ATTR_HTML: :width 800px
+[[./images/Screenshot_20260201_112410.png]]
+
+#+CAPTION: zu 2.: Palette für Linien hinzufügen, diese wird für die Druck-Balken benötigt.
+#+ATTR_HTML: :width 200px
+[[./images/Screenshot_20260201_112039.png]]
+
+#+CAPTION: zu 2.: Noten oder Takte markieren und die Linie aus der Palette hinzufügen. Die Position und Lage der Linie kommt im nächsten Schritt.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_112125.png]]
+
+#+CAPTION: zu 2.: Alle Druck-Balken zusammen auswählen.
+#+ATTR_HTML: :width 400px
+[[./images/Screenshot_20260201_112645.png]]
+
+#+CAPTION: zu 2.: Linienstärke und Position der Druck-Balken anpassen.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_112923.png]]
+
+#+CAPTION: zu 2.: Feinjustierung von Position und Länge der Druck-Balken.
+#+ATTR_HTML: :width 600px
+[[./images/Screenshot_20260201_113006.png]]
+
+#+CAPTION: zu 3.: Blaue Färbung der Noten entfernen, die auf Zug gespielt werden.
+#+ATTR_HTML: :width 800px
+[[./images/Screenshot_20260201_113318.png]]
+
 * Allgemeine Bedienung
 :PROPERTIES:
 :ID: bedienung-allgemein
@@ -547,9 +604,8 @@ In einer Notenzeile können nämlich bis zu vier unabhängige Stimmen stehen.
 Auf diese Weise erscheint die Bassnotation rhythmisch korrekt unter
 den jeweiligen Noten, ist aber trotzdem unabhängig von der Diskantstimme.
 
-Die folgende Abbildung zeigt das Vorgehen:
-
-#+DOWNLOADED: screenshot @ 2022-11-13 17:38:50
+#+CAPTION: Das Vorgehen für Einfügen von Bassnotation.
+#+ATTR_HTML: :width 800px
 [[file:FAQ_/_Häufige_Fragen/2022-11-13_17-38-50_screenshot.png]]
 
 - Zuerst wird die vierte Stimme für die Bassnotation eingegeben, indem
