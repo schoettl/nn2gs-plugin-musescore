@@ -116,7 +116,7 @@ den Abschnitt [[*Installation][Installation]] lesen.
 #+ATTR_HTML: :width 600px
 [[./images/Screenshot_20260201_105543.png]]
 
-#+CAPTION: zu 2.: Eigenschaften von Notenzeile/Instrument anpassen durch Doppelklick auf „Steir. Harmonika“ am Anfang der Notenzeile. Violinschlüssel ausblenden, Name des Instruments und Tonumfang ändern. Der maximale Tonumfang ist von H (G-C-F-B) bis cis⁴ (B-Es-As-Des mit 50-Tasten). Noten außerhalb des Tonumfangs werden von MuseScore rot angezeigt.
+#+CAPTION: zu 2.: Eigenschaften von Notenzeile/Instrument anpassen durch Doppelklick auf „Steir. Harmonika“ am Anfang der Notenzeile. Violinschlüssel ausblenden, Name des Instruments und Tonumfang ändern. Der maximale Tonumfang ist von H (G-C-F-B) bis cis^4 (B-Es-As-Des mit 50-Tasten). Noten außerhalb des Tonumfangs werden von MuseScore rot angezeigt.
 #+ATTR_HTML: :width 600px
 [[./images/Screenshot_20260201_111138.png]]
 
@@ -145,6 +145,7 @@ den Abschnitt [[*Installation][Installation]] lesen.
 
 #+CAPTION: zu 2.: Palette für Linien hinzufügen, diese wird für die Druck-Balken benötigt.
 #+ATTR_HTML: :width 200px
+#+ATTR_LATEX: :width 5cm
 [[./images/Screenshot_20260201_112039.png]]
 
 #+CAPTION: zu 2.: Noten oder Takte markieren und die Linie aus der Palette hinzufügen. Die Position und Lage der Linie kommt im nächsten Schritt.
